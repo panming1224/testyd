@@ -1,74 +1,8 @@
-# MySQL 提示词集合
-
-## 数据库连接
-```sql
--- 连接到MySQL数据库
-mysql -h localhost -u username -p database_name
+```
+1.我的困难是，D:\pdd\拼多多店铺汇总表\拼多多店铺汇总表.xlsx我的好几个程序都是使用的这个表，在这个表格上面更新cookie，其他文件都读取这个文件更新cooike。但是几个程序读一个excel就打不开。我希望通过mysql来解决这个问题。
+2.你仔细查阅社区，大家是怎么通过mysql做文件共同读取写入，是通过连接池和python，然后每天先更新任务以日期和店铺为主键每天追加遍任务清单，然后第一遍程序的时候打开网页更新cookie和它自己的任务状态。后续程序执行时可以并发读取cooike和填写任务状态。
+3.你仔细阅读D:\testyd这里的业务py，然后仔细查阅社区，给我一个方案，解决我现在的困扰。
+4.mysql的账号密码是：root，admin123
+5.你先给我一个完整的方案我来评估，主要就是解决店铺信息文件和下载状态的更新。做好信息管理。你仔细查阅社区给我一个方案，并直接在mysql建好表，建一个新的库，表格叫pdd_message。
 ```
 
-## 基本查询
-```sql
--- 查看所有数据库
-SHOW DATABASES;
-
--- 使用特定数据库
-USE database_name;
-
--- 查看所有表
-SHOW TABLES;
-
--- 查看表结构
-DESCRIBE table_name;
-```
-
-## 数据操作
-```sql
--- 插入数据
-INSERT INTO table_name (column1, column2) VALUES (value1, value2);
-
--- 更新数据
-UPDATE table_name SET column1 = value1 WHERE condition;
-
--- 删除数据
-DELETE FROM table_name WHERE condition;
-
--- 查询数据
-SELECT * FROM table_name WHERE condition;
-```
-
-## 表操作
-```sql
--- 创建表
-CREATE TABLE table_name (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE
-);
-
--- 修改表结构
-ALTER TABLE table_name ADD COLUMN new_column VARCHAR(50);
-
--- 删除表
-DROP TABLE table_name;
-```
-
-## 索引操作
-```sql
--- 创建索引
-CREATE INDEX index_name ON table_name (column_name);
-
--- 删除索引
-DROP INDEX index_name ON table_name;
-```
-
-## 用户权限
-```sql
--- 创建用户
-CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
-
--- 授权
-GRANT ALL PRIVILEGES ON database_name.* TO 'username'@'localhost';
-
--- 刷新权限
-FLUSH PRIVILEGES;
-```
