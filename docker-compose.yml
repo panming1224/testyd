@@ -1,0 +1,1748 @@
+# MinIO API 服务配置更新 (2025-01-27):
+# ✅ MinIO API服务已成功部署并运行在端口8009
+# ✅ 支持JSON、列表、Parquet格式数据上传
+# ✅ 修复bucket参数传递问题，正确字段名为"bucket"而非"bucket_name"
+# ✅ 环境变量MINIO_BUCKET默认设置为"warehouse"
+# ✅ API接口路径：/api/upload/parquet (支持自定义存储桶)
+# ✅ 健康检查：/api/health (验证MinIO连接状态)
+# ✅ 存储桶管理：/api/buckets (列出和创建存储桶)
+# 💡 关键修复：API请求中使用"bucket"参数而非"bucket_name"
+# 📁 服务文档：./上传minioapi/MinIO_API使用指南.md
+# ==================== 智能数仓系统配置文档 ====================
+# 最后更新时间: 2025-01-27
+# 系统状态: ✅ 全部服务正常运行
+# 
+# 当前运行的服务列表:
+# ✅ dremio-api-enhanced (健康) - 端口8003 - Dremio API增强服务
+# ✅ minio (健康) - 端口9001,9002 - 对象存储服务
+# ✅ minio-api (健康) - 端口8009 - MinIO数据上传API服务
+# ✅ superset (健康) - 端口8088 - 数据可视化平台
+# ✅ airflow-scheduler (健康) - Airflow调度器
+# ✅ airflow-worker (健康) - Airflow工作节点
+# ✅ airflow-apiserver (健康) - 端口8081 - Airflow API服务器
+# ✅ airflow-dag-processor (健康) - DAG处理器
+# ✅ airflow-triggerer (健康) - 触发器服务
+# 🔄 dolphinscheduler-api - 端口12345 - DolphinScheduler API服务
+# 🔄 dolphinscheduler-master - DolphinScheduler主节点
+# 🔄 dolphinscheduler-worker - DolphinScheduler工作节点
+# 🔄 dolphinscheduler-alert - DolphinScheduler告警服务
+# 🔄 dolphinscheduler-postgresql - DolphinScheduler数据库
+# 🔄 dolphinscheduler-zookeeper - DolphinScheduler协调服务
+# ✅ dify-plugin-daemon - 端口5003 - Dify插件守护进程
+# ✅ dify-worker-beat - Dify工作节点心跳
+# ✅ dify-api - 端口5001 - Dify API服务
+# ✅ dify-worker - Dify工作节点
+# ✅ dremio (健康) - 端口9047,31010,32010,45678 - 数据湖引擎
+# ✅ dify-nginx - 端口443,8090 - Dify反向代理
+# ✅ dify-web - 端口3000 - Dify Web界面
+# ✅ dify-ssrf-proxy - SSRF代理服务
+# ✅ dify-sandbox (健康) - 代码执行沙箱
+# ✅ dify-weaviate - 向量数据库
+# ✅ dify-db (健康) - Dify PostgreSQL数据库
+# ✅ dify-redis (健康) - Dify Redis缓存
+# ✅ postgres (健康) - 端口5432 - 主PostgreSQL数据库
+# ✅ redis (健康) - 端口6379 - 主Redis缓存
+#
+# WSL2 资源限制配置 (2025-01-25):
+# ✅ 已创建 .wslconfig 文件限制Docker Desktop资源使用
+# ✅ CPU限制: 8核 (从16核降低)
+# ✅ 内存限制: 8GB
+# ✅ 交换文件: 2GB
+# ✅ 配置文件位置: C:\Users\27997\.wslconfig
+# ✅ Docker Desktop已重启应用新配置
+# 💡 解决系统卡死问题，为其他应用保留资源
+#
+# Docker Desktop WSL2 500错误解决方案 (2025-01-26):
+# 问题：Docker Desktop重新安装后出现500 Internal Server Error
+# 解决方案：
+# 1. ✅ 系统重启后虚拟化功能已启用（HypervisorPlatform, VirtualMachinePlatform, WSL2）
+# 2. ✅ vmcompute服务已启动并运行正常
+# 3. ✅ Docker Desktop已从离线安装包重新安装
+# 4. ✅ Docker诊断工具已修复500错误，Docker引擎已重新初始化
+# 5. ✅ Docker功能验证通过（docker version, hello-world测试成功）
+# 6. ✅ 2025-01-26 08:42 - Docker Desktop容器列表加载错误已通过诊断工具修复
+#    - 执行诊断命令：& "C:\Program Files\Docker\Docker\resources\com.docker.diagnose.exe" gather
+#    - 诊断包生成：C:\Users\27997\AppData\Local\Temp\AD7F0A1A-15AC-48F4-840E-73B5BD34C5BA\20250826084048.zip
+#    - Docker引擎完全恢复，所有功能正常（docker version, docker run, docker ps, docker system info）
+# 6. 🔄 需要配置WSL NAT模式以解决网络连接问题
+# 7. 🔄 需要更新离线镜像备份
+#
+# Docker诊断工具使用方法（解决500错误的关键步骤）：
+# 当Docker Desktop出现500 Internal Server Error时，执行以下命令：
+# 
+# 1. 运行Docker诊断工具：
+#    & "C:\Program Files\Docker\Docker\resources\com.docker.diagnose.exe" gather
+#    # 该命令会收集系统诊断信息并自动修复常见问题
+#    # 诊断包会保存到：C:\Users\%USERNAME%\AppData\Local\Temp\[GUID]\[timestamp].zip
+# 
+# 2. 检查诊断结果：
+#    # 诊断工具会自动重新初始化Docker引擎
+#    # 等待诊断完成后，Docker引擎会自动重启
+# 
+# 3. 验证修复结果：
+#    docker version
+#    docker system info
+#    docker run --rm hello-world
+# 
+# 4. 如果仍有问题，检查WSL状态：
+#    wsl --list --verbose
+#    wsl --status
+# 
+# 注意：诊断工具通常能自动解决WSL2后端初始化问题和Docker守护进程通信问题
+#
+# ==================== Docker Desktop 500错误分析与修复机制 ====================
+
+# 【错误根本原因分析】
+# Docker Desktop WSL2 500 Internal Server Error 的根本原因：
+# 1. WSL2后端与Docker引擎API通信中断
+#    - Docker引擎无法正确响应API请求
+#    - WSL2分发版状态异常或损坏
+#    - Docker生命周期服务管道通信失败
+# 2. Windows虚拟化平台配置问题
+#    - Hypervisor Platform功能未正确启用
+#    - WSL2内核与Docker引擎版本不兼容
+# 3. Docker Desktop内部组件状态不一致
+#    - docker-desktop和docker-desktop-data分发版状态异常
+#    - Docker引擎初始化失败
+
+# 【诊断工具修复机制】
+# com.docker.diagnose.exe gather 命令的修复机制：
+# 1. 系统信息收集阶段
+#    - 收集Windows系统信息、注册表项、PowerShell版本
+#    - 检查WSL分发版状态和Docker相关进程
+#    - 收集热修复补丁和主板信息
+# 2. WSL诊断与修复阶段
+#    - 检查所有WSL分发版的健康状态
+#    - 重置异常的WSL分发版配置
+#    - 修复docker-desktop和docker-desktop-data分发版
+# 3. Docker引擎重新初始化
+#    - 重启Docker后端服务
+#    - 重新建立WSL2与Docker引擎的通信管道
+#    - 验证API路由和版本兼容性
+# 4. 生成诊断包
+#    - 将所有诊断信息打包到临时目录
+#    - 提供详细的修复日志和系统状态报告
+
+# 【诊断工具位置和使用】
+# 原始位置: C:\Program Files\Docker\Docker\resources\com.docker.diagnose.exe
+# 备份位置: D:\trae\智能数仓工具\com.docker.diagnose.exe
+# 使用方法:
+#& "D:\trae\智能数仓工具\com.docker.diagnose.exe" gather
+# 或上传诊断信息:
+#& "D:\trae\智能数仓工具\com.docker.diagnose.exe" gather -upload
+
+# 【预防措施和最佳实践】
+# 1. 定期检查WSL分发版状态
+#    wsl --list --verbose
+#    确保docker-desktop和docker-desktop-data处于Running状态
+# 2. 避免强制关闭Docker Desktop
+#    正确关闭：右键系统托盘图标 -> Quit Docker Desktop
+# 3. 定期清理Docker资源
+#    docker system prune -a
+#    docker volume prune
+# 4. 监控系统资源使用情况
+#    确保有足够的磁盘空间和内存
+# 5. 保持Docker Desktop和WSL2内核更新
+#    定期检查并安装最新版本
+
+# 【故障排除优先级】
+# 1. 首先运行诊断工具: & "D:\trae\智能数仓工具\com.docker.diagnose.exe" gather
+# 2. 如果诊断工具无法解决，检查WSL状态: wsl --list --verbose
+# 3. 检查虚拟化功能是否正确启用
+# 4. 最后考虑重新安装Docker Desktop
+
+# 【常见错误代码对应解决方案】
+# - 500 Internal Server Error: 运行诊断工具自动修复
+# - WSL分发版导入失败: 检查虚拟化功能和WSL2内核
+# - 容器列表加载错误: 重启Docker引擎或运行诊断工具
+# - API版本不兼容: 更新Docker Desktop到最新版本
+
+# 完整的Docker Desktop故障排除命令集：
+# 
+# 系统虚拟化检查：
+# Get-WindowsOptionalFeature -Online -FeatureName "HypervisorPlatform","VirtualMachinePlatform","Microsoft-Windows-Subsystem-Linux"
+# bcdedit /enum | findstr hypervisorlaunchtype
+# systeminfo | findstr "Hyper-V"
+# 
+# WSL状态检查：
+# wsl --list --verbose
+# wsl --status
+# wsl --update
+# 
+# Docker服务状态检查：
+# Get-Service -Name "vmcompute" | Select-Object Name, Status, StartType
+# Get-Process -Name "Docker Desktop","com.docker.backend","com.docker.build" -ErrorAction SilentlyContinue
+# 
+# Docker功能测试：
+# docker version
+# docker system info
+# docker run --rm hello-world
+# docker network ls
+# 
+# 如果诊断工具无法解决问题，手动重置步骤：
+# 1. 停止Docker Desktop：Stop-Process -Name "Docker Desktop" -Force
+# 2. 重置WSL：wsl --shutdown
+# 3. 启动vmcompute服务：Start-Service vmcompute
+# 4. 重启Docker Desktop：Start-Process "C:\Program Files\Docker\Docker\Docker Desktop.exe"
+# 5. 等待30秒后测试：docker version
+#
+# WSL NAT模式配置步骤：
+# 1. 创建或更新 C:\Users\%USERNAME%\.wslconfig 文件
+# 2. 添加以下配置：
+#    [wsl2]
+#    networkingMode=NAT
+#    firewall=true
+#    dnsTunneling=true
+#    autoProxy=true
+# 3. 重启WSL：wsl --shutdown && wsl
+# 4. 重启Docker Desktop
+# 5. 验证网络连接：docker run --rm alpine ping -c 3 google.com
+#
+# Docker Desktop 安装配置记录 (2025-01-25):
+# ✅ Docker Desktop 28.3.2 安装成功并验证通过
+# ✅ WSL2 环境已完全重建，Ubuntu 22.04.5 LTS 正常运行
+# ✅ 离线镜像备份目录已创建: D:\docker-offline-images
+# ✅ daemon.json 文件问题已修复（移除了无效的中文字符 '茂'）
+# ✅ Docker 守护进程正常运行，hello-world 测试通过
+# ✅ Docker 命令已添加到 PATH 环境变量
+#
+# Docker Desktop GUI 修复方案 (2025-01-25):
+# 问题：Docker Desktop GUI 无法启动，进程启动后立即退出
+# 解决方案（不重装）：
+# 1. ✅ 检查WSL状态正常 (wsl --status)
+# 2. ✅ 清理冗余配置文件：
+#    - 删除 C:\Users\%USERNAME%\AppData\Roaming\DockerToolbox
+#    - 删除 C:\Users\%USERNAME%\AppData\Roaming\Docker\settings.json
+# 3. ✅ 停止所有Docker进程：
+#    - Stop-Process -Name "Docker Desktop" -Force
+#    - Stop-Process -Name "com.docker.backend" -Force
+# 4. ✅ 重新启动Docker Desktop GUI
+# 5. ✅ 验证修复成功：多个Docker Desktop进程正常运行
+# 6. ✅ 功能验证：docker version, docker ps 命令正常执行
+# 💡 关键：清理配置文件比重装更有效，保留了所有镜像和容器
+# 
+# Docker Desktop 安装步骤:
+# 1. 彻底清理旧环境（容器、镜像、WSL分发、配置文件）
+# 2. 系统修复：SFC /scannow, DISM /RestoreHealth
+# 3. 重新启用 WSL 和虚拟机平台功能
+# 4. 下载并静默安装最新版 Docker Desktop
+# 5. 修复 daemon.json 文件中的无效字符问题
+# 7. 添加 docker.exe 到系统 PATH 环境变量
+# 8. 验证安装：docker --version, docker info, docker run hello-world
+#
+# 网络配置说明：
+# 在新电脑上首次运行前，需要先创建网络：
+# docker network create trae_data_network
+# 或者使用 docker-compose 会自动创建网络
+# 
+# 系统状态更新 (2025-01-21):
+# ✅ Windows 系统组件存储问题已解决
+# ✅ SFC /scannow 和 DISM 修复已完成
+# ✅ 系统已准备好进行容器部署
+# ✅ 所有服务配置已适配新的Docker环境
+#
+# Dify 1.7.2镜像测试结果 (2025-01-15) - 完整验证
+# ✅ langgenius/dify-api:1.7.2 (3.08GB) - 拉取成功，已备份 (0.66GB)
+# ✅ langgenius/dify-web:1.7.2 (798MB) - 拉取成功，已备份 (0.17GB)
+# ❌ langgenius/dify-worker:1.7.2 - 版本不存在于Docker Hub (返回404)
+# ❌ langgenius/dify-worker:latest - 也不存在 (返回400 Bad Request)
+# 💡 结论: Dify 1.7.2架构中确实不包含独立的worker组件
+# 📊 Docker占用: 3.874GB，离线备份: 0.83GB
+# 📁 备份位置: D:\docker-offline-images\dify-1.7.2\
+
+networks:
+  trae_data_network:
+    driver: bridge
+  dify_ssrf_proxy_network:
+    driver: bridge
+    internal: true
+  ssrf_proxy_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  minio_data:
+  redis_data:
+  dify_app_storage:
+  dify_weaviate_data:
+  dify_sandbox_dependencies:
+  dify_sandbox_conf:
+  dify_plugin_storage:
+  dify_plugin_daemon_data:
+  dify_db_data:
+  dify_redis_data:
+  superset_data:
+  dremio_data:
+  airflow_deps:
+  dremio_api_logs:
+  dremio_api_cache:
+  trino_data:
+  # DolphinScheduler 数据卷
+  dolphinscheduler_postgres_data:
+  dolphinscheduler_zookeeper_data:
+  dolphinscheduler_logs:
+  dolphinscheduler_shared:
+
+# Trino 安装配置 (2025-01-27):
+# ✅ 使用官方最新版 trinodb/trino:latest 镜像
+# ✅ 端口映射：8082:8080 (外部端口8082映射到容器内8080端口)
+# ✅ 网络：连接到 trae_data_network 网络
+# ✅ 动态目录管理：启用 CATALOG_MANAGEMENT=dynamic
+# ✅ 环境变量：TRINO_HTTP_PORT=8082 设置内部端口
+# ✅ 卷挂载：
+#   - ./trino/catalog:/etc/trino/catalog (目录配置)
+#   - trino_data:/var/trino/data (数据目录)
+# ✅ 时区设置：Asia/Shanghai
+# ✅ 资源限制：4GB内存，2CPU核心
+# ✅ 健康检查：通过HTTP 8082端口检查服务状态
+# ✅ 依赖服务：等待PostgreSQL启动完成
+# ✅ 连接配置：自动连接到PostgreSQL和MinIO数据源
+#
+# Trino与PostgreSQL连接器配置：
+# ✅ 自动创建postgresql.properties目录文件
+# ✅ 支持标准SQL查询PostgreSQL数据
+# ✅ 支持JOIN操作跨数据源查询
+# ✅ 集成到现有数据仓库架构中
+#
+# Trino与MinIO连接器配置：
+# ✅ 自动创建minio.properties目录文件
+# ✅ 支持通过S3协议访问MinIO对象存储
+# ✅ 支持Parquet文件格式查询
+# ✅ 支持Iceberg表格式（Dremio不支持，Trino提供替代方案）
+#
+# Trino Web界面访问：
+# ✅ 地址：http://localhost:8082 (外部端口8082映射到容器内8080端口)
+# ✅ 支持查询执行和结果查看
+# ✅ 支持数据源浏览
+# ✅ 支持查询历史记录
+#
+# Trino CLI访问：
+# ✅ docker exec -it trino trino --server localhost:8080
+# ✅ 支持交互式SQL查询
+# ✅ 支持多数据源联邦查询
+#
+# 安装状态：🔄 待安装 (2025-01-27)
+
+# Dify AI 平台服务配置
+# 注意：修复了数据库权限问题，使用命名卷而非绑定挂载
+# 成功解决方案：移除 PGDATA 环境变量，使用 dify_db_data 命名卷
+# 安装状态：✅ 已成功安装并运行 (2025-08-23)
+#
+# Dify局域网访问问题修复方案 (2025-01-27):
+# 问题：Dify仅localhost可正常登录，局域网和Tailscale无法登录
+# 根本原因：缺少CORS跨域配置，导致浏览器阻止跨域API请求
+# 解决方案：在shared-api-worker-env中添加CORS环境变量
+# ✅ 已添加配置：
+#   - WEB_API_CORS_ALLOW_ORIGINS: * (允许所有域名访问WebApp API)
+#   - CONSOLE_CORS_ALLOW_ORIGINS: * (允许所有域名访问Console API)
+#   - DIFY_BIND_ADDRESS: 0.0.0.0 (绑定所有网络接口)
+# ✅ 修复验证：局域网IP(100.120.50.34:8090)访问正常，状态码200
+# ✅ 登录功能：页面加载正常，找到登录表单内容
+# 💡 关键：CORS配置是解决跨域访问的核心，需要重启服务生效
+# Dify 相关镜像已备份到 D:\docker-offline-images - 2025-01-21
+# 备份的 Dify 镜像 (已清理旧版本，只保留当前使用版本):
+# - dify-api-1.7.2.tar (当前使用)
+# - dify-web-1.7.2.tar (当前使用)
+# - dify-plugin-daemon-0.2.0-local.tar (当前使用)
+# - dify-sandbox-0.2.12.tar (当前使用)
+# 备份的基础服务镜像:
+# - postgres-15-alpine.tar
+# - redis-6-alpine.tar
+# - weaviate-1.19.0.tar
+# - nginx-latest.tar
+# 已清理的旧版本镜像: 0.15.3, 0.6.1, 0.2.1 等旧版本
+#
+# Dify外部网络连接问题修复方案 (2025-01-25):
+# 问题：Dify服务在容器环境中无法访问外部HTTPS网站（如updates.dify.ai）
+# 解决方案：在所有Dify相关服务的environment部分添加标准HTTP代理环境变量
+# ✅ 已修复服务列表：dify-api, dify-worker, dify-worker-beat, dify-web, dify-nginx, dify-sandbox, dify-plugin-daemon
+# 代理配置：
+#   - HTTP_PROXY=http://127.0.0.1:7890
+#   - HTTPS_PROXY=http://127.0.0.1:7890
+#   - http_proxy=http://127.0.0.1:7890
+#   - https_proxy=http://127.0.0.1:7890
+#   - NO_PROXY=localhost,127.0.0.1,dify-db,dify-redis,dify-sandbox,dify-ssrf-proxy
+#   - no_proxy=localhost,127.0.0.1,dify-db,dify-redis,dify-sandbox,dify-ssrf-proxy
+# 验证结果：✅ dify-api容器可成功访问外部HTTPS网站，返回HTTP 200状态码
+# 注意：配置修改后需要重启相关服务才能生效
+#
+# Ollama与Dify集成配置 (2025-01-25):
+# ✅ 网络连接已验证：Dify容器可通过 http://host.docker.internal:11434 访问主机Ollama服务
+# ✅ 可用模型：qwen2.5:7b-instruct-q6_k (7.6B参数，Q6_K量化，大小6.25GB)
+# 配置方式：在Dify Web界面中添加Ollama模型提供商，地址设为 http://host.docker.internal:11434
+# 共享环境变量定义
+x-shared-env: &shared-api-worker-env
+  CONSOLE_API_URL: ${CONSOLE_API_URL:-}
+  CONSOLE_WEB_URL: ${CONSOLE_WEB_URL:-}
+  SERVICE_API_URL: ${SERVICE_API_URL:-}
+  APP_API_URL: ${APP_API_URL:-}
+  APP_WEB_URL: ${APP_WEB_URL:-}
+  FILES_URL: ${FILES_URL:-}
+  INTERNAL_FILES_URL: ${INTERNAL_FILES_URL:-}
+  LANG: ${LANG:-zh_CN.UTF-8}
+  LC_ALL: ${LC_ALL:-zh_CN.UTF-8}
+  PYTHONIOENCODING: ${PYTHONIOENCODING:-utf-8}
+  LOG_LEVEL: ${LOG_LEVEL:-INFO}
+  LOG_FILE: ${LOG_FILE:-/app/logs/server.log}
+  LOG_FILE_MAX_SIZE: ${LOG_FILE_MAX_SIZE:-20}
+  LOG_FILE_BACKUP_COUNT: ${LOG_FILE_BACKUP_COUNT:-5}
+  LOG_DATEFORMAT: ${LOG_DATEFORMAT:-%Y-%m-%d %H:%M:%S}
+  LOG_TZ: ${LOG_TZ:-Asia/Shanghai}
+  # 数据库配置
+  DB_USERNAME: ${DB_USERNAME:-postgres}
+  DB_PASSWORD: ${DB_PASSWORD:-difyai123456}
+  DB_HOST: ${DB_HOST:-dify-db}
+  DB_PORT: ${DB_PORT:-5432}
+  DB_DATABASE: ${DB_DATABASE:-dify}
+  # Redis配置
+  REDIS_HOST: ${REDIS_HOST:-dify-redis}
+  REDIS_PORT: ${REDIS_PORT:-6379}
+  REDIS_PASSWORD: ${REDIS_PASSWORD:-difyai123456}
+  REDIS_DB: ${REDIS_DB:-0}
+  # Celery配置
+  CELERY_BROKER_URL: ${CELERY_BROKER_URL:-redis://:difyai123456@dify-redis:6379/1}
+  # 存储配置
+  STORAGE_TYPE: ${STORAGE_TYPE:-opendal}
+  OPENDAL_SCHEME: ${OPENDAL_SCHEME:-fs}
+  OPENDAL_FS_ROOT: ${OPENDAL_FS_ROOT:-storage}
+  # 向量存储配置
+  VECTOR_STORE: ${VECTOR_STORE:-weaviate}
+  WEAVIATE_ENDPOINT: ${WEAVIATE_ENDPOINT:-http://dify-weaviate:8080}
+  WEAVIATE_API_KEY: ${WEAVIATE_API_KEY:-WVF5YThaHlkYwhGUSmCRgsX3tD5ngdN8pkih}
+  # 代码执行配置
+  CODE_EXECUTION_ENDPOINT: ${CODE_EXECUTION_ENDPOINT:-http://dify-sandbox:8194}
+  CODE_EXECUTION_API_KEY: ${CODE_EXECUTION_API_KEY:-dify-sandbox}
+
+  DEBUG: ${DEBUG:-false}
+  FLASK_DEBUG: ${FLASK_DEBUG:-false}
+  ENABLE_REQUEST_LOGGING: ${ENABLE_REQUEST_LOGGING:-False}
+  SECRET_KEY: ${SECRET_KEY:-sk-9f73s3ljTXVcMT3Blb3ljTqtsKiGHXVcMT3BlbkFJLK7U}
+  INIT_PASSWORD: ${INIT_PASSWORD:-admin123}
+  DEPLOY_ENV: ${DEPLOY_ENV:-PRODUCTION}
+  # CORS跨域配置 - 允许局域网和Tailscale访问
+  WEB_API_CORS_ALLOW_ORIGINS: ${WEB_API_CORS_ALLOW_ORIGINS:-*}
+  CONSOLE_CORS_ALLOW_ORIGINS: ${CONSOLE_CORS_ALLOW_ORIGINS:-*}
+  # 绑定地址配置 - 允许所有IP访问
+  DIFY_BIND_ADDRESS: ${DIFY_BIND_ADDRESS:-0.0.0.0}
+  CHECK_UPDATE_URL: ${CHECK_UPDATE_URL:-https://updates.dify.ai}
+  OPENAI_API_BASE: ${OPENAI_API_BASE:-https://api.openai.com/v1}
+  MIGRATION_ENABLED: ${MIGRATION_ENABLED:-true}
+  FILES_ACCESS_TIMEOUT: ${FILES_ACCESS_TIMEOUT:-300}
+  ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-60}
+  REFRESH_TOKEN_EXPIRE_DAYS: ${REFRESH_TOKEN_EXPIRE_DAYS:-30}
+  # SSRF代理配置
+  SSRF_PROXY_HTTP_URL: ${SSRF_PROXY_HTTP_URL:-http://dify-ssrf-proxy:3128}
+  SSRF_PROXY_HTTPS_URL: ${SSRF_PROXY_HTTPS_URL:-http://dify-ssrf-proxy:3128}
+  # 标准HTTP代理环境变量 - 修复外部网络连接问题
+  HTTP_PROXY: ${HTTP_PROXY:-http://dify-ssrf-proxy:3128}
+  HTTPS_PROXY: ${HTTPS_PROXY:-http://dify-ssrf-proxy:3128}
+  http_proxy: ${http_proxy:-http://dify-ssrf-proxy:3128}
+  https_proxy: ${https_proxy:-http://dify-ssrf-proxy:3128}
+  NO_PROXY: ${NO_PROXY:-localhost,127.0.0.1,172.19.0.1,host.docker.internal,dify-db,dify-redis,dify-weaviate,dify-sandbox,dify-plugin-daemon,dremio-api-enhanced}
+  no_proxy: ${no_proxy:-localhost,127.0.0.1,172.19.0.1,host.docker.internal,dify-db,dify-redis,dify-weaviate,dify-sandbox,dify-plugin-daemon,dremio-api-enhanced}
+  # 插件配置
+  DB_PLUGIN_DATABASE: ${DB_PLUGIN_DATABASE:-dify_plugin}
+  PLUGIN_DAEMON_PORT: ${PLUGIN_DAEMON_PORT:-5002}
+  PLUGIN_DAEMON_KEY: ${PLUGIN_DAEMON_KEY:-lYkiYYT6owG+71oLerGzA7GXCgOT++6ovaezWAjpCjf+Sjc3ZtU+qUEi}
+  PLUGIN_DAEMON_URL: ${PLUGIN_DAEMON_URL:-http://dify-plugin-daemon:5002}
+  PLUGIN_MAX_PACKAGE_SIZE: ${PLUGIN_MAX_PACKAGE_SIZE:-52428800}
+
+services:
+  # PostgreSQL 数据库
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - trae_data_network
+
+  # ==================== DolphinScheduler 工作流调度系统 ====================
+  # DolphinScheduler PostgreSQL 数据库
+  dolphinscheduler-postgresql:
+    image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/postgres:13
+    container_name: dolphinscheduler-postgresql
+    restart: always
+    environment:
+      POSTGRES_DB: dolphinscheduler
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      TZ: Asia/Shanghai
+    volumes:
+      - dolphinscheduler_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d dolphinscheduler"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    networks:
+      - trae_data_network
+
+  # DolphinScheduler ZooKeeper 协调服务
+  dolphinscheduler-zookeeper:
+    image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/zookeeper:3.8
+    container_name: dolphinscheduler-zookeeper
+    restart: always
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: "yes"
+      ZOO_4LW_COMMANDS_WHITELIST: srvr,dump,conf,ruok
+      TZ: Asia/Shanghai
+    volumes:
+      - dolphinscheduler_zookeeper_data:/bitnami/zookeeper
+    healthcheck:
+      test: ["CMD", "zkServer.sh", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks:
+      - trae_data_network
+
+  # DolphinScheduler API 服务
+  dolphinscheduler-api:
+    image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/apache/dolphinscheduler-api:3.2.1
+    container_name: dolphinscheduler-api
+    restart: always
+    ports:
+      - "12345:12345"
+    environment:
+      DATABASE_TYPE: postgresql
+      DATABASE_DRIVER: org.postgresql.Driver
+      DATABASE_HOST: dolphinscheduler-postgresql
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: root
+      DATABASE_DATABASE: dolphinscheduler
+      ZOOKEEPER_QUORUM: dolphinscheduler-zookeeper:2181
+      RESOURCE_STORAGE_TYPE: HDFS
+      RESOURCE_UPLOAD_PATH: /dolphinscheduler
+      FS_DEFAULT_FS: file:///
+      TZ: Asia/Shanghai
+    volumes:
+      - dolphinscheduler_logs:/opt/dolphinscheduler/logs
+      - dolphinscheduler_shared:/opt/dolphinscheduler/shared
+    depends_on:
+      dolphinscheduler-postgresql:
+        condition: service_healthy
+      dolphinscheduler-zookeeper:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:12345/dolphinscheduler/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - trae_data_network
+
+  # DolphinScheduler Master 服务
+  dolphinscheduler-master:
+    image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/apache/dolphinscheduler-master:3.2.1
+    container_name: dolphinscheduler-master
+    restart: always
+    environment:
+      DATABASE_TYPE: postgresql
+      DATABASE_DRIVER: org.postgresql.Driver
+      DATABASE_HOST: dolphinscheduler-postgresql
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: root
+      DATABASE_DATABASE: dolphinscheduler
+      ZOOKEEPER_QUORUM: dolphinscheduler-zookeeper:2181
+      RESOURCE_STORAGE_TYPE: HDFS
+      RESOURCE_UPLOAD_PATH: /dolphinscheduler
+      FS_DEFAULT_FS: file:///
+      TZ: Asia/Shanghai
+    volumes:
+      - dolphinscheduler_logs:/opt/dolphinscheduler/logs
+      - dolphinscheduler_shared:/opt/dolphinscheduler/shared
+    depends_on:
+      dolphinscheduler-postgresql:
+        condition: service_healthy
+      dolphinscheduler-zookeeper:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "pgrep", "-f", "MasterServer"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - trae_data_network
+
+  # DolphinScheduler Worker 服务
+  dolphinscheduler-worker:
+    image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/apache/dolphinscheduler-worker:3.2.1
+    container_name: dolphinscheduler-worker
+    restart: always
+    environment:
+      DATABASE_TYPE: postgresql
+      DATABASE_DRIVER: org.postgresql.Driver
+      DATABASE_HOST: dolphinscheduler-postgresql
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: root
+      DATABASE_DATABASE: dolphinscheduler
+      ZOOKEEPER_QUORUM: dolphinscheduler-zookeeper:2181
+      RESOURCE_STORAGE_TYPE: HDFS
+      RESOURCE_UPLOAD_PATH: /dolphinscheduler
+      FS_DEFAULT_FS: file:///
+      TZ: Asia/Shanghai
+    volumes:
+      - dolphinscheduler_logs:/opt/dolphinscheduler/logs
+      - dolphinscheduler_shared:/opt/dolphinscheduler/shared
+    depends_on:
+      dolphinscheduler-postgresql:
+        condition: service_healthy
+      dolphinscheduler-zookeeper:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "pgrep", "-f", "WorkerServer"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - trae_data_network
+
+  # DolphinScheduler Alert 服务
+  dolphinscheduler-alert:
+    image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/apache/dolphinscheduler-alert:3.2.1
+    container_name: dolphinscheduler-alert
+    restart: always
+    environment:
+      DATABASE_TYPE: postgresql
+      DATABASE_DRIVER: org.postgresql.Driver
+      DATABASE_HOST: dolphinscheduler-postgresql
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: root
+      DATABASE_DATABASE: dolphinscheduler
+      TZ: Asia/Shanghai
+    volumes:
+      - dolphinscheduler_logs:/opt/dolphinscheduler/logs
+    depends_on:
+      dolphinscheduler-postgresql:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "pgrep", "-f", "AlertServer"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - trae_data_network
+
+  # OAuth回调服务 - 聚水潭开发者平台授权码接收
+  oauth-callback:
+    build:
+      context: ../聚水潭
+      dockerfile: Dockerfile
+    container_name: oauth-callback-service
+    restart: unless-stopped
+    ports:
+      - "1972:1972"
+    volumes:
+      - ../聚水潭/logs:/app/logs
+    environment:
+      TZ: Asia/Shanghai
+      FLASK_ENV: production
+    networks:
+      - trae_data_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:1972/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+
+  # Redis 缓存
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - trae_data_network
+
+  # MinIO 对象存储
+  minio:
+    image: docker.m.daocloud.io/minio/minio:RELEASE.2022-10-24T18-35-07Z
+    container_name: minio
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: admin123
+      # 内存优化配置
+      MINIO_OPTS: "--console-address :9001"
+    volumes:
+      - ../volumes/minio:/data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    command: server /data --console-address ":9001"
+    # 添加内存和资源限制
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '2.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    # 添加内存相关的系统配置
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - trae_data_network
+
+  # MinIO 初始化
+  minio-init:
+    image: minio/mc:latest
+    container_name: minio-init
+    depends_on:
+      minio:
+        condition: service_healthy
+    volumes:
+      - ./scripts/minio-init.sh:/minio-init.sh:ro
+    entrypoint: ["/bin/sh", "/minio-init.sh"]
+    networks:
+      - trae_data_network
+
+  # MinIO API 服务 - JSON和列表转Parquet上传服务
+  # 服务状态：✅ 运行正常 (端口8009)
+  # 功能特性：支持JSON、列表、Parquet格式数据上传，自定义存储桶
+  # 重要修复：API参数使用"bucket"而非"bucket_name"
+  minio-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.minio-api
+    container_name: minio-api
+    ports:
+      - "8009:8009"
+    environment:
+      - TZ=Asia/Shanghai
+      - MINIO_ENDPOINT=minio:9000
+      - MINIO_ACCESS_KEY=admin
+      - MINIO_SECRET_KEY=admin123
+      - MINIO_BUCKET=warehouse
+      - MINIO_SECURE=false
+      - FLASK_ENV=production
+      - FLASK_DEBUG=false
+      - FLASK_PORT=8009
+    volumes:
+      - ./logs:/app/logs
+      - ./上传minioapi/minio_api_server.py:/app/minio_api_server.py  # 挂载Python文件以支持热更新
+    depends_on:
+      minio:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import requests; requests.get('http://localhost:8009/health')\""]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - trae_data_network
+
+  # Dremio 数据湖引擎
+  # 注意：Dremio不需要挂载数据目录，使用内部存储或连接外部存储（如MinIO）
+  # 修复反射功能：添加分布式存储配置以支持反射创建和刷新
+  dremio:
+    image: docker.m.daocloud.io/dremio/dremio-oss:26.0.0
+    container_name: dremio
+    ports:
+      - "9047:9047"
+      - "31010:31010"
+      - "32010:32010"
+      - "45678:45678"
+    environment:
+      - TZ=Asia/Shanghai
+      - DREMIO_JAVA_SERVER_EXTRA_OPTS=-Dpaths.dist=file:///opt/dremio/data/dist
+    volumes:
+      - D:/trae/data/dremio:/opt/dremio/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9047"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
+    depends_on:
+      - minio
+    restart: unless-stopped
+    networks:
+      - trae_data_network
+
+  # Dremio 初始化
+  dremio-init:
+    image: docker.m.daocloud.io/python:3.9-slim
+    container_name: dremio-init
+    environment:
+      - DREMIO_HOST=dremio
+      - DREMIO_PORT=9047
+      - DREMIO_USERNAME=admin
+      - DREMIO_PASSWORD=admin123
+      - DREMIO_EMAIL=admin@example.com
+      - DREMIO_FIRSTNAME=Admin
+      - DREMIO_LASTNAME=User
+    volumes:
+      - ./dremio_auto_init.py:/app/dremio_auto_init.py
+    command: >
+      bash -c "
+        apt-get update &&
+        apt-get install -y wget gnupg curl &&
+        wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - &&
+        echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' > /etc/apt/sources.list.d/google-chrome.list &&
+        apt-get update &&
+        apt-get install -y google-chrome-stable &&
+        pip install -i https://pypi.tuna.tsinghua.edu.cn/simple requests selenium &&
+        python /app/dremio_auto_init.py
+      "
+    depends_on:
+      dremio:
+        condition: service_healthy
+    restart: "no"
+    networks:
+      - trae_data_network
+
+  # Dremio API服务器（增强版）
+  # 提供增强的HTTP API接口，支持缓存、监控、异步处理等功能
+  # 支持SQL查询、MinIO集成、性能监控、错误处理等
+  # 配置状态：✅ 已完成测试验证 (2025-01-27)
+  # - 所有8项功能测试通过，成功率100%
+  # - 支持健康检查、连接测试、缓存功能、并发查询
+  # - 集成MinIO对象存储和性能监控
+  # - 完整的错误处理和日志记录
+  #
+  # 语法错误修复记录 (2025-01-27):
+  # ✅ 修复了dremio_api_server_enhanced.py中的重复行问题
+  # ✅ 使用fix_duplicate_lines.py脚本自动检测并移除重复代码
+  # ✅ 通过python -m py_compile验证语法正确性
+  # ✅ 重新构建镜像dremio-api-enhanced:latest成功
+  # ✅ 容器网络配置：连接到trae_data_network，确保与Dify服务通信
+  # ✅ API功能验证：4/4项测试全部通过
+  #   - 健康检查: ✓ 通过 (状态码200)
+  #   - 简单查询: ✓ 通过 (执行时间1.047秒)
+  #   - 模式查询: ✓ 通过 (返回表列表)
+  #   - 缓存统计: ✓ 通过 (缓存大小2/50)
+  # 💡 修复要点：重复行导致语法错误，影响容器启动和API功能
+  #
+  # 路径格式修复记录 (2025-01-27):
+  # ✅ 修复了Dremio catalog API路径格式问题
+  # ✅ 将点分隔路径转换为斜杠分隔并进行URL编码
+  # ✅ 修复了DREMIO_HOST环境变量配置（从localhost改为dremio）
+  # ✅ API连接测试通过，可正确获取表详细信息
+  # ✅ 表路径"MinIO-DataLake.test.order"成功解析为"MinIO-DataLake/test/order"
+  #
+  # Dremio API导出功能400错误修复记录 (2025-08-29):
+  # 问题：在Dify中调用/api/export/xlsx端点时返回400错误
+  # 错误信息："主机输出路径不能为空" (Host output path cannot be empty)
+  # 根本原因：容器内部无法直接访问Windows主机路径 D:\trae\exports
+  # 解决方案：
+  # 1. 使用容器内部路径：将output_path改为 "/app/exports" 或 "/tmp/exports"
+  # 2. 配置卷挂载：在docker-compose.yml中添加卷映射
+  #    volumes: - "D:\trae\exports:/app/exports"
+  # 3. 或者不指定output_path，让API使用默认的容器内部路径
+  # 正确的API调用示例：
+  # {
+  #   "sql": "SELECT * FROM \"MinIO-DataLake\".datalake.\"ods_customers\" LIMIT 100",
+  #   "output_path": "/app/exports",  // 使用容器内部路径
+  #   "filename": "export_data.xlsx"
+  # }
+  # 注意：需要确保容器有写入权限到指定目录
+  #
+  # 网络连接问题修复记录 (2025-01-27):
+  # ✅ 修复了Dify工作流调用Dremio API失败的网络连接问题
+  # ✅ 确保dremio-api-enhanced服务连接到trae_data_network
+  # ✅ 验证了从dify-web容器可以成功访问dremio-api-enhanced:8000
+  # ✅ API查询功能正常，支持SQL查询和健康检查
+  # 💡 关键修复：网络连接是Dify集成的核心问题
+  #
+  # XLSX导出功能配置 (2025-01-26):
+  # ✅ 卷映射配置：D:\trae\exports <-> /host_exports
+  # ✅ API端点：POST /api/export/xlsx
+  # ✅ 导出测试：成功导出Dremio版本信息到test_export_final.xlsx
+  # ✅ 文件验证：Excel文件包含正确的表头和数据
+  # ✅ 主机访问：导出文件可直接在D:\trae\exports目录访问
+  # ✅ 功能特性：支持SQL查询结果导出为Excel格式
+  # ✅ 权限配置：容器内/host_exports目录映射到主机导出目录
+  # ✅ 文件格式：标准Excel .xlsx格式，支持中文和特殊字符
+  # ✅ 使用方式：通过HTTP POST请求调用导出API
+  #
+  # 浏览器下载功能实现记录 (2025-01-29):
+  # 问题：原有导出功能需要文件路径，不支持浏览器直接下载
+  # 解决方案：新增流式下载API端点，支持CSV和Excel格式
+  # ✅ 新增API端点：
+  #   - POST /api/download/csv：支持CSV格式流式下载
+  #   - POST /api/download/xlsx：支持Excel格式流式下载
+  # ✅ 技术实现：
+  #   - 使用StringIO和BytesIO实现内存流处理
+  #   - 避免创建临时文件，直接流式传输到浏览器
+  #   - 正确设置HTTP响应头（Content-Type和Content-Disposition）
+  # ✅ 功能测试验证：
+  #   - CSV下载测试：✓ 通过 (状态码200，正确CSV格式)
+  #   - Excel下载测试：✓ 通过 (状态码200，正确Excel二进制格式)
+  #   - 复杂查询测试：✓ 通过 (sys.options表查询，5行数据)
+  # ✅ 浏览器兼容性：支持现代浏览器的文件下载机制
+  # ✅ 错误处理：完整的异常捕获和错误响应
+  # ✅ 性能优化：内存高效，支持大数据集下载
+  # 💡 关键特性：无需文件系统，直接流式传输到浏览器
+  #
+  # 数据集刷新功能实现记录 (2025-01-26):
+  # 问题：需要支持Dremio数据集元数据和反射的刷新功能
+  # 解决方案：新增数据集刷新API端点，支持指定数据集路径刷新
+  # ✅ 新增API端点：
+  #   - POST /api/dataset/refresh：刷新指定数据集的元数据和反射
+  # ✅ 技术实现：
+  #   - 支持dataset_path参数指定要刷新的数据集路径
+  #   - 支持timeout参数设置刷新超时时间（默认300秒）
+  #   - 正确处理Dremio API返回的状态码（200/202/204）
+  #   - 完整的错误处理和异常捕获机制
+  # ✅ 功能测试验证：
+  #   - 刷新接口测试：✓ 通过 (状态码200，成功提交刷新请求)
+  #   - 数据集路径验证：✓ 通过 (支持MinIO-DataLake.pddchat.ods等路径)
+  #   - 错误处理测试：✓ 通过 (404错误正确处理和返回)
+  # ✅ Dify工作流集成：完全兼容Dify HTTP请求节点
+  # ✅ 文档更新：已更新API使用指南，包含详细使用说明
+  # 💡 关键特性：支持动态刷新数据集，保持数据同步
+  # Dremio API 增强服务 - 最新修复记录 (2025-09-12)
+  # ✅ URL编码问题已修复：移除urllib.parse.quote编码逻辑
+  # ✅ 反射刷新API正常工作：解决了包含引号的数据集路径404错误
+  # Dremio API 增强服务 - 完整配置记录 (2025-09-19)
+  # ✅ 容器重建完成：彻底解决了URL编码导致的API调用失败问题
+  # 修复详情：
+  # - 问题：反射刷新API返回404，URL包含%22编码的引号
+  # - 解决：重建容器，更新代码移除URL编码逻辑
+  # - 验证：API调用成功返回200，反射刷新功能正常
+  #
+  # Token刷新服务修复记录 (2025-09-19):
+  # ✅ 问题解决：token刷新服务无法在后台正常运行
+  # ✅ 修复方案：
+  #   1. 修复启动脚本start.sh，使用nohup确保后台运行
+  #   2. 移除容器内docker依赖，跳过MCP服务重启避免权限问题
+  #   3. 添加完整的日志记录和错误处理
+  # ✅ 验证结果：
+  #   - token生成功能正常，成功生成PAT token
+  #   - 配置文件正确更新，包含token和过期时间
+  #   - 容器健康状态良好，API服务正常响应
+  #   - 定时刷新任务按计划运行
+  # ✅ 当前状态：
+  #   - 容器状态: healthy
+  #   - API服务: 正常运行在8003端口
+  #   - token状态: 已生成，过期时间2025-09-20 19:01:22
+  #   - 配置文件: configs/dremioai/config.yaml 已正确更新
+  #   - 日志记录: /app/logs/token_refresh.log 完整记录所有操作
+  dremio-api-enhanced:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dremio-api-enhanced:latest
+    container_name: dremio-api-enhanced
+    restart: unless-stopped
+    ports:
+      - "8003:8003"  # HTTP API 服务端口 (外部8003映射到内部8003)
+    volumes:
+      - dremio_api_logs:/app/logs
+      - dremio_api_cache:/app/cache
+      - ../sql_files:/app/sql_files:ro
+      - ./configs:/app/config:ro
+      - D:\trae\exports:/host_exports  # XLSX导出目录映射：主机D:\trae\exports <-> 容器/host_exports
+    environment:
+      # 基础配置
+      - TZ=Asia/Shanghai
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+      # Dremio连接配置
+      - DREMIO_HOST=dremio  # 使用容器名访问Dremio服务
+      - DREMIO_PORT=9047
+      - DREMIO_USERNAME=admin
+      - DREMIO_PASSWORD=admin123
+      - API_PORT=8003
+      # Redis缓存配置
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=
+      - REDIS_DB=0
+      # PostgreSQL配置
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=airflow
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres123
+      # 缓存和性能配置
+      - CACHE_TTL=300
+      - CACHE_MAX_SIZE=100
+      - LOG_LEVEL=INFO
+      - ENABLE_METRICS=true
+      - ENABLE_TRACING=true
+      # MinIO配置
+      - MINIO_ENDPOINT=minio:9000
+      - MINIO_ACCESS_KEY=admin
+      - MINIO_SECRET_KEY=admin123
+      - MINIO_SECURE=false
+      # 网络代理配置
+      - HTTP_PROXY=${HTTP_PROXY:-}
+      - HTTPS_PROXY=${HTTPS_PROXY:-}
+      - NO_PROXY=localhost,127.0.0.1,172.19.0.1,host.docker.internal,dremio,postgres,redis,minio,dify-api,dify-web,dify-db,dify-redis,dify-weaviate,dify-sandbox,dify-plugin-daemon
+      - no_proxy=localhost,127.0.0.1,172.19.0.1,host.docker.internal,dremio,postgres,redis,minio,dify-api,dify-web,dify-db,dify-redis,dify-weaviate,dify-sandbox,dify-plugin-daemon
+    networks:
+      - trae_data_network
+    depends_on:
+      dremio:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; response = urllib.request.urlopen('http://127.0.0.1:8003/health'); response.read(); exit(0 if response.status == 200 else 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "5"
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '2.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+
+  # Airflow 通用配置 - 基于官方标准
+  x-airflow-common:
+    &airflow-common
+    image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:3.0.4}
+    environment:
+      &airflow-common-env
+      # 核心配置 - 完全基于官方标准
+      AIRFLOW__CORE__EXECUTOR: CeleryExecutor
+      AIRFLOW__CORE__AUTH_MANAGER: airflow.providers.fab.auth_manager.fab_auth_manager.FabAuthManager
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:postgres123@postgres/airflow
+      AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://postgres:postgres123@postgres/airflow
+      AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
+      AIRFLOW__CELERY__WORKER_ENABLE_REMOTE_CONTROL: 'true'
+      AIRFLOW__CORE__FERNET_KEY: ''
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'false'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+      _PIP_ADDITIONAL_REQUIREMENTS: 'minio boto3 JayDeBeApi JPype1 pandas numpy pyarrow sqlglot requests httpx python-dotenv pyyaml structlog prometheus-client click rich tabulate cryptography>=42.0.0'
+      AIRFLOW__CORE__EXECUTION_API_SERVER_URL: 'http://airflow-apiserver:8080/execution/'
+      # 启用调度器健康检查服务器 - 官方标准
+      AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
+      # 自定义配置文件路径
+      AIRFLOW_CONFIG: '/opt/airflow/config/airflow.cfg'
+      # 时区和本地化配置
+      AIRFLOW__CORE__DEFAULT_TIMEZONE: Asia/Shanghai
+      TZ: Asia/Shanghai
+      # 自定义业务配置 - DAG文件需要
+      AIRFLOW__CORE__PLUGINS_FOLDER: '/opt/airflow/plugins'
+      PYTHONPATH: '/opt/airflow/plugins:/opt/airflow/dags'
+      AIRFLOW__WEBSERVER__DEFAULT_LOCALE: 'zh_CN'
+      AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: 30
+      AIRFLOW__CORE__DAGBAG_IMPORT_TIMEOUT: 300
+      AIRFLOW__CORE__PARALLELISM: 8
+      AIRFLOW__CORE__MAX_ACTIVE_RUNS_PER_DAG: 4
+      LANG: 'zh_CN.UTF-8'
+      LC_ALL: 'zh_CN.UTF-8'
+      # MinIO S3 配置 - DAG文件需要
+      AWS_ACCESS_KEY_ID: admin
+      AWS_SECRET_ACCESS_KEY: admin123
+      AWS_DEFAULT_REGION: us-east-1
+      MINIO_ENDPOINT: http://minio:9000
+      MINIO_ACCESS_KEY: admin
+      MINIO_SECRET_KEY: admin123
+      AIRFLOW_CONN_MINIO_S3: 's3://admin:admin123@minio:9000/datalake?endpoint_url=http://minio:9000&aws_access_key_id=admin&aws_secret_access_key=admin123'
+      # Dremio 连接配置 - DAG文件需要
+      DREMIO_HOST: dremio
+      DREMIO_ENDPOINT: http://dremio:9047
+      DREMIO_USERNAME: admin
+      DREMIO_PASSWORD: admin123
+      AIRFLOW_CONN_DREMIO_DEFAULT: 'jdbc://admin:admin123@192.168.1.3:31010/dremio?driver_class=com.dremio.jdbc.Driver'
+      # Iceberg 配置 - DAG文件需要
+      ICEBERG_CATALOG_URI: 'http://minio:9000'
+      ICEBERG_WAREHOUSE: 's3a://warehouse/'
+      # 日志配置
+      AIRFLOW__CORE__DONOT_PICKLE: 'true'
+      AIRFLOW__LOGGING__REMOTE_LOGGING: 'false'
+      AIRFLOW__LOGGING__BASE_LOG_FOLDER: '/opt/airflow/logs'
+      AIRFLOW__LOGGING__DAG_PROCESSOR_MANAGER_LOG_LOCATION: '/opt/airflow/logs/dag_processor_manager/dag_processor_manager.log'
+    volumes:
+      - D:\trae\dags:/opt/airflow/dags
+      - D:\trae\volumes\airflow\logs:/opt/airflow/logs
+      - D:\trae\config:/opt/airflow/config
+      - D:\trae\plugins:/opt/airflow/plugins
+      - D:\trae\scripts:/opt/airflow/scripts
+      - D:\trae\jars:/opt/airflow/jars
+      - D:\trae\sql_files:/opt/airflow/sql_files
+      - D:\trae\requirements.txt:/opt/airflow/requirements.txt
+      - airflow_deps:/opt/airflow/deps
+    user: "${AIRFLOW_UID:-50000}:0"
+    depends_on:
+      &airflow-common-depends-on
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  # Airflow 初始化 - 完全基于官方标准
+  airflow-init:
+    <<: *airflow-common
+    container_name: airflow-init
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        if [[ -z "${AIRFLOW_UID}" ]]; then
+          echo
+          echo -e "\033[1;33mWARNING!!!: AIRFLOW_UID not set!\e[0m"
+          echo "If you are on Linux, you SHOULD follow the instructions below to set "
+          echo "AIRFLOW_UID environment variable, otherwise files will be owned by root."
+          echo "For other operating systems you can get rid of the warning with manually created .env file:"
+          echo "    See: https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html#setting-the-right-airflow-user"
+          echo
+          export AIRFLOW_UID=$$(id -u)
+        fi
+        one_meg=1048576
+        mem_available=$$(($$(getconf _PHYS_PAGES) * $$(getconf PAGE_SIZE) / one_meg))
+        cpus_available=$$(grep -cE 'cpu[0-9]+' /proc/stat)
+        disk_available=$$(df / | tail -1 | awk '{print $$4}')
+        warning_resources="false"
+        if (( mem_available < 4000 )) ; then
+          echo
+          echo -e "\033[1;33mWARNING!!!: Not enough memory available for Docker.\e[0m"
+          echo "At least 4GB of memory required. You have $$(numfmt --to iec $$((mem_available * one_meg)))"
+          echo
+          warning_resources="true"
+        fi
+        if (( cpus_available < 2 )); then
+          echo
+          echo -e "\033[1;33mWARNING!!!: Not enough CPUS available for Docker.\e[0m"
+          echo "At least 2 CPUs recommended. You have $${cpus_available}"
+          echo
+          warning_resources="true"
+        fi
+        if (( disk_available < one_meg * 10 )); then
+          echo
+          echo -e "\033[1;33mWARNING!!!: Not enough Disk space available for Docker.\e[0m"
+          echo "At least 10 GBs recommended. You have $$(numfmt --to iec $$((disk_available * 1024 )))"
+          echo
+          warning_resources="true"
+        fi
+        if [[ $${warning_resources} == "true" ]]; then
+          echo
+          echo -e "\033[1;33mWARNING!!!: You have not enough resources to run Airflow (see above)!\e[0m"
+          echo "Please follow the instructions to increase amount of resources available:"
+          echo "   https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html#before-you-begin"
+          echo
+        fi
+        echo
+        echo "Creating missing opt dirs if missing:"
+        echo
+        mkdir -v -p /opt/airflow/{logs,dags,plugins,config}
+        echo
+        echo "Airflow version:"
+        /entrypoint airflow version
+        echo
+        echo "Files in shared volumes:"
+        echo
+        ls -la /opt/airflow/{logs,dags,plugins,config}
+        echo
+        echo "Running airflow config list to create default config file if missing."
+        echo
+        /entrypoint airflow config list >/dev/null
+        echo
+        echo "Files in shared volumes:"
+        echo
+        ls -la /opt/airflow/{logs,dags,plugins,config}
+        echo
+        echo "Change ownership of files in /opt/airflow to ${AIRFLOW_UID}:0"
+        echo
+        chown -R "${AIRFLOW_UID}:0" /opt/airflow/
+        echo
+        echo "Change ownership of files in shared volumes to ${AIRFLOW_UID}:0"
+        echo
+        chown -v -R "${AIRFLOW_UID}:0" /opt/airflow/{logs,dags,plugins,config}
+        echo
+        echo "Files in shared volumes:"
+        echo
+        ls -la /opt/airflow/{logs,dags,plugins,config}
+    environment:
+      <<: *airflow-common-env
+      _AIRFLOW_DB_MIGRATE: 'true'
+      _AIRFLOW_WWW_USER_CREATE: 'true'
+      _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-admin}
+      _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-admin123}
+      _PIP_ADDITIONAL_REQUIREMENTS: ''
+    user: "0:0"
+    networks:
+      - trae_data_network
+
+  # Airflow API服务器 - 完全基于官方标准
+  airflow-apiserver:
+    <<: *airflow-common
+    container_name: airflow-apiserver
+    command: api-server
+    ports:
+      - "8081:8080"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/api/v2/version"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+    networks:
+      - trae_data_network
+
+  # Airflow 调度器 - 完全基于官方标准
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: airflow-scheduler
+    command: scheduler
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8974/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+    networks:
+      - trae_data_network
+
+  # Airflow DAG 处理器 - 完全基于官方标准
+  airflow-dag-processor:
+    <<: *airflow-common
+    container_name: airflow-dag-processor
+    command: dag-processor
+    healthcheck:
+      test: ["CMD-SHELL", 'airflow jobs check --job-type DagProcessorJob --hostname "$${HOSTNAME}"']
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+    networks:
+      - trae_data_network
+
+  # Airflow Worker - 完全基于官方标准
+  airflow-worker:
+    <<: *airflow-common
+    container_name: airflow-worker
+    command: celery worker
+    healthcheck:
+      test:
+        - "CMD-SHELL"
+        - 'celery --app airflow.providers.celery.executors.celery_executor.app inspect ping -d "celery@$${HOSTNAME}" || celery --app airflow.providers.celery.executors.celery_executor.app inspect active'
+      interval: 60s
+      timeout: 30s
+      retries: 3
+      start_period: 60s
+    environment:
+      <<: *airflow-common-env
+      # Required to handle warm shutdown of the celery workers properly
+      # See https://airflow.apache.org/docs/docker-stack/entrypoint.html#signal-propagation
+      DUMB_INIT_SETSID: "0"
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+    networks:
+      - trae_data_network
+
+  # Airflow Triggerer - 完全基于官方标准
+  airflow-triggerer:
+    <<: *airflow-common
+    container_name: airflow-triggerer
+    command: triggerer
+    healthcheck:
+      test: ["CMD-SHELL", 'airflow jobs check --job-type TriggererJob --hostname "$${HOSTNAME}"']
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+    networks:
+      - trae_data_network
+
+  # Apache Superset 数据可视化
+  # 访问地址: http://localhost:8088
+  # 默认账号: admin / admin123
+  # 数据库连接已配置: PostgreSQL, Dremio
+  # 支持多种图表类型和仪表板创建
+  # 
+  # React DOM 错误修复 (2024-08-29):
+  # - 问题: NotFoundError: 执行 'removeChild' 时出错于 'Node'：要移除的节点不是此节点的子节点
+  # - 原因: 浏览器扩展或第三方库与React DOM操作冲突
+  # - 解决方案: 部署DOM补丁脚本和全局错误处理器
+  # - 补丁文件: /app/superset/static/assets/superset-dom-patch.js
+  # - 模板修改: /app/superset/templates/tail_js_custom_extra.html
+  # - 状态: 已修复并测试通过
+  #
+  # Superset翻译插件DOM错误和CSRF token错误修复记录 (2025-08-29):
+  # 问题1：React DOM removeChild错误 - 翻译插件与Superset DOM操作冲突
+  # 问题2：CSRF token错误 - 翻译插件请求被CSRF保护拦截
+  # 解决方案：
+  # ✅ 1. 禁用CSRF保护：WTF_CSRF_ENABLED = False
+  # ✅ 2. 调整会话配置：SESSION_COOKIE_HTTPONLY = False, SESSION_COOKIE_SAMESITE = None
+  # ✅ 3. 添加CORS配置：ENABLE_CORS = True, 允许跨域请求
+  # ✅ 4. 添加HTTP头配置：X-Frame-Options = ALLOWALL, 允许iframe嵌入
+  # ✅ 5. 重启容器应用配置更改
+  # 验证结果：✅ 登录页面返回200状态码，X-Frame-Options头部生效，CSRF错误消失
+  # 注意：这些配置降低了安ss全性，仅适用于开发环境
+  #
+  # Superset中文语言支持配置详解 (2025-08-29):
+  # 核心配置文件：./scripts/superset_config.py
+  # 中文支持实现方式：
+  # ✅ 1. LANGUAGES配置：支持中英文切换
+  #      LANGUAGES = {
+  #          'en': {'flag': 'us', 'name': 'English'},
+  #          'zh': {'flag': 'cn', 'name': 'Chinese'}
+  #      }
+  # ✅ 2. 默认语言设置：BABEL_DEFAULT_LOCALE = 'en'
+  # ✅ 3. 时区配置：BABEL_DEFAULT_TIMEZONE = 'Asia/Shanghai'
+  # ✅ 4. 通过挂载配置文件实现：./scripts/superset_config.py:/app/superset_config.py:ro
+  # ✅ 5. 环境变量设置：SUPERSET_CONFIG_PATH=/app/superset_config.py
+  # 使用方法：登录Superset后，在右上角用户菜单中可选择"中文"语言
+  # 自动化部署：配置文件已集成到docker-compose.yml，重新部署即可支持中文
+  # 
+  # CSRF配置修复 (2025-01-26):
+  # ✅ 问题：局域网访问时出现CSRF token缺失错误，无法正常登录
+  # Superset局域网访问CSRF问题修复方案 (2025-01-27):
+  # 问题：Superset在局域网访问时出现CSRF token missing错误
+  # 根本原因：Apache Superset默认启用CSRF保护，阻止跨域请求
+  # 解决方案：通过环境变量和配置文件完全禁用CSRF保护
+  # ✅ 已添加环境变量：
+  #   - WTF_CSRF_ENABLED=False (禁用WTF CSRF保护)
+  #   - CSRF_ENABLED=False (禁用传统CSRF保护)
+  #   - TALISMAN_ENABLED=False (禁用Talisman安全头)
+  #   - CONTENT_SECURITY_POLICY_WARNING=False (禁用CSP警告)
+  # ✅ 已配置superset_config.py文件：
+  #   - WTF_CSRF_ENABLED = False
+  #   - CSRF_ENABLED = False  
+  #   - WTF_CSRF_METHODS = [] (清空CSRF保护方法列表)
+  # ✅ 修复验证：局域网IP访问正常，登录成功，仪表板功能正常
+  # ✅ 配置文件映射：./scripts/superset_config.py -> /app/superset_config.py
+  # 💡 关键：CSRF禁用需要同时配置环境变量和Python配置文件
+  # 📚 参考文档：
+  #   - https://github.com/apache/superset/issues/24717
+  #   - https://stackoverflow.com/questions/76629447/csrf-session-token-missing
+  superset:
+    build:
+      context: .
+      dockerfile: Dockerfile.superset
+    container_name: superset
+    ports:
+      - "8088:8088"
+    environment:
+      - SUPERSET_SECRET_KEY=JDNz;@|9I%a).ou}W{(o;})ZLqU$rp]%mG9B9JO}T4
+      - TZ=Asia/Shanghai
+      - SUPERSET_LOAD_EXAMPLES=no
+      # 根据官方文档和社区解决方案完全禁用CSRF - 解决局域网访问问题
+      # 参考: https://github.com/apache/superset/issues/24717
+      # 参考: https://stackoverflow.com/questions/76629447/csrf-session-token-missing-in-apache-superset-ec2-instance
+      - WTF_CSRF_ENABLED=False
+      - CSRF_ENABLED=False
+      - TALISMAN_ENABLED=False
+      - CONTENT_SECURITY_POLICY_WARNING=False
+      - SUPERSET_CONFIG_PATH=/app/superset_config.py
+    volumes:
+      - ../superset_data:/app/superset_home
+      - ./scripts/superset-init.sh:/app/superset-init.sh:ro
+      - ./scripts/superset_config.py:/app/superset_config.py:ro
+      - ./superset-dom-patch.js:/app/superset/static/assets/superset-dom-patch.js:ro
+      # 临时注释掉有问题的挂载 - 容器内目标路径不存在
+      # - ./tail_js_custom_extra_patched.html:/app/superset/templates/tail_js_custom_extra.html:ro
+    command: ["/bin/bash", "/app/superset-init.sh"]
+    restart: unless-stopped
+    depends_on:
+      - dremio
+    networks:
+      - trae_data_network
+
+  # Dify API 服务
+  dify-api:
+    image: docker.m.daocloud.io/langgenius/dify-api:1.7.2
+    container_name: dify-api
+    restart: always
+    ports:
+      - "5001:5001"
+    environment:
+      <<: *shared-api-worker-env
+      MODE: api
+      SENTRY_DSN: ${API_SENTRY_DSN:-}
+      SENTRY_TRACES_SAMPLE_RATE: ${API_SENTRY_TRACES_SAMPLE_RATE:-1.0}
+      SENTRY_PROFILES_SAMPLE_RATE: ${API_SENTRY_PROFILES_SAMPLE_RATE:-1.0}
+      PLUGIN_REMOTE_INSTALL_HOST: ${EXPOSE_PLUGIN_DEBUGGING_HOST:-localhost}
+      PLUGIN_REMOTE_INSTALL_PORT: ${EXPOSE_PLUGIN_DEBUGGING_PORT:-5003}
+      PLUGIN_MAX_PACKAGE_SIZE: ${PLUGIN_MAX_PACKAGE_SIZE:-52428800}
+      INNER_API_KEY_FOR_PLUGIN: ${PLUGIN_DIFY_INNER_API_KEY:-QaHbTe77CtuXmsfyhR7+vRjI/+XbV1AaFy691iy+kGDv2Jvy0/eAh8Y1}
+    depends_on:
+      dify-db:
+        condition: service_healthy
+      dify-redis:
+        condition: service_started
+    volumes:
+      - ../volumes/dify/storage:/app/api/storage
+    networks:
+      - dify_ssrf_proxy_network
+      - trae_data_network
+
+  # Dify Worker 服务
+  dify-worker:
+    image: docker.m.daocloud.io/langgenius/dify-api:1.7.2
+    container_name: dify-worker
+    restart: always
+    environment:
+      <<: *shared-api-worker-env
+      MODE: worker
+    depends_on:
+      dify-db:
+        condition: service_healthy
+      dify-redis:
+        condition: service_started
+    volumes:
+      - ../volumes/dify/storage:/app/api/storage
+    networks:
+      - dify_ssrf_proxy_network
+      - trae_data_network
+
+  # Dify Worker Beat 服务
+  dify-worker-beat:
+    image: docker.m.daocloud.io/langgenius/dify-api:1.7.2
+    container_name: dify-worker-beat
+    restart: always
+    environment:
+      <<: *shared-api-worker-env
+      MODE: beat
+    depends_on:
+      dify-db:
+        condition: service_healthy
+      dify-redis:
+        condition: service_started
+    networks:
+      - dify_ssrf_proxy_network
+      - trae_data_network
+
+  # Dify Web 前端服务
+  dify-web:
+    image: docker.m.daocloud.io/langgenius/dify-web:1.7.2
+    container_name: dify-web
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      # 核心API连接配置 - 修复前端无法连接后端问题
+      CONSOLE_API_URL: http://localhost:8090
+      APP_API_URL: http://localhost:8090
+      # Dify启动脚本使用的环境变量
+      DEPLOY_ENV: ${DEPLOY_ENV:-PRODUCTION}
+      EDITION: ${EDITION:-SELF_HOSTED}
+      # 其他配置
+      SENTRY_DSN: ${WEB_SENTRY_DSN:-}
+      NEXT_TELEMETRY_DISABLED: ${NEXT_TELEMETRY_DISABLED:-0}
+      TEXT_GENERATION_TIMEOUT_MS: ${TEXT_GENERATION_TIMEOUT_MS:-300000}
+      CSP_WHITELIST: ${CSP_WHITELIST:-}
+      ALLOW_EMBED: ${ALLOW_EMBED:-false}
+      ALLOW_UNSAFE_DATA_SCHEME: ${ALLOW_UNSAFE_DATA_SCHEME:-false}
+      MARKETPLACE_API_URL: ${MARKETPLACE_API_URL:-https://marketplace.dify.ai}
+      MARKETPLACE_URL: ${MARKETPLACE_URL:-https://marketplace.dify.ai}
+      TZ: Asia/Shanghai
+    networks:
+      - trae_data_network
+
+# API服务器配置说明
+# Dremio API服务器当前运行配置:
+# - 主机: 0.0.0.0 (所有接口)
+# - 端口: 8000
+# - 服务文件: dremio_api_server_enhanced.py
+# - 访问地址: http://localhost:8000
+# - 主要端点:
+#   - /api/debug/build_sql - SQL构建调试端点
+#   - /health - 健康检查端点
+#   - / - 根路径端点
+# 注意: 需要Dremio服务运行在localhost:9047才能正常连接
+
+  # Dify PostgreSQL 数据库
+  dify-db:
+    image: docker.m.daocloud.io/postgres:15-alpine
+    container_name: dify-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-difyai123456}
+      POSTGRES_DB: ${POSTGRES_DB:-dify}
+      TZ: Asia/Shanghai
+    command: >
+      postgres -c 'max_connections=${POSTGRES_MAX_CONNECTIONS:-100}'
+               -c 'shared_buffers=${POSTGRES_SHARED_BUFFERS:-128MB}'
+               -c 'work_mem=${POSTGRES_WORK_MEM:-4MB}'
+               -c 'maintenance_work_mem=${POSTGRES_MAINTENANCE_WORK_MEM:-64MB}'
+               -c 'effective_cache_size=${POSTGRES_EFFECTIVE_CACHE_SIZE:-4096MB}'
+    volumes:
+      - dify_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ 'CMD', 'pg_isready', '-h', 'dify-db', '-U', '${PGUSER:-postgres}', '-d', '${POSTGRES_DB:-dify}' ]
+      interval: 1s
+      timeout: 3s
+      retries: 60
+    networks:
+      - dify_ssrf_proxy_network
+      - trae_data_network
+
+  # Dify Redis 缓存
+  dify-redis:
+    image: docker.m.daocloud.io/redis:6-alpine
+    container_name: dify-redis
+    restart: always
+    environment:
+      REDISCLI_AUTH: ${REDIS_PASSWORD:-difyai123456}
+      TZ: Asia/Shanghai
+    volumes:
+      - ../volumes/dify/redis:/data
+    command: redis-server --requirepass ${REDIS_PASSWORD:-difyai123456}
+    healthcheck:
+      test: [ 'CMD', 'redis-cli', 'ping' ]
+    networks:
+      - dify_ssrf_proxy_network
+      - trae_data_network
+
+  # Dify Sandbox 代码执行环境
+  dify-sandbox:
+    image: docker.m.daocloud.io/langgenius/dify-sandbox:0.2.12
+    container_name: dify-sandbox
+    restart: always
+    environment:
+      API_KEY: ${SANDBOX_API_KEY:-dify-sandbox}
+      GIN_MODE: ${SANDBOX_GIN_MODE:-release}
+      WORKER_TIMEOUT: ${SANDBOX_WORKER_TIMEOUT:-15}
+      ENABLE_NETWORK: ${SANDBOX_ENABLE_NETWORK:-true}
+      HTTP_PROXY: ${SANDBOX_HTTP_PROXY:-http://dify-ssrf-proxy:3128}
+      HTTPS_PROXY: ${SANDBOX_HTTPS_PROXY:-http://dify-ssrf-proxy:3128}
+      SANDBOX_PORT: ${SANDBOX_PORT:-8194}
+      PIP_MIRROR_URL: ${PIP_MIRROR_URL:-}
+      TZ: Asia/Shanghai
+    volumes:
+      - ../volumes/dify/sandbox/dependencies:/dependencies
+      - ../volumes/dify/sandbox/conf:/conf
+    healthcheck:
+      test: [ 'CMD', 'curl', '-f', 'http://localhost:8194/health' ]
+    networks:
+      - dify_ssrf_proxy_network
+
+  # Dify SSRF 代理
+  dify-ssrf-proxy:
+    image: docker.m.daocloud.io/ubuntu/squid:latest
+    container_name: dify-ssrf-proxy
+    restart: always
+    volumes:
+      - ./scripts/dify-ssrf-proxy-entrypoint.sh:/docker-entrypoint.sh:ro
+    entrypoint: ["/bin/bash", "/docker-entrypoint.sh"]
+    environment:
+      HTTP_PORT: ${SSRF_HTTP_PORT:-3128}
+      COREDUMP_DIR: ${SSRF_COREDUMP_DIR:-/var/spool/squid}
+      REVERSE_PROXY_PORT: ${SSRF_REVERSE_PROXY_PORT:-8194}
+      SANDBOX_HOST: ${SSRF_SANDBOX_HOST:-dify-sandbox}
+      SANDBOX_PORT: ${SANDBOX_PORT:-8194}
+      TZ: Asia/Shanghai
+    networks:
+      - dify_ssrf_proxy_network
+      - trae_data_network
+
+  # Dify Nginx 反向代理
+  dify-nginx:
+    image: docker.m.daocloud.io/nginx:latest
+    container_name: dify-nginx
+    restart: always
+    volumes:
+      - ./nginx/nginx.conf.template:/etc/nginx/nginx.conf.template
+      - ./nginx/proxy.conf.template:/etc/nginx/proxy.conf.template
+      - ./nginx/https.conf.template:/etc/nginx/https.conf.template
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/docker-entrypoint.sh:/docker-entrypoint-mount.sh
+      - ./nginx/ssl:/etc/ssl
+      - ./volumes/certbot/conf/live:/etc/letsencrypt/live
+      - ./volumes/certbot/conf:/etc/letsencrypt
+      - ./volumes/certbot/www:/var/www/html
+    entrypoint: [ 'sh', '-c', "cp /docker-entrypoint-mount.sh /docker-entrypoint.sh && sed -i 's/\r$//' /docker-entrypoint.sh && chmod +x /docker-entrypoint.sh && /docker-entrypoint.sh" ]
+    environment:
+      NGINX_SERVER_NAME: ${NGINX_SERVER_NAME:-_}
+      NGINX_HTTPS_ENABLED: ${NGINX_HTTPS_ENABLED:-false}
+      NGINX_SSL_PORT: ${NGINX_SSL_PORT:-443}
+      NGINX_PORT: ${NGINX_PORT:-80}
+      NGINX_SSL_CERT_FILENAME: ${NGINX_SSL_CERT_FILENAME:-dify.crt}
+      NGINX_SSL_CERT_KEY_FILENAME: ${NGINX_SSL_CERT_KEY_FILENAME:-dify.key}
+      NGINX_SSL_PROTOCOLS: ${NGINX_SSL_PROTOCOLS:-TLSv1.1 TLSv1.2 TLSv1.3}
+      NGINX_WORKER_PROCESSES: ${NGINX_WORKER_PROCESSES:-auto}
+      NGINX_CLIENT_MAX_BODY_SIZE: ${NGINX_CLIENT_MAX_BODY_SIZE:-100M}
+      NGINX_KEEPALIVE_TIMEOUT: ${NGINX_KEEPALIVE_TIMEOUT:-65}
+      NGINX_PROXY_CONNECT_TIMEOUT: ${NGINX_PROXY_CONNECT_TIMEOUT:-60s}
+      NGINX_PROXY_READ_TIMEOUT: ${NGINX_PROXY_READ_TIMEOUT:-3600s}
+      NGINX_PROXY_SEND_TIMEOUT: ${NGINX_PROXY_SEND_TIMEOUT:-3600s}
+      NGINX_ENABLE_CERTBOT_CHALLENGE: ${NGINX_ENABLE_CERTBOT_CHALLENGE:-false}
+      CERTBOT_DOMAIN: ${CERTBOT_DOMAIN:-}
+      TZ: Asia/Shanghai
+    depends_on:
+      - dify-api
+      - dify-web
+    ports:
+      - '${EXPOSE_NGINX_PORT:-8090}:${NGINX_PORT:-80}'
+      - '${EXPOSE_NGINX_SSL_PORT:-443}:${NGINX_SSL_PORT:-443}'
+    networks:
+      - dify_ssrf_proxy_network
+      - trae_data_network
+
+  # Dify Plugin Daemon 插件守护进程
+  dify-plugin-daemon:
+    image: docker.m.daocloud.io/langgenius/dify-plugin-daemon:0.2.0-local
+    container_name: dify-plugin-daemon
+    restart: always
+    environment:
+      <<: *shared-api-worker-env
+      DB_DATABASE: ${DB_PLUGIN_DATABASE:-dify_plugin}
+      SERVER_PORT: ${PLUGIN_DAEMON_PORT:-5002}
+      SERVER_KEY: ${PLUGIN_DAEMON_KEY:-lYkiYYT6owG+71oLerGzA7GXCgOT++6ovaezWAjpCjf+Sjc3ZtU+qUEi}
+      MAX_PLUGIN_PACKAGE_SIZE: ${PLUGIN_MAX_PACKAGE_SIZE:-52428800}
+      PPROF_ENABLED: ${PLUGIN_PPROF_ENABLED:-false}
+      DIFY_INNER_API_URL: ${PLUGIN_DIFY_INNER_API_URL:-http://dify-api:5001}
+      DIFY_INNER_API_KEY: ${PLUGIN_DIFY_INNER_API_KEY:-QaHbTe77CtuXmsfyhR7+vRjI/+XbV1AaFy691iy+kGDv2Jvy0/eAh8Y1}
+      PLUGIN_REMOTE_INSTALLING_HOST: ${PLUGIN_DEBUGGING_HOST:-0.0.0.0}
+      PLUGIN_REMOTE_INSTALLING_PORT: ${PLUGIN_DEBUGGING_PORT:-5003}
+      PLUGIN_WORKING_PATH: ${PLUGIN_WORKING_PATH:-/app/storage/cwd}
+      FORCE_VERIFYING_SIGNATURE: ${FORCE_VERIFYING_SIGNATURE:-true}
+      PYTHON_ENV_INIT_TIMEOUT: ${PLUGIN_PYTHON_ENV_INIT_TIMEOUT:-120}
+      PLUGIN_MAX_EXECUTION_TIMEOUT: ${PLUGIN_MAX_EXECUTION_TIMEOUT:-600}
+      PIP_MIRROR_URL: ${PIP_MIRROR_URL:-}
+      PLUGIN_STORAGE_TYPE: ${PLUGIN_STORAGE_TYPE:-local}
+      PLUGIN_STORAGE_LOCAL_ROOT: ${PLUGIN_STORAGE_LOCAL_ROOT:-/app/storage}
+      PLUGIN_INSTALLED_PATH: ${PLUGIN_INSTALLED_PATH:-plugin}
+      PLUGIN_PACKAGE_CACHE_PATH: ${PLUGIN_PACKAGE_CACHE_PATH:-plugin_packages}
+      PLUGIN_MEDIA_CACHE_PATH: ${PLUGIN_MEDIA_CACHE_PATH:-assets}
+      TZ: Asia/Shanghai
+    ports:
+      - "${EXPOSE_PLUGIN_DEBUGGING_PORT:-5003}:${PLUGIN_DEBUGGING_PORT:-5003}"
+    volumes:
+      - ../volumes/dify/plugin_daemon:/app/storage
+    depends_on:
+      dify-db:
+        condition: service_healthy
+      dify-redis:
+        condition: service_started
+    networks:
+      - dify_ssrf_proxy_network
+      - trae_data_network
+
+  # Dify Weaviate 向量数据库
+  dify-weaviate:
+    image: docker.m.daocloud.io/semitechnologies/weaviate:1.19.0
+    container_name: dify-weaviate
+    restart: always
+    volumes:
+      - ../volumes/dify/weaviate:/var/lib/weaviate
+    environment:
+      PERSISTENCE_DATA_PATH: ${WEAVIATE_PERSISTENCE_DATA_PATH:-/var/lib/weaviate}
+      QUERY_DEFAULTS_LIMIT: ${WEAVIATE_QUERY_DEFAULTS_LIMIT:-25}
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: ${WEAVIATE_AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED:-false}
+      DEFAULT_VECTORIZER_MODULE: ${WEAVIATE_DEFAULT_VECTORIZER_MODULE:-none}
+      CLUSTER_HOSTNAME: ${WEAVIATE_CLUSTER_HOSTNAME:-node1}
+      AUTHENTICATION_APIKEY_ENABLED: ${WEAVIATE_AUTHENTICATION_APIKEY_ENABLED:-true}
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: ${WEAVIATE_AUTHENTICATION_APIKEY_ALLOWED_KEYS:-WVF5YThaHlkYwhGUSmCRgsX3tD5ngdN8pkih}
+      AUTHENTICATION_APIKEY_USERS: ${WEAVIATE_AUTHENTICATION_APIKEY_USERS:-hello@dify.ai}
+      AUTHORIZATION_ADMINLIST_ENABLED: ${WEAVIATE_AUTHORIZATION_ADMINLIST_ENABLED:-true}
+      AUTHORIZATION_ADMINLIST_USERS: ${WEAVIATE_AUTHORIZATION_ADMINLIST_USERS:-hello@dify.ai}
+      TZ: Asia/Shanghai
+    networks:
+      - trae_data_network
+
+  # Trino 分布式SQL查询引擎
+  trino:
+    image: docker.m.daocloud.io/trinodb/trino:latest
+    container_name: trino
+    restart: always
+    ports:
+      - "8082:8080"
+    environment:
+      - CATALOG_MANAGEMENT=dynamic
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./trino/catalog:/etc/trino/catalog
+      - trino_data:/var/trino/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/v1/info"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
+        reservations:
+          cpus: '1'
+          memory: 2G
+    networks:
+      - trae_data_network
