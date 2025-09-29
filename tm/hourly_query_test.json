@@ -1,0 +1,80 @@
+{
+  "test_time": "2025-09-29 22:20:00",
+  "total_queries": 9,
+  "successful_count": 0,
+  "failed_count": 9,
+  "results": [
+    {
+      "begin_date": "2025-09-29",
+      "end_date": "2025-09-29",
+      "page_size": 1,
+      "result": "API_ERROR",
+      "error": "2::APPLICATION_ERROR:数据量过多，请缩小查询时间范围或者指定对方账号",
+      "customer_count": 0
+    },
+    {
+      "begin_date": "2025-09-29",
+      "end_date": "2025-09-29",
+      "page_size": 3,
+      "result": "API_ERROR",
+      "error": "2::APPLICATION_ERROR:数据量过多，请缩小查询时间范围或者指定对方账号",
+      "customer_count": 0
+    },
+    {
+      "begin_date": "2025-09-29",
+      "end_date": "2025-09-29",
+      "page_size": 5,
+      "result": "API_ERROR",
+      "error": "2::APPLICATION_ERROR:数据量过多，请缩小查询时间范围或者指定对方账号",
+      "customer_count": 0
+    },
+    {
+      "begin_date": "2025-09-28",
+      "end_date": "2025-09-28",
+      "page_size": 1,
+      "result": "API_ERROR",
+      "error": "2::APPLICATION_ERROR:数据量过多，请缩小查询时间范围或者指定对方账号",
+      "customer_count": 0
+    },
+    {
+      "begin_date": "2025-09-28",
+      "end_date": "2025-09-28",
+      "page_size": 3,
+      "result": "API_ERROR",
+      "error": "2::APPLICATION_ERROR:数据量过多，请缩小查询时间范围或者指定对方账号",
+      "customer_count": 0
+    },
+    {
+      "begin_date": "2025-09-28",
+      "end_date": "2025-09-28",
+      "page_size": 5,
+      "result": "API_ERROR",
+      "error": "2::APPLICATION_ERROR:数据量过多，请缩小查询时间范围或者指定对方账号",
+      "customer_count": 0
+    },
+    {
+      "begin_date": "2025-09-27",
+      "end_date": "2025-09-27",
+      "page_size": 1,
+      "result": "API_ERROR",
+      "error": "2::APPLICATION_ERROR:数据量过多，请缩小查询时间范围或者指定对方账号",
+      "customer_count": 0
+    },
+    {
+      "begin_date": "2025-09-27",
+      "end_date": "2025-09-27",
+      "page_size": 3,
+      "result": "API_ERROR",
+      "error": "2::APPLICATION_ERROR:数据量过多，请缩小查询时间范围或者指定对方账号",
+      "customer_count": 0
+    },
+    {
+      "begin_date": "2025-09-27",
+      "end_date": "2025-09-27",
+      "page_size": 5,
+      "result": "API_ERROR",
+      "error": "2::APPLICATION_ERROR:数据量过多，请缩小查询时间范围或者指定对方账号",
+      "customer_count": 0
+    }
+  ]
+}

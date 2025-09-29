@@ -1,0 +1,58 @@
+{
+  "test_time": "2025-09-29 22:19:09",
+  "total_customers": 8,
+  "successful_count": 0,
+  "failed_count": 0,
+  "error_count": 0,
+  "skipped_count": 8,
+  "results": [
+    {
+      "customer_nick": "effie沫儿",
+      "list_result": "NO_DATA",
+      "chat_result": "SKIPPED",
+      "error": "No conversation found"
+    },
+    {
+      "customer_nick": "李丝丝李羽琪",
+      "list_result": "NO_DATA",
+      "chat_result": "SKIPPED",
+      "error": "No conversation found"
+    },
+    {
+      "customer_nick": "liuxf78",
+      "list_result": "NO_DATA",
+      "chat_result": "SKIPPED",
+      "error": "No conversation found"
+    },
+    {
+      "customer_nick": "东方龙魅",
+      "list_result": "NO_DATA",
+      "chat_result": "SKIPPED",
+      "error": "No conversation found"
+    },
+    {
+      "customer_nick": "张喜军8858",
+      "list_result": "NO_DATA",
+      "chat_result": "SKIPPED",
+      "error": "No conversation found"
+    },
+    {
+      "customer_nick": "叠写凹陷",
+      "list_result": "NO_DATA",
+      "chat_result": "SKIPPED",
+      "error": "No conversation found"
+    },
+    {
+      "customer_nick": "华华的哇",
+      "list_result": "NO_DATA",
+      "chat_result": "SKIPPED",
+      "error": "No conversation found"
+    },
+    {
+      "customer_nick": "花落无声刘苗苗",
+      "list_result": "NO_DATA",
+      "chat_result": "SKIPPED",
+      "error": "No conversation found"
+    }
+  ]
+}

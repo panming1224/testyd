@@ -1,0 +1,569 @@
+{
+  "success_count": 12,
+  "error_count": 8,
+  "success_users": [
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "2215831800345.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "message_count": 1,
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "2215831800345.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758815288573",
+        "displayName": "tb950301045612",
+        "modifyTime": "1758815288573",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "799940151.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "message_count": 1,
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "799940151.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758815189132",
+        "displayName": "tb5622336",
+        "modifyTime": "1758815189132",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "2507486176.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "message_count": 1,
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "2507486176.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758813936884",
+        "displayName": "赤司akashisejuro",
+        "modifyTime": "1758813936884",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "866925881.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "message_count": 1,
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "866925881.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758813855304",
+        "displayName": "zhouming05128012345",
+        "modifyTime": "1758813855304",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "2206441755478.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "message_count": 1,
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "2206441755478.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758813830268",
+        "displayName": "tb085292108",
+        "modifyTime": "1758813830268",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "899401314.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2220313775792",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "message_count": 16,
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "899401314.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758811573028",
+        "displayName": "zhoujin901008",
+        "modifyTime": "1758813758172",
+        "userID": {
+          "appUid": "2220313775792",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "4225044543.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "message_count": 1,
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "4225044543.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758813719215",
+        "displayName": "tb805582982",
+        "modifyTime": "1758813719215",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "741131144.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2220313775792",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "message_count": 14,
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "741131144.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758810897017",
+        "displayName": "tangweijia888",
+        "modifyTime": "1758813716087",
+        "userID": {
+          "appUid": "2220313775792",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "1790582992.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "message_count": 1,
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "1790582992.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758813597138",
+        "displayName": "kangjunru423",
+        "modifyTime": "1758813597138",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "2417507032.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "message_count": 1,
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "2417507032.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758813588611",
+        "displayName": "钟杰zhongj",
+        "modifyTime": "1758813588611",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "2211253230006.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "message_count": 1,
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "2211253230006.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758813299143",
+        "displayName": "tb437042140",
+        "modifyTime": "1758813299143",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "3948833067.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2220313775792",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "message_count": 3,
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "3948833067.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758812398769",
+        "displayName": "tb813033841",
+        "modifyTime": "1758812593292",
+        "userID": {
+          "appUid": "2220313775792",
+          "domain": "cntaobao"
+        }
+      }
+    }
+  ],
+  "error_users": [
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "2032298289.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "error_type": "None_response",
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "2032298289.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758815878255",
+        "displayName": "effie沫儿",
+        "modifyTime": "1758815878255",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "2553146644.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "error_type": "None_response",
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "2553146644.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758815139317",
+        "displayName": "李丝丝李羽琪",
+        "modifyTime": "1758815139317",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "35931336.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "error_type": "None_response",
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "35931336.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758814381925",
+        "displayName": "liuxf78",
+        "modifyTime": "1758814381925",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "363586203.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "error_type": "None_response",
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "363586203.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758814212917",
+        "displayName": "东方龙魅",
+        "modifyTime": "1758814212917",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "3257783287.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "error_type": "None_response",
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "3257783287.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758813557314",
+        "displayName": "张喜军8858",
+        "modifyTime": "1758813557314",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "3498133745.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "error_type": "None_response",
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "3498133745.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758813506114",
+        "displayName": "叠写凹陷",
+        "modifyTime": "1758813506114",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "2774751734.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2219315280500",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "error_type": "None_response",
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "2774751734.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758812733481",
+        "displayName": "华华的哇",
+        "modifyTime": "1758812733481",
+        "userID": {
+          "appUid": "2219315280500",
+          "domain": "cntaobao"
+        }
+      }
+    },
+    {
+      "user_nick": "Unknown",
+      "cid_raw": {
+        "appCid": "2871415106.1-2219315280500.1#11001",
+        "domain": "cntaobao"
+      },
+      "user_id_raw": {
+        "appUid": "2220313775792",
+        "domain": "cntaobao"
+      },
+      "cid_type": "<class 'dict'>",
+      "user_id_type": "<class 'dict'>",
+      "error_type": "None_response",
+      "customer_data": {
+        "bizType": "11001",
+        "cid": {
+          "appCid": "2871415106.1-2219315280500.1#11001",
+          "domain": "cntaobao"
+        },
+        "createTime": "1758812559072",
+        "displayName": "花落无声刘苗苗",
+        "modifyTime": "1758812571999",
+        "userID": {
+          "appUid": "2220313775792",
+          "domain": "cntaobao"
+        }
+      }
+    }
+  ],
+  "analysis_time": "2025-09-29 22:15:46"
+}

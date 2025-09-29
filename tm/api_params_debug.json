@@ -1,0 +1,106 @@
+{
+  "debug_time": "2025-09-29 22:26:44",
+  "total_tests": 3,
+  "results": [
+    {
+      "test_case": "不指定客户昵称",
+      "params": {
+        "begin_date": "20250929",
+        "end_date": "20250929",
+        "page_size": 1,
+        "page_index": 1
+      },
+      "success": true,
+      "duration": 0.7329957485198975,
+      "response_summary": {
+        "type": "<class 'dict'>",
+        "keys": [
+          "api",
+          "data",
+          "ret",
+          "traceId",
+          "v"
+        ],
+        "has_data": true
+      },
+      "full_response": {
+        "api": "mtop.taobao.wireless.amp2.paas.conversation.list",
+        "data": {
+          "result": []
+        },
+        "ret": [
+          "SUCCESS::调用成功"
+        ],
+        "traceId": "214786be17591559935638668e118a",
+        "v": "1.0"
+      }
+    },
+    {
+      "test_case": "指定客户昵称",
+      "params": {
+        "begin_date": "20250929",
+        "end_date": "20250929",
+        "customer_nick": "花落无声刘苗苗",
+        "page_size": 1,
+        "page_index": 1
+      },
+      "success": true,
+      "duration": 0.6852681636810303,
+      "response_summary": {
+        "type": "<class 'dict'>",
+        "keys": [
+          "api",
+          "data",
+          "ret",
+          "traceId",
+          "v"
+        ],
+        "has_data": true
+      },
+      "full_response": {
+        "api": "mtop.taobao.wireless.amp2.paas.conversation.list",
+        "data": {
+          "result": []
+        },
+        "ret": [
+          "SUCCESS::调用成功"
+        ],
+        "traceId": "2147861f17591559972225408e1099",
+        "v": "1.0"
+      }
+    },
+    {
+      "test_case": "更短时间范围",
+      "params": {
+        "begin_date": "20250930",
+        "end_date": "20250930",
+        "page_size": 1,
+        "page_index": 1
+      },
+      "success": true,
+      "duration": 0.6332912445068359,
+      "response_summary": {
+        "type": "<class 'dict'>",
+        "keys": [
+          "api",
+          "data",
+          "ret",
+          "traceId",
+          "v"
+        ],
+        "has_data": true
+      },
+      "full_response": {
+        "api": "mtop.taobao.wireless.amp2.paas.conversation.list",
+        "data": {
+          "result": []
+        },
+        "ret": [
+          "SUCCESS::调用成功"
+        ],
+        "traceId": "2147861217591560009003384e1014",
+        "v": "1.0"
+      }
+    }
+  ]
+}

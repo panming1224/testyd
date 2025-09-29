@@ -213,7 +213,7 @@ class TmallCommentManager:
             if response.status_code == 200:
                 try:
                     data = response.json()
-                    print("✓ 成功获取评价数据")
+                    print("[OK] 成功获取评价数据")
                     print(f"响应数据类型: {type(data)}")
                     print(f"响应键: {list(data.keys())}")
                     

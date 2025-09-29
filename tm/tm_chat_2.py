@@ -1,247 +1,42 @@
 # -*- coding: utf-8 -*-
-import requests
+import os
 import json
 import time
 import hashlib
-import os
-from playwright.sync_api import sync_playwright
+import requests
+import pandas as pd
+import urllib.parse
+from datetime import datetime
 
 class TmallChatManager:
+    """天猫客服聊天数据管理器"""
+    
     def __init__(self):
-        # API配置 - 修正API地址
+        # API配置
         self.APP_KEY = "12574478"
         self.CUSTOMER_LIST_API = "https://h5api.m.taobao.com/h5/mtop.taobao.wireless.amp2.paas.conversation.list/1.0/"
         self.CHAT_MESSAGE_API = "https://h5api.m.taobao.com/h5/mtop.taobao.wireless.amp2.im.paas.message.list/1.0/"
-        self.TARGET_URL = "https://myseller.taobao.com/home.htm/app-customer-service/toolpage/Message"
         
-        # 浏览器配置
-        self.USER_DATA_DIR = r"C:\Users\Administrator\AppData\Local\Google\Chrome\User Data"
+        # 文件路径
+        self.COOKIE_FILE = "d:/testyd/tm/cookies.txt"
         
-        # Cookie缓存
+        # 文件路径
+        self.COOKIE_FILE = "d:/testyd/tm/cookies.txt"
+        
+        # 缓存相关
         self._cached_cookies = None
         self._cached_token = None
-        self._cache_timestamp = None
-        self._cache_duration = 3600  # 缓存1小时
+        self._cache_timestamp = 0
+        self._cache_duration = 1800  # 30分钟缓存
     
-    def is_cache_valid(self):
-        """检查缓存是否有效"""
-        if not self._cached_cookies or not self._cache_timestamp:
-            return False
-        
-        # 检查缓存时间
-        current_time = time.time()
-        if current_time - self._cache_timestamp > self._cache_duration:
-            return False
-        
-        # 检查token是否过期
-        if self._cached_token:
-            token_info = self.get_h5_token(self._cached_cookies)
-            if not token_info:
-                return False
-        
-        return True
-    
-    def get_cached_cookies(self):
-        """获取缓存的cookies"""
-        if self.is_cache_valid():
-            print("✓ 使用缓存的cookies")
-            return self._cached_cookies
-        else:
-            print("⚠️ 缓存已过期或无效，需要重新获取")
-            return None
-
-    def get_cookies_from_browser(self):
-        """动态从浏览器获取当前有效的cookies"""
-        try:
-            print("🔄 正在从浏览器获取最新cookies...")
-            
-            with sync_playwright() as p:
-                # 启动浏览器，使用现有用户数据
-                browser = p.chromium.launch_persistent_context(
-                    user_data_dir=self.USER_DATA_DIR,
-                    headless=False,
-                    args=[
-                        "--start-maximized",
-                        "--no-sandbox",
-                        "--disable-dev-shm-usage",
-                        "--disable-blink-features=AutomationControlled",
-                        "--profile-directory=Default",
-                    ],
-                    no_viewport=True,
-                    ignore_https_errors=True
-                )
-                
-                # 创建新页面
-                page = browser.new_page()
-                
-                # 访问天猫商家后台
-                print(f"📱 正在访问: {self.TARGET_URL}")
-                page.goto(self.TARGET_URL, wait_until='networkidle')
-                
-                # 等待页面加载完成
-                time.sleep(3)
-                
-                # 获取所有cookies
-                cookies = page.context.cookies()
-                print(f"✓ 获取到 {len(cookies)} 个cookies")
-                
-                # 转换为cookie字符串格式
-                cookie_pairs = []
-                for cookie in cookies:
-                    cookie_pairs.append(f"{cookie['name']}={cookie['value']}")
-                
-                cookies_str = "; ".join(cookie_pairs)
-                print(f"✓ Cookies字符串长度: {len(cookies_str)} 字符")
-                
-                # 验证关键cookies是否存在
-                essential_cookies = ['_m_h5_tk', 't', '_tb_token_']
-                missing_cookies = []
-                for essential in essential_cookies:
-                    if essential not in cookies_str:
-                        missing_cookies.append(essential)
-                
-                if missing_cookies:
-                    print(f"⚠️ 缺少关键cookies: {missing_cookies}")
-                    print("请确保已登录天猫商家后台")
-                    browser.close()
-                    return None
-                
-                # 保存当前cookies
-                self.current_cookies_str = cookies_str
-                browser.close()
-                
-                print("✓ 成功获取浏览器cookies")
-                return cookies_str
-                
-        except Exception as e:
-            print(f"❌ 获取浏览器cookies失败: {e}")
-            return None
-    
-    def get_cookies_from_file(self, file_path=None):
-        """从文件获取cookies（备用方案）"""
-        try:
-            if file_path is None:
-                file_path = os.path.join(os.path.dirname(__file__), "cookies.txt")
-            
-            if not os.path.exists(file_path):
-                print(f"⚠️ Cookies文件不存在: {file_path}")
-                return None
-                
-            with open(file_path, 'r', encoding='utf-8') as f:
-                cookies_str = f.read().strip()
-                
-            if cookies_str:
-                print(f"✓ 从文件读取cookies，长度: {len(cookies_str)} 字符")
-                self.current_cookies_str = cookies_str
-                return cookies_str
-            else:
-                print("❌ Cookies文件为空")
-                return None
-                
-        except Exception as e:
-            print(f"❌ 从文件读取cookies失败: {e}")
-            return None
-    
-    def save_cookies_to_file(self, cookies_str, file_path=None):
-        """保存cookies到文件"""
-        try:
-            if file_path is None:
-                file_path = os.path.join(os.path.dirname(__file__), "cookies.txt")
-                
-            with open(file_path, 'w', encoding='utf-8') as f:
-                f.write(cookies_str)
-                
-            print(f"✓ Cookies已保存到: {file_path}")
-            return True
-            
-        except Exception as e:
-            print(f"❌ 保存cookies失败: {e}")
-            return False
-    
-    def get_current_cookies(self, force_refresh=False):
-        """获取当前有效的cookies - 优先使用缓存"""
-        if not force_refresh:
-            cached = self.get_cached_cookies()
-            if cached:
-                return cached
-        
-        print("🔄 获取新的cookies...")
-        
-        # 尝试从文件获取
-        cookies_str = self.get_cookies_from_file()
-        if cookies_str:
-            # 验证token有效性
-            token_info = self.get_h5_token(cookies_str)
-            if token_info:
-                print("✓ 从文件获取到有效cookies")
-                self._update_cache(cookies_str, token_info)
-                return cookies_str
-        
-        # 从浏览器获取
-        cookies_str = self.get_cookies_from_browser()
-        if cookies_str:
-            # 验证并缓存
-            token_info = self.get_h5_token(cookies_str)
-            if token_info:
-                print("✓ 从浏览器获取到有效cookies")
-                self._update_cache(cookies_str, token_info)
-                # 保存到文件
-                self.save_cookies_to_file(cookies_str)
-                return cookies_str
-        
-        print("❌ 无法获取有效的cookies")
-        return None
-    
-    def _update_cache(self, cookies_str, token_info):
-        """更新缓存"""
-        self._cached_cookies = cookies_str
-        self._cached_token = token_info
-        self._cache_timestamp = time.time()
-        print(f"✓ 已更新cookie缓存，有效期: {self._cache_duration}秒")
-
     def get_h5_token(self, cookies_str):
         """从cookie字符串中提取h5 token"""
         try:
-            print(f"正在从cookies中提取token...")
-            print(f"Cookies长度: {len(cookies_str)} 字符")
-            
-            # 查找_m_h5_tk cookie
             for cookie in cookies_str.split(';'):
-                cookie = cookie.strip()
                 if '_m_h5_tk=' in cookie:
                     token_value = cookie.split('_m_h5_tk=')[1].strip()
-                    print(f"找到_m_h5_tk: {token_value}")
-                    
                     # token格式为: token_expireTime，我们只需要token部分
-                    if '_' in token_value:
-                        token_part = token_value.split('_')[0]
-                        expire_time = token_value.split('_')[1] if len(token_value.split('_')) > 1 else None
-                        
-                        print(f"提取的token: {token_part}")
-                        print(f"过期时间戳: {expire_time}")
-                        
-                        # 检查token是否过期
-                        if expire_time:
-                            try:
-                                expire_timestamp = int(expire_time)
-                                current_timestamp = int(time.time() * 1000)
-                                print(f"当前时间戳: {current_timestamp}")
-                                print(f"token过期时间戳: {expire_timestamp}")
-                                
-                                if current_timestamp > expire_timestamp:
-                                    print("⚠️ Token已过期！")
-                                    return None
-                                else:
-                                    print("✓ Token仍然有效")
-                            except ValueError:
-                                print("⚠️ 无法解析过期时间戳")
-                        
-                        return token_part
-                    else:
-                        print(f"Token格式异常，直接返回: {token_value}")
-                        return token_value
-            
-            print("❌ 未找到_m_h5_tk cookie")
+                    return token_value.split('_')[0]
             return None
         except Exception as e:
             print(f"提取token失败: {e}")
@@ -252,115 +47,49 @@ class TmallChatManager:
         try:
             # 签名算法: md5(token + '&' + timestamp + '&' + appKey + '&' + data)
             sign_str = f"{token}&{timestamp}&{self.APP_KEY}&{data}"
-            print(f"签名字符串: {sign_str}")
-            
-            # 计算MD5 - 转换为小写
-            md5_hash = hashlib.md5(sign_str.encode('utf-8')).hexdigest()
-            print(f"生成的签名: {md5_hash}")
-            return md5_hash
+            return hashlib.md5(sign_str.encode('utf-8')).hexdigest()
         except Exception as e:
             print(f"生成签名失败: {e}")
             return None
     
-    def extract_essential_cookies(self, cookies_str):
-        """提取关键认证cookie参数"""
+    def get_user_nick_from_cookies(self, cookies_str):
+        """从cookies中提取用户昵称"""
         try:
-            # 根据提供的cookie字符串，提取关键认证参数
-            essential_params = [
-                't',           # 用户认证token
-                '_m_h5_tk',    # H5 token
-                '_m_h5_tk_enc', # H5 token加密
-                '_tb_token_',  # 淘宝token
-                'cookie2',     # 基础认证cookie
-                'sgcookie',    # 安全cookie
-                'unb',         # 用户编号
-                'csg',         # 客户端安全组
-                'skt',         # 会话密钥token
-                'tfstk'        # 防伪token
-            ]
-            
-            essential_cookies = []
-            
             for cookie in cookies_str.split(';'):
-                cookie = cookie.strip()
-                if '=' in cookie:
-                    name = cookie.split('=')[0].strip()
-                    if name in essential_params:
-                        essential_cookies.append(cookie)
+                if 'sn=' in cookie:
+                    user_nick = cookie.split('sn=')[1].strip()
+                    # URL解码
+                    user_nick = urllib.parse.unquote(user_nick)
+                    print(f"从cookie中获取到userNick: {user_nick}")
+                    return user_nick
             
-            result = '; '.join(essential_cookies)
-            print(f"提取的关键cookie参数: {result[:200]}...")
-            print(f"精简后cookie长度: {len(result)} 字符")
-            
-            return result
-            
+            # 如果没有找到sn，尝试其他可能的字段
+            print("警告：无法从cookie中获取userNick，使用默认值")
+            return "cntaobao回力棉娅专卖店:客服"
         except Exception as e:
-            print(f"提取关键cookie参数失败: {e}")
-            return cookies_str  # 失败时返回原始cookie
+            print(f"从cookie提取userNick失败: {e}")
+            return "cntaobao回力棉娅专卖店:客服"
     
-    def login_and_get_cookies(self):
-        """登录并获取cookies"""
-        print("正在启动浏览器并登录天猫商家后台...")
-        
-        with sync_playwright() as p:
-            context = p.chromium.launch_persistent_context(
-                user_data_dir=self.USER_DATA_DIR,
-                headless=False,
-                args=[
-                    "--start-maximized",
-                    "--no-sandbox",
-                    "--disable-dev-shm-usage",
-                    "--disable-blink-features=AutomationControlled",
-                    "--profile-directory=Default",
-                ],
-                no_viewport=True,
-                ignore_https_errors=True
-            )
-            
-            page = context.new_page()
-            
-            try:
-                # 访问天猫商家后台客服页面
-                print(f"正在访问: {self.TARGET_URL}")
-                page.goto(self.TARGET_URL, wait_until="domcontentloaded", timeout=30000)
-                
-                # 等待页面加载完成
-                time.sleep(3)
-                
-                # 检查是否需要登录
-                current_url = page.url
-                page_title = page.title()
-                print(f"当前页面URL: {current_url}")
-                print(f"页面标题: {page_title}")
-                
-                if "login" in current_url.lower() or "登录" in page_title:
-                    print("需要登录，请在浏览器中完成登录...")
-                    input("登录完成后，请按回车键继续...")
-                
-                # 获取cookies
-                cookies = context.cookies()
-                cookie_str = '; '.join(f"{c['name']}={c['value']}" for c in cookies)
-                print(f"获取到cookies: {cookie_str[:100]}...")
-                
-                return cookie_str, page, context
-                
-            except Exception as e:
-                print(f"登录过程出错: {e}")
-                # 清理资源
-                if 'page' in locals() and page:
-                    try:
-                        page.close()
-                    except:
-                        pass
-                if 'context' in locals() and context:
-                    try:
-                        context.close()
-                    except:
-                        pass
-                return None, None, None
+    def load_cookies_from_file(self):
+        """从文件加载cookies"""
+        try:
+            with open(self.COOKIE_FILE, 'r', encoding='utf-8') as f:
+                cookie_str = f.read().strip()
+                if cookie_str:
+                    print("✅ 成功加载cookies")
+                    return cookie_str
+                else:
+                    print("❌ cookies文件为空")
+                    return None
+        except FileNotFoundError:
+            print(f"❌ cookies文件不存在: {self.COOKIE_FILE}")
+            return None
+        except Exception as e:
+            print(f"❌ 读取cookies文件失败: {e}")
+            return None
     
-    def get_customer_list(self, cookies_str, begin_date="20250911", end_date="20250914"):
-        """获取客户列表"""
+    def get_customer_list(self, cookies_str):
+        """获取客户列表 - 使用会话列表API获取客户信息"""
         try:
             # 提取token
             token = self.get_h5_token(cookies_str)
@@ -371,73 +100,75 @@ class TmallChatManager:
             # 生成时间戳
             timestamp = str(int(time.time() * 1000))
             
-            # 构建请求数据
-            request_data = {
-                "beginDate": begin_date,
-                "endDate": end_date
-            }
-            
-            # 转换为JSON字符串（用于签名计算）
-            data_str = json.dumps(request_data, separators=(',', ':'), ensure_ascii=False)
-            print(f"请求数据: {data_str}")
+            # 构建请求数据 - 使用会话列表API的正确参数
+            data = json.dumps({
+                "beginDate": "2025-09-25",
+                "endDate": "2025-09-25",
+                "pageSize": 10,
+                "pageNum": 1
+            }, separators=(',', ':'))
             
             # 生成签名
-            sign = self.generate_sign(token, timestamp, data_str)
+            sign = self.generate_sign(token, timestamp, data)
             if not sign:
-                print("签名生成失败")
+                print("无法生成签名")
                 return None
             
-            # 构建POST表单数据
-            form_data = {
+            # 构建请求参数 - 使用正确的会话列表API
+            params = {
                 'jsv': '2.6.2',
                 'appKey': self.APP_KEY,
                 't': timestamp,
                 'sign': sign,
-                'api': 'mtop.taobao.wireless.amp2.paas.conversation.list',
+                'api': 'mtop.taobao.wireless.amp2.paas.conversation.list',  # 使用会话列表API
                 'v': '1.0',
                 'type': 'jsonp',
                 'dataType': 'jsonp',
-                'callback': 'mtopjsonp3',
-                'data': data_str  # 不进行URL编码，让requests自动处理
+                'callback': 'mtopjsonp41',
+                'data': data
             }
             
-            # 提取关键认证参数，避免HTTP 431错误
-            essential_cookies = self.extract_essential_cookies(cookies_str)
-            
+            # 设置请求头
             headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-                "Content-Type": "application/x-www-form-urlencoded",
-                "Cookie": essential_cookies  # 使用精简的cookie参数
+                'Cookie': cookies_str,
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36',
+                'Referer': 'https://market.m.taobao.com/',
+                'Accept': '*/*',
+                'Accept-Language': 'zh-CN,zh;q=0.9',
+                'Accept-Encoding': 'gzip, deflate, br, zstd',
+                'Sec-Ch-Ua': '"Chromium";v="140", "Google Chrome";v="140", "Not?A_Brand";v="99"',
+                'Sec-Ch-Ua-Mobile': '?0',
+                'Sec-Ch-Ua-Platform': '"Windows"',
+                'Sec-Fetch-Dest': 'script',
+                'Sec-Fetch-Mode': 'no-cors',
+                'Sec-Fetch-Site': 'same-site'
             }
             
-            print(f"发送POST请求到: {self.CUSTOMER_LIST_API}")
-            print(f"表单数据: {form_data}")
-            print(f"请求头大小: {len(str(headers))} 字节")
-            
-            # 发送POST请求
-            response = requests.post(self.CUSTOMER_LIST_API, data=form_data, headers=headers, timeout=30)
-            
-            print(f"响应状态码: {response.status_code}")
-            print("=" * 50)
-            print("完整响应内容:")
-            print(response.text)
-            print("=" * 50)
+            print(f"正在获取客户列表...")
+            response = requests.get(self.CUSTOMER_LIST_API, params=params, headers=headers)
             
             if response.status_code == 200:
                 # 处理JSONP响应
-                response_text = response.text
-                if response_text.startswith('mtopjsonp3(') and response_text.endswith(')'):
-                    # 提取JSON部分
-                    json_str = response_text[11:-1]  # 去掉 'mtopjsonp3(' 和 ')'
+                response_text = response.text.strip()
+                
+                # 使用正则表达式匹配JSONP格式
+                import re
+                match = re.match(r'^(\w+)\((.*)\)$', response_text)
+                if match:
+                    callback_name = match.group(1)
+                    json_str = match.group(2)
+                    print(f"[OK] 找到JSONP回调函数: {callback_name}")
+                    
                     try:
                         data = json.loads(json_str)
-                        print("✓ 成功获取客服列表数据")
+                        print("[OK] 成功获取客户列表数据")
                         return data
                     except json.JSONDecodeError as e:
-                        print(f"JSON解析失败: {e}")
+                        print(f"[ERROR] JSON解析失败: {e}")
                         return None
                 else:
-                    print("响应格式不是预期的JSONP格式")
+                    print("[ERROR] 响应格式不是预期的JSONP格式")
+                    print(f"响应开头: {response_text[:100]}")
                     return None
             else:
                 print(f"请求失败，状态码: {response.status_code}")
@@ -447,9 +178,66 @@ class TmallChatManager:
             print(f"获取客户列表失败: {e}")
             return None
     
-    def get_chat_messages(self, cookies_str, conversation_id):
-        """获取聊天消息 - 直接复制客户列表的成功逻辑"""
+    def get_chat_messages_with_user_info(self, cookies_str, user_nick, customer_data):
+        """获取聊天消息，使用从客户数据中解析的参数"""
         try:
+            # 从客户数据中解析实际的cid和userId
+            actual_cid = None
+            if 'cid' in customer_data:
+                cid_value = customer_data['cid']
+                if isinstance(cid_value, dict) and 'appCid' in cid_value:
+                    actual_cid = cid_value['appCid']
+                elif isinstance(cid_value, str):
+                    # 尝试解析字符串格式的字典
+                    try:
+                        import ast
+                        cid_dict = ast.literal_eval(cid_value)
+                        if isinstance(cid_dict, dict) and 'appCid' in cid_dict:
+                            actual_cid = cid_dict['appCid']
+                        else:
+                            actual_cid = cid_value
+                    except:
+                        actual_cid = cid_value
+                else:
+                    actual_cid = str(cid_value)
+            
+            if not actual_cid:
+                actual_cid = "2215831800345.1-2219315280500.1#11001"  # 默认值
+            
+            # 解析userId，支持多种可能的字段名和格式
+            actual_user_id = None
+            if 'userID' in customer_data:
+                user_id_value = customer_data['userID']
+                if isinstance(user_id_value, dict) and 'appUid' in user_id_value:
+                    actual_user_id = user_id_value['appUid']
+                elif isinstance(user_id_value, str):
+                    # 尝试解析字符串格式的字典
+                    try:
+                        import ast
+                        user_id_dict = ast.literal_eval(user_id_value)
+                        if isinstance(user_id_dict, dict) and 'appUid' in user_id_dict:
+                            actual_user_id = user_id_dict['appUid']
+                        else:
+                            actual_user_id = user_id_value
+                    except:
+                        actual_user_id = user_id_value
+                else:
+                    actual_user_id = str(user_id_value)
+            elif 'userId' in customer_data:
+                actual_user_id = str(customer_data['userId'])
+            elif 'buyerId' in customer_data:
+                actual_user_id = str(customer_data['buyerId'])
+            elif 'customerId' in customer_data:
+                actual_user_id = str(customer_data['customerId'])
+            
+            if not actual_user_id:
+                actual_user_id = "2219315280500"  # 默认值
+            
+            # 使用客户的displayName作为userNick，而不是从cookie中提取的用户昵称
+            actual_user_nick = customer_data.get('displayName', user_nick)
+            print(f"使用客户displayName作为userNick: {actual_user_nick}")
+            print(f"使用解析的参数 - cid: {actual_cid}, userId: {actual_user_id}")
+            
             # 提取token
             token = self.get_h5_token(cookies_str)
             if not token:
@@ -459,160 +247,400 @@ class TmallChatManager:
             # 生成时间戳
             timestamp = str(int(time.time() * 1000))
             
-            # 构建请求数据 - 只修改data参数
-            request_data = {
-                "userNick": "cntaobao回力棉娅专卖店:可云",
-                "cid": conversation_id,
-                "userId": "2219368700744",
-                "cursor": 1757520000000,
+            # 构建请求数据 - 使用你提供的成功请求的确切参数
+            data = json.dumps({
+                "cid": actual_cid,
+                "userId": actual_user_id,
+                "cursor": 1758729600000,  # 使用固定的cursor时间戳
                 "forward": True,
                 "count": 100,
                 "needRecalledContent": True
-            }
-            
-            # 转换为JSON字符串（用于签名计算）
-            data_str = json.dumps(request_data, separators=(',', ':'), ensure_ascii=False)
-            print(f"请求数据: {data_str}")
+            }, separators=(',', ':'))
             
             # 生成签名
-            sign = self.generate_sign(token, timestamp, data_str)
+            sign = self.generate_sign(token, timestamp, data)
             if not sign:
-                print("签名生成失败")
+                print("无法生成签名")
                 return None
             
-            # 构建POST表单数据 - 完全复制客户列表的逻辑，只修改api和callback
-            form_data = {
+            # 构建请求参数
+            params = {
                 'jsv': '2.6.2',
                 'appKey': self.APP_KEY,
                 't': timestamp,
                 'sign': sign,
-                'api': 'mtop.taobao.wireless.amp2.im.paas.message.list',  # 只修改这里
+                'api': 'mtop.taobao.wireless.amp2.im.paas.message.list',
                 'v': '1.0',
                 'type': 'jsonp',
                 'dataType': 'jsonp',
-                'callback': 'mtopjsonp4',  # 修改callback
-                'data': data_str
+                'callback': 'mtopjsonp41',
+                'data': data
             }
             
-            # 提取关键认证参数，避免HTTP 431错误
-            essential_cookies = self.extract_essential_cookies(cookies_str)
-            
+            # 设置请求头
             headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-                "Content-Type": "application/x-www-form-urlencoded",
-                "Cookie": essential_cookies  # 使用精简的cookie参数
+                'Cookie': cookies_str,
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36',
+                'Referer': 'https://market.m.taobao.com/',
+                'Accept': '*/*',
+                'Accept-Language': 'zh-CN,zh;q=0.9'
             }
             
-            print(f"发送POST请求到: {self.CHAT_MESSAGE_API}")
-            print(f"表单数据: {form_data}")
-            print(f"请求头大小: {len(str(headers))} 字节")
-            
-            # 发送POST请求 - 完全复制客户列表的逻辑
-            response = requests.post(self.CHAT_MESSAGE_API, data=form_data, headers=headers, timeout=30)
-            
-            print(f"响应状态码: {response.status_code}")
-            print("=" * 50)
-            print("完整响应内容:")
-            print(response.text)
-            print("=" * 50)
+            print(f"正在获取客户 {actual_user_nick} 的聊天消息...")
+            response = requests.get(self.CHAT_MESSAGE_API, params=params, headers=headers)
             
             if response.status_code == 200:
                 # 处理JSONP响应
                 response_text = response.text.strip()
-                if response_text.startswith('mtopjsonp4(') and response_text.endswith(')'):
-                    # 提取JSON部分
-                    json_str = response_text[11:-1]  # 去掉 'mtopjsonp4(' 和 ')'
+                print(f"API响应前200字符: {response_text[:200]}")
+                
+                # 使用正则表达式匹配JSONP格式
+                import re
+                match = re.match(r'^(\w+)\((.*)\)$', response_text)
+                if match:
+                    callback_name = match.group(1)
+                    json_str = match.group(2)
+                    
                     try:
                         data = json.loads(json_str)
-                        print("✓ 成功获取聊天消息数据")
+                        print(f"解析后的数据结构: {list(data.keys()) if isinstance(data, dict) else type(data)}")
                         
-                        # 检查返回状态
-                        if 'ret' in data and data['ret'] and data['ret'][0].startswith('SUCCESS'):
-                            print("✓ API调用成功")
-                            if 'data' in data and 'messageList' in data['data']:
-                                message_count = len(data['data']['messageList'])
-                                print(f"📝 获取到 {message_count} 条聊天消息")
-                            return data
+                        # 检查API返回状态
+                        if 'ret' in data and data['ret']:
+                            if isinstance(data['ret'], list) and len(data['ret']) > 0:
+                                ret_msg = data['ret'][0]
+                                print(f"API返回状态: {ret_msg}")
+                                
+                                # 只有在真正的错误时才处理错误
+                                if "APPLICATION_ERROR" in ret_msg or "FAIL" in ret_msg:
+                                    print("检测到API错误")
+                                    
+                                    # 如果是APPLICATION_ERROR，尝试使用更早的cursor重试
+                                    if "APPLICATION_ERROR" in ret_msg:
+                                        print("检测到APPLICATION_ERROR，尝试使用更早的cursor重试...")
+                                        
+                                        # 重新构建请求数据，使用更早的cursor
+                                        retry_data = json.dumps({
+                                            "cid": actual_cid,
+                                            "userId": actual_user_id,
+                                            "cursor": 1757000000000,  # 使用更早的时间戳
+                                            "forward": True,
+                                            "count": 100,
+                                            "needRecalledContent": True
+                                        }, separators=(',', ':'))
+                                        
+                                        # 重新生成签名
+                                        retry_timestamp = str(int(time.time() * 1000))
+                                        retry_sign = self.generate_sign(token, retry_timestamp, retry_data)
+                                        
+                                        retry_params = {
+                                            'jsv': '2.6.2',
+                                            'appKey': self.APP_KEY,
+                                            't': retry_timestamp,
+                                            'sign': retry_sign,
+                                            'api': 'mtop.taobao.wireless.amp2.im.paas.message.list',
+                                            'v': '1.0',
+                                            'type': 'jsonp',
+                                            'dataType': 'jsonp',
+                                            'callback': 'mtopjsonp41',
+                                            'data': retry_data
+                                        }
+                                        
+                                        print("重试请求中...")
+                                        retry_response = requests.get(self.CHAT_MESSAGE_API, params=retry_params, headers=headers)
+                                        
+                                        if retry_response.status_code == 200:
+                                            retry_response_text = retry_response.text.strip()
+                                            retry_match = re.match(r'^(\w+)\((.*)\)$', retry_response_text)
+                                            if retry_match:
+                                                retry_json_str = retry_match.group(2)
+                                                try:
+                                                    retry_data = json.loads(retry_json_str)
+                                                    if 'ret' in retry_data and retry_data['ret']:
+                                                        retry_ret_msg = retry_data['ret'][0]
+                                                        if "APPLICATION_ERROR" in retry_ret_msg or "FAIL" in retry_ret_msg:
+                                                            print(f"重试仍然失败: {retry_data['ret']}")
+                                                            return []
+                                                        else:
+                                                            print("重试成功！")
+                                                            data = retry_data  # 使用重试的数据
+                                                except json.JSONDecodeError as e:
+                                                    print(f"重试响应JSON解析失败: {e}")
+                                                    return []
+                                    
+                                    # 如果仍然是错误，返回空列表
+                                    if 'ret' in data and data['ret']:
+                                        ret_msg = data['ret'][0]
+                                        if "APPLICATION_ERROR" in ret_msg or "FAIL" in ret_msg:
+                                            return []
+                                elif "SUCCESS" in ret_msg:
+                                    print("API调用成功！")
+                        
+                        # 处理成功的响应
+                        if 'data' in data and data['data']:
+                            if 'userMessages' in data['data']:
+                                messages = data['data']['userMessages']
+                                print(f"成功获取到 {len(messages)} 条聊天消息")
+                                
+                                # 为每条消息添加客户信息
+                                for msg in messages:
+                                    msg['customer_nick'] = actual_user_nick
+                                
+                                return messages
+                            else:
+                                print(f"响应中没有userMessages数据")
+                                # 显示可用的字段以便调试
+                                if 'data' in data:
+                                    print(f"可用字段: {list(data['data'].keys())}")
+                                return []
                         else:
-                            print(f"❌ API返回错误: {data.get('ret', ['未知错误'])}")
-                            return data  # 仍然返回数据，让调用者处理
+                            print("响应中没有data字段或data为空")
+                            return []
                             
                     except json.JSONDecodeError as e:
                         print(f"JSON解析失败: {e}")
-                        print(f"原始响应: {response_text[:200]}...")
-                        return None
+                        print(f"原始响应: {response_text[:500]}")
+                        return []
                 else:
                     print("响应格式不是预期的JSONP格式")
-                    print(f"响应开头: {response_text[:50]}...")
-                    return None
+                    print(f"原始响应: {response_text[:200]}")
+                    return []
             else:
                 print(f"请求失败，状态码: {response.status_code}")
-                return None
+                return []
                 
         except Exception as e:
             print(f"获取聊天消息失败: {e}")
+            return []
+    
+    def save_to_excel(self, customer_list, all_chat_messages):
+        """保存数据到Excel文件 - 按客户汇总聊天记录格式"""
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename = f"d:/testyd/tm/天猫客服聊天数据_{timestamp}.xlsx"
+            
+            # 按客户汇总聊天记录
+            customer_chat_summary = {}
+            
+            # 遍历所有聊天消息，按客户分组
+            for msg in all_chat_messages:
+                customer_nick = msg.get('customer_nick', '未知客户')
+                
+                # 提取消息内容
+                content = ""
+                if 'content' in msg:
+                    try:
+                        # 尝试解析JSON格式的content
+                        content_data = json.loads(msg['content'])
+                        if isinstance(content_data, dict):
+                            # 优先提取text字段，这是实际的消息内容
+                            content = content_data.get('text', content_data.get('summary', content_data.get('title', content_data.get('degradeText', str(content_data)))))
+                        else:
+                            content = str(content_data)
+                    except:
+                        # 如果不是JSON，直接使用原始内容
+                        content = str(msg['content'])
+                
+                # 添加发送者信息
+                if 'ext' in msg:
+                    try:
+                        ext_data = json.loads(msg['ext'])
+                        sender_nick = ext_data.get('senderNickName', ext_data.get('sender_nick', ''))
+                        if sender_nick:
+                            content = f"[{sender_nick}]: {content}"
+                    except:
+                        pass
+                
+                # 汇总到客户记录中
+                if customer_nick not in customer_chat_summary:
+                    customer_chat_summary[customer_nick] = []
+                
+                if content.strip():
+                    customer_chat_summary[customer_nick].append(content.strip())
+            
+            # 创建最终的数据格式 [['客户','聊天记录']]
+            excel_data = [['客户', '聊天记录']]  # 表头
+            
+            for customer_nick, messages in customer_chat_summary.items():
+                # 将该客户的所有聊天记录合并到一个单元格中，用换行符分隔
+                chat_record = '\n'.join(messages) if messages else '暂无聊天记录'
+                excel_data.append([customer_nick, chat_record])
+            
+            # 创建DataFrame并保存到Excel
+            df = pd.DataFrame(excel_data[1:], columns=excel_data[0])  # 跳过表头行
+            
+            with pd.ExcelWriter(filename, engine='openpyxl') as writer:
+                df.to_excel(writer, sheet_name='客户聊天汇总', index=False)
+                
+                # 调整列宽以便更好地显示聊天记录
+                worksheet = writer.sheets['客户聊天汇总']
+                worksheet.column_dimensions['A'].width = 20  # 客户列
+                worksheet.column_dimensions['B'].width = 80  # 聊天记录列
+                
+                # 设置聊天记录列的文本换行
+                from openpyxl.styles import Alignment
+                for row in range(2, len(excel_data) + 1):  # 从第2行开始（跳过表头）
+                    cell = worksheet[f'B{row}']
+                    cell.alignment = Alignment(wrap_text=True, vertical='top')
+            
+            print(f"✅ 客户聊天汇总已保存，共 {len(customer_chat_summary)} 个客户")
+            print(f"📁 数据已保存到: {filename}")
+            
+            return filename
+            
+        except Exception as e:
+            print(f"保存Excel文件失败: {e}")
             return None
     
-    def run_full_process(self):
+    def run_full_process(self, test_limit=None):
         """运行完整的客服聊天数据获取流程"""
         print("=== 天猫客服聊天数据获取程序启动 ===")
         
-        # 1. 登录并获取cookies
-        cookie_str, page, context = self.login_and_get_cookies()
+        # 1. 从文件加载cookies
+        cookie_str = self.load_cookies_from_file()
         if not cookie_str:
             print("获取cookies失败，程序退出")
-            return
+            return False
         
-        try:
-            # 2. 获取客服列表
-            print("\n正在获取客服列表...")
-            customer_list = self.get_customer_list(cookie_str)
+        # 2. 获取客服列表
+        print("\n正在获取客服列表...")
+        customer_list_data = self.get_customer_list(cookie_str)
+        
+        if not customer_list_data:
+            print("获取客服列表失败")
+            return False
             
-            if customer_list:
-                print(f"成功获取客服列表，共 {len(customer_list)} 个客服")
-                
-                # 3. 获取聊天消息（示例：获取第一个客服的消息）
-                if customer_list:
-                    first_customer = customer_list[0]
-                    customer_id = first_customer.get('customerId', '')
-                    print(f"\n正在获取客服 {customer_id} 的聊天消息...")
-                    
-                    chat_messages = self.get_chat_messages(cookie_str, customer_id)
-                    
-                    if chat_messages:
-                        print(f"成功获取聊天消息，共 {len(chat_messages)} 条")
-                        
-                        # 4. 保存数据
-                        self.save_to_excel(customer_list, chat_messages)
-                    else:
-                        print("获取聊天消息失败")
+        # 解析客户列表数据
+        if 'data' in customer_list_data:
+            data_section = customer_list_data['data']
+            print(f"data字段的内容: {list(data_section.keys()) if isinstance(data_section, dict) else type(data_section)}")
+            
+            # 检查data是否为空
+            if not data_section:
+                print("data字段为空，可能当前时间段内没有客户对话数据")
+                print("尝试使用更早的日期范围...")
+                # 尝试使用更早的日期
+                customer_list_data = self.get_customer_list(cookie_str, begin_date="20240901", end_date="20241231")
+                if customer_list_data and 'data' in customer_list_data:
+                    data_section = customer_list_data['data']
+                    print(f"使用更早日期后的data字段内容: {list(data_section.keys()) if isinstance(data_section, dict) else type(data_section)}")
                 else:
-                    print("客服列表为空")
+                    print("使用更早日期仍然没有数据")
+                    return False
+            
+            # 根据实际返回的数据结构，使用result字段
+            if 'result' in data_section:
+                customer_list = data_section['result']
+                print(f"成功获取客服列表，共 {len(customer_list)} 个客户")
+            elif 'conversationList' in data_section:
+                customer_list = data_section['conversationList']
+                print(f"成功获取客服列表，共 {len(customer_list)} 个客户")
             else:
-                print("获取客服列表失败")
+                print(f"data字段中没有result或conversationList")
+                print(f"data字段的完整内容: {data_section}")
+                return False
+        else:
+            print(f"返回数据中没有data字段")
+            print(f"完整返回数据: {customer_list_data}")
+            return False
         
-        finally:
-            # 清理资源
-            if page:
-                page.close()
-            if context:
-                context.close()
+        # 3. 获取所有客户的聊天消息
+        all_chat_messages = []
+        successful_customers = 0
+        failed_customers = 0
         
-        print("=== 程序执行完成 ===")
+        # 设置处理客户数量限制
+        if test_limit:
+            customers_to_process = customer_list[:test_limit]
+            print(f"测试模式：只处理前 {len(customers_to_process)} 个客户的聊天记录（共 {len(customer_list)} 个客户）")
+        else:
+            customers_to_process = customer_list
+            print(f"处理所有 {len(customers_to_process)} 个客户的聊天记录")
+        
+        # 从cookie中解析店铺用户信息
+        cookie_user_info = self.extract_user_info_from_cookie(cookie_str)
+        user_nick = cookie_user_info.get('nick', 'unknown') if cookie_user_info else 'unknown'
+        
+        for i, customer in enumerate(customers_to_process, 1):
+            conversation_id = customer.get('conversationId', '') or customer.get('cid', {}).get('appCid', '')
+            customer_nick = customer.get('displayName', '未知客户')
+            print(f"\n正在获取第 {i}/{len(customers_to_process)} 个客户 {customer_nick} 的聊天消息...")
+            
+            if not conversation_id:
+                print(f"客户 {customer_nick} 没有有效的conversation_id，跳过")
+                failed_customers += 1
+                continue
+            
+            # 获取聊天消息
+            chat_messages_data = self.get_chat_messages_with_user_info(cookie_str, user_nick, customer)
+            
+            # 处理消息数据
+            if chat_messages_data:
+                messages = []
+                if isinstance(chat_messages_data, list):
+                    messages = chat_messages_data
+                elif isinstance(chat_messages_data, dict):
+                    # 检查各种可能的消息字段
+                    if 'userMessages' in chat_messages_data:
+                        messages = chat_messages_data['userMessages']
+                    elif 'messageList' in chat_messages_data:
+                        messages = chat_messages_data['messageList']
+                    elif 'data' in chat_messages_data:
+                        data_section = chat_messages_data['data']
+                        if 'userMessages' in data_section:
+                            messages = data_section['userMessages']
+                        elif 'messageList' in data_section:
+                            messages = data_section['messageList']
+                
+                if messages:
+                    print(f"成功获取聊天消息，共 {len(messages)} 条")
+                    # 为每条消息添加客户信息
+                    for msg in messages:
+                        if isinstance(msg, dict):
+                            msg['customer_id'] = conversation_id
+                            msg['customer_nick'] = customer_nick
+                    all_chat_messages.extend(messages)
+                    successful_customers += 1
+                else:
+                    print(f"获取客户 {customer_nick} 的聊天消息失败：没有找到消息数据")
+                    failed_customers += 1
+            else:
+                print(f"获取客户 {customer_nick} 的聊天消息失败")
+                failed_customers += 1
+            
+            # 添加延迟避免请求过快
+            time.sleep(0.5)
+        
+        print(f"\n=== 数据获取汇总 ===")
+        print(f"处理客户数: {len(customers_to_process)}")
+        print(f"总客户数: {len(customer_list)}")
+        print(f"成功获取: {successful_customers}")
+        print(f"获取失败: {failed_customers}")
+        print(f"总消息数: {len(all_chat_messages)}")
+        
+        if all_chat_messages:
+            # 4. 保存数据
+            self.save_to_excel(customer_list, all_chat_messages)
+            print("=== 程序执行完成 ===")
+            return True
+        else:
+            print("没有获取到任何聊天消息")
+            return False
+    
+    def run(self):
+        """主运行函数"""
+        try:
+            return self.run_full_process()
+        except Exception as e:
+            print(f"❌ 程序执行失败: {e}")
+            import traceback
+            traceback.print_exc()
+            return False
 
 def main():
     """主函数"""
-    try:
-        manager = TmallChatManager()
-        success = manager.run_full_process()
-        
-        if success:
-            print("\n程序执行完成")
-        else:
-            print("\n程序测试失败，请检查相关配置。")
-            
-    except Exception as e:
-        print(f"程序运行出错: {e}")
+    manager = TmallChatManager()
+    return manager.run_full_process(test_limit=3)  # 测试模式，只处理前3个客户
 
 if __name__ == "__main__":
     main()

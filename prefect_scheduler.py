@@ -64,8 +64,8 @@ def create_deployments():
     # 4. 京东门店数据 - 每天09:30
     jd_deployment = jd_store_flow.to_deployment(
         name="京东门店数据-定时执行",
-        schedule=CronSchedule(cron="30 9 * * *", timezone="Asia/Shanghai"),
-        description="每天09:30执行京东门店数据拉取",
+        schedule=CronSchedule(cron="45 8 * * *", timezone="Asia/Shanghai"),
+        description="每天08:45执行京东门店数据拉取",
         tags=["数据拉取", "京东", "门店", "定时"]
     )
     deployments.append(jd_deployment)
@@ -104,7 +104,7 @@ def main():
     logger.info("    - 拼多多质量数据: 每天08:00 (第1个)")
     logger.info("    - ERP门店数据: 每天08:30 (第2个)")
     logger.info("    - 拼多多差评数据: 每天09:00 (第3个)")
-    logger.info("    - 京东门店数据: 每天09:30 (第4个)")
+    logger.info("    - 京东门店数据: 每天08:45 (第4个)")
     logger.info("    - 拼多多KPI数据: 每天12:00 (第5个)")
     logger.info("    - 拼多多KPI周报: 每周六11:00 (第6个)")
     logger.info("")
