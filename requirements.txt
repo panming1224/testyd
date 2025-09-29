@@ -1,0 +1,17 @@
+# MinIO API服务依赖包
+Flask==3.1.2
+Flask-CORS==5.0.0
+minio==7.2.0
+pandas==2.1.1
+pyarrow==13.0.0
+requests==2.31.0
+python-dateutil==2.8.2
+typing-extensions==4.8.0
+
+# 日志和工具
+colorlog==6.7.0
+psutil==5.9.5
+
+# 开发和测试
+pytest==7.4.2
+pytest-flask==1.2.0
