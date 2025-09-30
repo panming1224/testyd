@@ -1,0 +1,8 @@
+2025/09/30-18:02:56.009 1f4c Reusing MANIFEST D:\testyd\tm\browser_data\Default\Local Storage\leveldb/MANIFEST-000001
+2025/09/30-18:02:56.014 1f4c Recovering log #8
+2025/09/30-18:02:56.016 1f4c Level-0 table #10: started
+2025/09/30-18:02:56.025 1f4c Level-0 table #10: 208288 bytes OK
+2025/09/30-18:02:56.032 1f4c Delete type=0 #8
+2025/09/30-18:03:24.335 15b8 Level-0 table #13: started
+2025/09/30-18:03:24.345 15b8 Level-0 table #13: 208207 bytes OK
+2025/09/30-18:03:24.349 15b8 Delete type=0 #11

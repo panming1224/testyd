@@ -1,0 +1,5 @@
+2025/09/30-18:04:38.288 19ac Creating DB D:\testyd\tm\browser_data\Profile 9\Local Storage\leveldb since it was missing.
+2025/09/30-18:04:38.363 19ac Reusing MANIFEST D:\testyd\tm\browser_data\Profile 9\Local Storage\leveldb/MANIFEST-000001
+2025/09/30-18:04:47.465 e40 Level-0 table #5: started
+2025/09/30-18:04:47.483 e40 Level-0 table #5: 204279 bytes OK
+2025/09/30-18:04:47.490 e40 Delete type=0 #3
