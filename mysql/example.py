@@ -8,7 +8,6 @@
 
 from crawler_db_interface import CrawlerDBInterface, TaskStatus
 from datetime import datetime
-import pandas as pd
 
 def main():
     """使用示例主函数"""
@@ -19,16 +18,29 @@ def main():
     print("✓ 数据库接口初始化完成")
     
     # 2. 导入店铺信息示例（支持文件夹字段）
-    # 创建示例店铺数据
-    shop_data = {
-        'shop_name': ['测试店铺A', '测试店铺B', '测试店铺C'],
-        'folder_path': ['D:/company_data/shop_a', 'D:/company_data/shop_b', 'D:/company_data/shop_c']
-    }
-    df = pd.DataFrame(shop_data)
-    df.to_csv('temp_shops.csv', index=False, encoding='utf-8')
+    # 创建示例店铺数据并直接插入数据库
+    shop_data = [
+        {'shop_name': '测试店铺A', 'folder_path': 'D:/company_data/shop_a'},
+        {'shop_name': '测试店铺B', 'folder_path': 'D:/company_data/shop_b'},
+        {'shop_name': '测试店铺C', 'folder_path': 'D:/company_data/shop_c'}
+    ]
     
-    # 导入店铺（支持文件夹列）
-    imported_count = db.import_shops_from_excel('temp_shops.csv', folder_column='folder_path')
+    imported_count = 0
+    for shop in shop_data:
+        # 检查店铺是否已存在
+        existing_shop = db.get_shop_by_name(shop['shop_name'])
+        if existing_shop:
+            # 更新现有店铺的文件夹路径
+            success = db.update_record('shops', {'folder_path': shop['folder_path']}, 
+                                     'shop_name = %s', (shop['shop_name'],))
+            if success:
+                imported_count += 1
+        else:
+            # 插入新店铺
+            success = db.insert_record('shops', shop)
+            if success:
+                imported_count += 1
+    
     print(f"✓ 成功导入/更新 {imported_count} 个店铺")
     
     # 3. 生成今日任务（支持自定义任务列）
@@ -55,13 +67,22 @@ def main():
     # 5. 处理任务示例
     if pending_tasks:
         for task in pending_tasks[:2]:  # 处理前2个任务
-            shop_name = task['shop_name']
-            cookie = task['cookie']
-            folder_path = task['folder_path']
+            # 处理元组格式的返回数据
+            if isinstance(task, tuple):
+                # 假设返回格式为 (time_period, shop_name, shop_data...)
+                shop_name = task[1]
+                # 获取店铺详细信息
+                shop_info = db.get_shop_by_name(shop_name)
+                cookie = shop_info.get('cookie', '') if shop_info else ''
+                folder_path = shop_info.get('folder_path', '') if shop_info else ''
+            else:
+                shop_name = task['shop_name']
+                cookie = task['cookie']
+                folder_path = task['folder_path']
             
             print(f"\n开始处理店铺: {shop_name}")
             print(f"  - 文件夹路径: {folder_path}")
-            print(f"  - 当前状态: {task.get('status', 'null（待处理）')}")
+            print(f"  - 当前状态: null（待处理）")
             
             # 这里可以添加实际的爬虫逻辑
             # 例如：使用cookie和文件夹路径进行数据抓取
@@ -76,7 +97,11 @@ def main():
     # 6. Cookie和文件夹管理示例
     if pending_tasks:
         first_task = pending_tasks[0]
-        shop_name = first_task['shop_name']
+        # 处理元组格式的返回数据
+        if isinstance(first_task, tuple):
+            shop_name = first_task[1]
+        else:
+            shop_name = first_task['shop_name']
         
         # 更新Cookie
         new_cookie = "new_cookie_value_example_12345"

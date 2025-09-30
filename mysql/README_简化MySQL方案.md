@@ -72,8 +72,8 @@ print(f"导入了 {count} 个店铺")
 
 ```python
 # 每个爬虫脚本开始前调用，根据日期生成任务
-task_date = "2024-01-15"  # 你的抓取日期
-created_count = db_interface.generate_daily_tasks(task_date)
+task_date = "2025-01-15"  # 你的抓取日期
+created_count = db_interface.generate_tasks(task_date)
 print(f"为 {task_date} 创建了 {created_count} 个新任务")
 ```
 
@@ -82,7 +82,7 @@ print(f"为 {task_date} 创建了 {created_count} 个新任务")
 ```python
 # 获取指定类型的待处理任务
 pending_tasks = db_interface.get_pending_tasks(
-    task_date="2024-01-15",
+    task_date="2025-01-15",
     task_type=TaskType.BAD_REVIEW,  # 差评任务
     limit=10  # 限制数量
 )
@@ -104,9 +104,9 @@ db_interface.update_task_status(
 
 # 完成任务
 db_interface.update_task_status(
-    task_date="2024-01-15",
-    shop_id=1,
-    task_type=TaskType.BAD_REVIEW,
+    task_date="2025-01-15",
+    shop_name="测试店铺B",
+    task_type=TaskType.CHAT_RECORD,
     status=TaskStatus.COMPLETED
 )
 ```
@@ -242,7 +242,7 @@ self.db_config = {
 
 ```python
 # 获取任务统计
-stats = db_interface.get_task_statistics("2024-01-15")
+stats = db_interface.get_task_statistics("2025-01-15")
 print(f"总店铺数: {stats['total_shops']}")
 print(f"差评完成数: {stats['badreview_completed']}")
 print(f"差评待处理: {stats['badreview_pending']}")

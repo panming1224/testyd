@@ -29,42 +29,30 @@ class TaskStatus:
     # null值表示待处理状态
 
 class CrawlerDBInterface:
-    """拼多多爬虫通用数据库接口 - 优化版本"""
+    """通用爬虫数据库接口 - 支持多平台和动态表名"""
     
-    _instance = None
-    _lock = threading.Lock()
-    
-    def __new__(cls, shops_table='shops', tasks_table='tasks', platform='company'):
-        """单例模式 - 支持参数传递"""
-        if cls._instance is None:
-            with cls._lock:
-                if cls._instance is None:
-                    cls._instance = super().__new__(cls)
-        return cls._instance
-    
-    def __init__(self, shops_table='pdd_shops', tasks_table='pdd_tasks', platform='pdd'):
+    # 移除单例模式，支持多实例
+    def __init__(self, shops_table='shops', tasks_table='tasks', platform='company', database='company'):
         """
         初始化数据库连接池
         
         Args:
-            shops_table: 店铺表名，默认'shops'
-            tasks_table: 任务表名，默认'tasks'  
-            platform: 平台标识，默认'company'，用于数据库名
+            shops_table: 店铺表名，如 'pdd_shops', 'tm_shops' 等
+            tasks_table: 任务表名，如 'pdd_tasks', 'tm_tasks' 等
+            platform: 平台标识，用于日志标识
+            database: 数据库名，默认'company'
         """
-        if hasattr(self, '_initialized'):
-            return
-        
         # 表名配置 - 支持动态传入
         self.shops_table = shops_table
         self.tasks_table = tasks_table
         self.platform = platform
-        
+        self.database = database
         self.db_config = {
             'host': 'localhost',
             'port': 3306,
             'user': 'root',
-            'password': 'admin123',  # 使用正确的密码
-            'database': 'company',  # 使用company数据库
+            'password': 'admin123',
+            'database': self.database,  # 使用动态数据库名
             'charset': 'utf8mb4',
             'autocommit': True
         }
@@ -83,152 +71,80 @@ class CrawlerDBInterface:
             **self.db_config
         )
         
-        self._initialize_database()
-        self._initialized = True
-        logger.info("数据库连接池初始化完成")
+        logger.info(f"数据库连接池初始化完成 - 平台: {self.platform}, 店铺表: {self.shops_table}, 任务表: {self.tasks_table}")
     
-    def _initialize_database(self):
-        """初始化数据库和表结构"""
+    def get_all_shops(self) -> List[Dict]:
+        """获取所有店铺信息"""
         conn = self.pool.connection()
         try:
             with conn.cursor() as cursor:
-                # 创建数据库
-                cursor.execute(f"CREATE DATABASE IF NOT EXISTS {self.db_config['database']} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
-                cursor.execute(f"USE {self.db_config['database']}")
-                
-                # 创建店铺表 - 扩展字段支持完整店铺信息管理
-                cursor.execute(f"""
-                    CREATE TABLE IF NOT EXISTS {self.shops_table} (
-                        shop_name VARCHAR(255) PRIMARY KEY COMMENT '店铺名称',
-                        account VARCHAR(255) COMMENT '登录账号',
-                        password VARCHAR(255) COMMENT '登录密码',
-                        contact_person VARCHAR(100) COMMENT '联系人',
-                        contact_phone VARCHAR(20) COMMENT '联系电话',
-                        shop_group VARCHAR(100) DEFAULT 'default' COMMENT '店铺分组',
-                        sub_account VARCHAR(255) COMMENT '子账号',
-                        sub_password VARCHAR(255) COMMENT '子账号密码',
-                        sub_phone VARCHAR(20) COMMENT '子账号手机号',
-                        cookie TEXT COMMENT '登录Cookie',
-                        folder_path VARCHAR(500) COMMENT '文件夹路径',
-                        status ENUM('active', 'inactive') DEFAULT 'active' COMMENT '店铺状态',
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-                        INDEX idx_shop_status (status),
-                        INDEX idx_shop_group (shop_group),
-                        INDEX idx_contact_person (contact_person)
-                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='店铺信息表'
-                """)
-                
-                # 创建任务表 - 支持灵活时间范围和动态表名
-                cursor.execute(f"""
-                    CREATE TABLE IF NOT EXISTS {self.tasks_table} (
-                        time_period VARCHAR(50) NOT NULL COMMENT '时间周期（支持日期、周度、月度等格式）',
-                        shop_name VARCHAR(255) NOT NULL COMMENT '店铺名称',
-                        task_data JSON COMMENT '任务数据（JSON格式）',
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-                        PRIMARY KEY (time_period, shop_name),
-                        FOREIGN KEY (shop_name) REFERENCES {self.shops_table}(shop_name) ON DELETE CASCADE ON UPDATE CASCADE,
-                        INDEX idx_time_period (time_period),
-                        INDEX idx_shop_name (shop_name)
-                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务管理表'
-                """)
-                
-            conn.commit()
-            logger.info("数据库表结构初始化完成")
-            
+                cursor.execute(f"SELECT * FROM {self.shops_table}")
+                columns = [desc[0] for desc in cursor.description]
+                results = cursor.fetchall()
+                return [dict(zip(columns, row)) for row in results]
         except Exception as e:
-            conn.rollback()
-            logger.error(f"数据库初始化失败: {e}")
-            raise
+            logger.error(f"获取店铺信息失败: {e}")
+            return []
         finally:
             conn.close()
     
-    def import_shops_from_excel(self, excel_path: str, folder_column: str = None) -> int:
-        """
-        从Excel或CSV文件导入店铺基础信息
-        Args:
-            excel_path: Excel或CSV文件路径
-            folder_column: 文件夹列名（可选）
-        Returns:
-            导入的店铺数量
-        """
+    def get_shop_by_name(self, shop_name: str) -> Dict:
+        """根据店铺名称获取店铺信息"""
+        conn = self.pool.connection()
         try:
-            # 根据文件扩展名选择读取方式
-            if excel_path.lower().endswith('.csv'):
-                df = pd.read_csv(excel_path, encoding='utf-8')
-            else:
-                df = pd.read_excel(excel_path)
-            
-            if 'shop_name' not in df.columns:
-                raise ValueError("文件必须包含'shop_name'列")
-            
-            conn = self.pool.connection()
-            imported_count = 0
-            
-            try:
-                with conn.cursor() as cursor:
-                    for _, row in df.iterrows():
-                        shop_name = str(row['shop_name']).strip()
-                        if not shop_name:
-                            continue
-                        
-                        # 构建插入数据
-                        insert_data = {'shop_name': shop_name}
-                        
-                        # 处理可选字段
-                        optional_fields = ['account', 'password', 'contact_person', 'contact_phone', 
-                                         'shop_group', 'sub_account', 'sub_password', 'sub_phone', 
-                                         'cookie', 'folder_path']
-                        
-                        for field in optional_fields:
-                            if field in df.columns and pd.notna(row[field]):
-                                insert_data[field] = str(row[field]).strip()
-                        
-                        # 特殊处理folder_path
-                        if folder_column and folder_column in df.columns:
-                            if pd.notna(row[folder_column]):
-                                insert_data['folder_path'] = str(row[folder_column]).strip()
-                        
-                        # 构建SQL
-                        columns = ', '.join(insert_data.keys())
-                        placeholders = ', '.join(['%s'] * len(insert_data))
-                        values = list(insert_data.values())
-                        
-                        cursor.execute(f"""
-                            INSERT INTO {self.shops_table} ({columns})
-                            VALUES ({placeholders})
-                            ON DUPLICATE KEY UPDATE
-                                account = VALUES(account),
-                                password = VALUES(password),
-                                contact_person = VALUES(contact_person),
-                                contact_phone = VALUES(contact_phone),
-                                shop_group = VALUES(shop_group),
-                                sub_account = VALUES(sub_account),
-                                sub_password = VALUES(sub_password),
-                                sub_phone = VALUES(sub_phone),
-                                cookie = VALUES(cookie),
-                                folder_path = VALUES(folder_path),
-                                updated_at = CURRENT_TIMESTAMP
-                        """, values)
-                        
-                        if cursor.rowcount > 0:
-                            imported_count += 1
-                
-                conn.commit()
-                logger.info(f"成功导入/更新 {imported_count} 个店铺")
-                return imported_count
-                
-            except Exception as e:
-                conn.rollback()
-                logger.error(f"导入店铺失败: {e}")
-                raise
-            finally:
-                conn.close()
-                
+            with conn.cursor() as cursor:
+                cursor.execute(f"SELECT * FROM {self.shops_table} WHERE shop_name = %s", (shop_name,))
+                columns = [desc[0] for desc in cursor.description]
+                result = cursor.fetchone()
+                return dict(zip(columns, result)) if result else {}
         except Exception as e:
-            logger.error(f"读取文件失败: {e}")
-            raise
+            logger.error(f"获取店铺信息失败: {e}")
+            return {}
+        finally:
+            conn.close()
+    
+    def update_shop_cookies(self, shop_name: str, qncookie: str = None, sycmcookie: str = None) -> bool:
+        """更新店铺的Cookie信息（支持天猫店铺的双Cookie）"""
+        conn = self.pool.connection()
+        try:
+            with conn.cursor() as cursor:
+                # 检查表是否有qncookie和sycmcookie字段
+                cursor.execute(f"SHOW COLUMNS FROM {self.shops_table}")
+                columns = [row[0] for row in cursor.fetchall()]
+                
+                update_fields = []
+                params = []
+                
+                if qncookie is not None and 'qncookie' in columns:
+                    update_fields.append("qncookie = %s")
+                    params.append(qncookie)
+                
+                if sycmcookie is not None and 'sycmcookie' in columns:
+                    update_fields.append("sycmcookie = %s")
+                    params.append(sycmcookie)
+                
+                # 如果没有专门的cookie字段，使用通用cookie字段
+                if not update_fields and (qncookie or sycmcookie):
+                    update_fields.append("cookie = %s")
+                    params.append(qncookie or sycmcookie)
+                
+                if update_fields:
+                    params.append(shop_name)
+                    sql = f"UPDATE {self.shops_table} SET {', '.join(update_fields)} WHERE shop_name = %s"
+                    cursor.execute(sql, params)
+                    conn.commit()
+                    logger.info(f"店铺 {shop_name} Cookie更新成功")
+                    return True
+                else:
+                    logger.warning(f"没有找到合适的Cookie字段进行更新")
+                    return False
+                    
+        except Exception as e:
+            conn.rollback()
+            logger.error(f"更新店铺Cookie失败: {e}")
+            return False
+        finally:
+            conn.close()
     
     def generate_tasks(self, time_period: str, task_columns: List[str] = None) -> int:
         """
@@ -251,7 +167,7 @@ class CrawlerDBInterface:
         created_count = 0
         
         try:
-            with conn.cursor(DictCursor) as cursor:
+            with conn.cursor() as cursor:
                 # 获取所有店铺
                 cursor.execute(f"SELECT shop_name FROM {self.shops_table}")
                 shops = cursor.fetchall()
@@ -260,27 +176,58 @@ class CrawlerDBInterface:
                     logger.warning("没有找到任何店铺数据")
                     return 0
                 
-                # 构建批量插入数据
-                batch_data = []
-                task_data_json = json.dumps({col: None for col in task_columns}, ensure_ascii=False)
+                # 检查表结构，判断使用哪种字段格式
+                cursor.execute(f"SHOW COLUMNS FROM {self.tasks_table}")
+                columns = [row[0] for row in cursor.fetchall()]
                 
-                for shop in shops:
-                    batch_data.append((time_period, shop['shop_name'], task_data_json))
+                has_task_data = 'task_data' in columns
                 
-                # 批量插入，使用 executemany 提高性能
-                cursor.executemany(f"""
-                    INSERT INTO {self.tasks_table} (time_period, shop_name, task_data) 
-                    VALUES (%s, %s, %s)
-                    ON DUPLICATE KEY UPDATE 
-                        task_data = JSON_MERGE_PATCH(task_data, VALUES(task_data)),
-                        updated_at = CURRENT_TIMESTAMP
-                """, batch_data)
+                if has_task_data:
+                    # 使用JSON格式的task_data字段
+                    batch_data = []
+                    task_data_json = json.dumps({col: None for col in task_columns}, ensure_ascii=False)
+                    
+                    for shop in shops:
+                        batch_data.append((time_period, shop[0], task_data_json))
+                    
+                    cursor.executemany(f"""
+                        INSERT INTO {self.tasks_table} (time_period, shop_name, task_data) 
+                        VALUES (%s, %s, %s)
+                        ON DUPLICATE KEY UPDATE 
+                            task_data = JSON_MERGE_PATCH(task_data, VALUES(task_data)),
+                            update_time = CURRENT_TIMESTAMP
+                    """, batch_data)
+                else:
+                    # 使用传统的枚举字段格式
+                    # 构建动态插入SQL
+                    available_columns = [col for col in task_columns if col in columns]
+                    if not available_columns:
+                        logger.warning(f"表 {self.tasks_table} 中没有找到任何指定的任务列: {task_columns}")
+                        return 0
+                    
+                    # 构建插入语句
+                    insert_columns = ['time_period', 'shop_name'] + available_columns
+                    placeholders = ', '.join(['%s'] * len(insert_columns))
+                    update_clause = ', '.join([f"{col} = VALUES({col})" for col in available_columns])
+                    
+                    batch_data = []
+                    for shop in shops:
+                        # time_period, shop_name, 然后是各个状态字段（设为NULL，表示待处理）
+                        row_data = [time_period, shop[0]] + [None] * len(available_columns)
+                        batch_data.append(tuple(row_data))
+                    
+                    # 修复：使用INSERT IGNORE，只插入新记录，不更新已存在的记录
+                    # 这样可以避免重置已完成的任务状态
+                    sql = f"""
+                        INSERT IGNORE INTO {self.tasks_table} ({', '.join(insert_columns)}) 
+                        VALUES ({placeholders})
+                    """
+                    
+                    cursor.executemany(sql, batch_data)
                 
-                # 计算新创建的任务数（总影响行数 - 更新的行数）
-                # 由于 ON DUPLICATE KEY UPDATE 的特性，新插入返回1，更新返回2
+                # 计算新创建的任务数
                 total_affected = cursor.rowcount
-                # 简化计算：假设大部分是新插入的任务
-                created_count = len(batch_data) if total_affected > 0 else 0
+                created_count = len(shops) if total_affected > 0 else 0
                 
             conn.commit()
             logger.info(f"为时间周期 {time_period} 创建了 {created_count} 个新任务")
@@ -308,17 +255,34 @@ class CrawlerDBInterface:
         conn = self.pool.connection()
         
         try:
-            with conn.cursor(DictCursor) as cursor:
-                # 构建查询SQL
-                sql = f"""
-                    SELECT dt.time_period, dt.shop_name, s.account, s.password, s.contact_person, 
-                           s.contact_phone, s.shop_group, s.sub_account, s.sub_password, s.sub_phone,
-                           s.cookie, s.folder_path, dt.task_data
-                    FROM {self.tasks_table} dt
-                    JOIN {self.shops_table} s ON dt.shop_name = s.shop_name
-                    WHERE dt.time_period = %s 
-                      AND JSON_EXTRACT(dt.task_data, '$.{task_column}') IS NULL
-                """
+            with conn.cursor() as cursor:
+                # 检查表结构
+                cursor.execute(f"SHOW COLUMNS FROM {self.tasks_table}")
+                task_columns = [row[0] for row in cursor.fetchall()]
+                has_task_data = 'task_data' in task_columns
+                
+                if has_task_data:
+                    # 使用JSON格式的task_data字段
+                    sql = f"""
+                        SELECT dt.time_period, dt.shop_name, s.*
+                        FROM {self.tasks_table} dt
+                        JOIN {self.shops_table} s ON dt.shop_name = s.shop_name
+                        WHERE dt.time_period = %s 
+                          AND JSON_EXTRACT(dt.task_data, '$.{task_column}') IS NULL
+                    """
+                else:
+                    # 使用传统的枚举字段格式
+                    if task_column not in task_columns:
+                        logger.warning(f"任务列 {task_column} 不存在于表 {self.tasks_table} 中")
+                        return []
+                    
+                    sql = f"""
+                        SELECT dt.time_period, dt.shop_name, s.*
+                        FROM {self.tasks_table} dt
+                        JOIN {self.shops_table} s ON dt.shop_name = s.shop_name
+                        WHERE dt.time_period = %s 
+                          AND dt.{task_column} IS NULL
+                    """
                 
                 if limit:
                     sql += f" LIMIT {limit}"
@@ -351,13 +315,31 @@ class CrawlerDBInterface:
         
         try:
             with conn.cursor() as cursor:
-                # 使用JSON_SET更新指定字段
-                cursor.execute(f"""
-                    UPDATE {self.tasks_table} 
-                    SET task_data = JSON_SET(task_data, %s, %s),
-                        updated_at = CURRENT_TIMESTAMP
-                    WHERE time_period = %s AND shop_name = %s
-                """, (f'$.{task_column}', status, time_period, shop_name))
+                # 检查表结构
+                cursor.execute(f"SHOW COLUMNS FROM {self.tasks_table}")
+                task_columns = [row[0] for row in cursor.fetchall()]
+                has_task_data = 'task_data' in task_columns
+                
+                if has_task_data:
+                    # 使用JSON格式的task_data字段
+                    cursor.execute(f"""
+                        UPDATE {self.tasks_table} 
+                        SET task_data = JSON_SET(task_data, %s, %s),
+                            update_time = CURRENT_TIMESTAMP
+                        WHERE time_period = %s AND shop_name = %s
+                    """, (f'$.{task_column}', status, time_period, shop_name))
+                else:
+                    # 使用传统的枚举字段格式
+                    if task_column not in task_columns:
+                        logger.warning(f"任务列 {task_column} 不存在于表 {self.tasks_table} 中")
+                        return False
+                    
+                    cursor.execute(f"""
+                        UPDATE {self.tasks_table} 
+                        SET {task_column} = %s,
+                            update_time = CURRENT_TIMESTAMP
+                        WHERE time_period = %s AND shop_name = %s
+                    """, (status, time_period, shop_name))
                 
                 if cursor.rowcount > 0:
                     conn.commit()
@@ -387,7 +369,7 @@ class CrawlerDBInterface:
         try:
             with conn.cursor() as cursor:
                 cursor.execute(
-                    "UPDATE shops SET cookie = %s, updated_at = CURRENT_TIMESTAMP WHERE shop_name = %s",
+                    f"UPDATE {self.shops_table} SET cookie = %s, update_time = CURRENT_TIMESTAMP WHERE shop_name = %s",
                     (cookie, shop_name)
                 )
                 
@@ -408,79 +390,81 @@ class CrawlerDBInterface:
         finally:
             conn.close()
     
-    def get_shop_cookie(self, shop_name: str) -> Optional[str]:
+    def get_shop_cookie(self, shop_name: str) -> str:
         """
-        获取店铺Cookie
+        获取指定店铺的Cookie
+        
         Args:
             shop_name: 店铺名称
+            
         Returns:
-            Cookie值或None
+            str: Cookie字符串，如果不存在返回None
         """
         conn = self.pool.connection()
         try:
             with conn.cursor() as cursor:
-                cursor.execute("SELECT cookie FROM shops WHERE shop_name = %s", (shop_name,))
+                cursor.execute(f"SELECT cookie FROM {self.shops_table} WHERE shop_name = %s", (shop_name,))
                 result = cursor.fetchone()
                 return result[0] if result else None
-                
         except Exception as e:
-            logger.error(f"获取店铺cookie失败: {e}")
-            raise
+            logger.error(f"获取店铺Cookie失败: {e}")
+            return None
         finally:
             conn.close()
     
-    def get_shop_folder(self, shop_name: str) -> Optional[str]:
+    def get_shop_folder(self, shop_name: str) -> str:
         """
-        获取店铺文件夹路径
+        获取指定店铺的文件夹路径
+        
         Args:
             shop_name: 店铺名称
+            
         Returns:
-            文件夹路径或None
+            str: 文件夹路径，如果不存在返回None
         """
         conn = self.pool.connection()
         try:
             with conn.cursor() as cursor:
-                cursor.execute("SELECT folder_path FROM shops WHERE shop_name = %s", (shop_name,))
+                cursor.execute(f"SELECT folder_path FROM {self.shops_table} WHERE shop_name = %s", (shop_name,))
                 result = cursor.fetchone()
                 return result[0] if result else None
-                
         except Exception as e:
-            logger.error(f"获取店铺文件夹失败: {e}")
-            raise
+            logger.error(f"获取店铺文件夹路径失败: {e}")
+            return None
         finally:
             conn.close()
     
     def update_shop_folder(self, shop_name: str, folder_path: str) -> bool:
         """
-        更新店铺文件夹路径
+        更新指定店铺的文件夹路径
+        
         Args:
             shop_name: 店铺名称
             folder_path: 文件夹路径
+            
         Returns:
-            是否更新成功
+            bool: 更新是否成功
         """
         conn = self.pool.connection()
         try:
             with conn.cursor() as cursor:
                 cursor.execute(
-                    "UPDATE shops SET folder_path = %s, updated_at = CURRENT_TIMESTAMP WHERE shop_name = %s",
+                    f"UPDATE {self.shops_table} SET folder_path = %s, update_time = CURRENT_TIMESTAMP WHERE shop_name = %s",
                     (folder_path, shop_name)
                 )
-                
-                success = cursor.rowcount > 0
                 conn.commit()
                 
-                if success:
-                    logger.info(f"更新店铺文件夹成功: shop_name={shop_name}")
+                if cursor.rowcount > 0:
+                    logger.info(f"店铺 {shop_name} 文件夹路径更新成功")
+                    return True
                 else:
-                    logger.warning(f"未找到店铺: {shop_name}")
-                
-                return success
-                
+                    logger.warning(f"店铺 {shop_name} 不存在")
+                    return False
+                    
         except Exception as e:
             conn.rollback()
-            logger.error(f"更新店铺文件夹失败: {e}")
-            raise
+            logger.error(f"更新店铺文件夹路径失败: {e}")
+            return False
         finally:
             conn.close()
     
@@ -510,7 +494,7 @@ class CrawlerDBInterface:
                         SELECT COUNT(*) as completed_count
                         FROM {self.tasks_table}
                         WHERE time_period = %s 
-                          AND JSON_EXTRACT(task_data, '$.{task_column}') = %s
+                          AND {task_column} = %s
                     """, (time_period, "已完成"))
                     
                     completed = cursor.fetchone()['completed_count']
@@ -520,7 +504,7 @@ class CrawlerDBInterface:
                         SELECT COUNT(*) as pending_count
                         FROM {self.tasks_table}
                         WHERE time_period = %s 
-                          AND JSON_EXTRACT(task_data, '$.{task_column}') IS NULL
+                          AND {task_column} IS NULL
                     """, (time_period,))
                     
                     pending = cursor.fetchone()['pending_count']
@@ -541,58 +525,270 @@ class CrawlerDBInterface:
     
     def execute_custom_sql(self, sql: str, params: tuple = None, fetch_type: str = 'all') -> Union[List[Dict], Dict, int, None]:
         """
-        执行自定义SQL语句的通用方法
+        执行自定义SQL查询 - 通用数据库操作方法
         
         Args:
             sql: SQL语句
-            params: SQL参数，默认None
-            fetch_type: 返回类型 'all'(所有结果), 'one'(单条结果), 'count'(影响行数), 'none'(无返回)
-        
+            params: SQL参数
+            fetch_type: 返回类型 ('all', 'one', 'count', 'execute')
+            
         Returns:
             根据fetch_type返回不同类型的结果
         """
         conn = self.pool.connection()
         try:
-            with conn.cursor(DictCursor) as cursor:
-                # 执行SQL语句
-                if params:
-                    cursor.execute(sql, params)
-                else:
-                    cursor.execute(sql)
+            with conn.cursor() as cursor:
+                cursor.execute(sql, params or ())
                 
-                # 根据fetch_type返回不同结果
                 if fetch_type == 'all':
-                    result = cursor.fetchall()
+                    columns = [desc[0] for desc in cursor.description] if cursor.description else []
+                    results = cursor.fetchall()
+                    return [dict(zip(columns, row)) for row in results] if columns else results
                 elif fetch_type == 'one':
+                    columns = [desc[0] for desc in cursor.description] if cursor.description else []
                     result = cursor.fetchone()
+                    return dict(zip(columns, result)) if result and columns else result
                 elif fetch_type == 'count':
-                    result = cursor.rowcount
-                elif fetch_type == 'none':
-                    result = None
-                else:
-                    raise ValueError(f"不支持的fetch_type: {fetch_type}")
-                
-                # 如果是修改操作，需要提交事务
-                if sql.strip().upper().startswith(('INSERT', 'UPDATE', 'DELETE', 'CREATE', 'DROP', 'ALTER')):
+                    return cursor.rowcount
+                elif fetch_type == 'execute':
                     conn.commit()
-                    logger.info(f"SQL执行成功，影响行数: {cursor.rowcount}")
-                
-                return result
-                
+                    return cursor.rowcount
+                else:
+                    return None
+                    
         except Exception as e:
-            conn.rollback()
-            logger.error(f"执行自定义SQL失败: {e}")
-            logger.error(f"SQL语句: {sql}")
-            logger.error(f"参数: {params}")
+            if fetch_type == 'execute':
+                conn.rollback()
+            logger.error(f"执行SQL失败: {e}")
             raise
         finally:
             conn.close()
+    
+    def insert_record(self, table_name: str, data: Dict) -> bool:
+        """
+        通用插入记录方法
+        
+        Args:
+            table_name: 表名
+            data: 要插入的数据字典
+            
+        Returns:
+            bool: 插入是否成功
+        """
+        if not data:
+            return False
+            
+        columns = ', '.join(data.keys())
+        placeholders = ', '.join(['%s'] * len(data))
+        values = list(data.values())
+        
+        sql = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
+        
+        try:
+            result = self.execute_custom_sql(sql, tuple(values), 'execute')
+            return result > 0
+        except Exception as e:
+            logger.error(f"插入记录失败: {e}")
+            return False
+    
+    def update_record(self, table_name: str, data: Dict, where_condition: str, where_params: tuple = None) -> bool:
+        """
+        通用更新记录方法
+        
+        Args:
+            table_name: 表名
+            data: 要更新的数据字典
+            where_condition: WHERE条件
+            where_params: WHERE条件参数
+            
+        Returns:
+            bool: 更新是否成功
+        """
+        if not data:
+            return False
+            
+        set_clause = ', '.join([f"{key} = %s" for key in data.keys()])
+        values = list(data.values())
+        
+        if where_params:
+            values.extend(where_params)
+            
+        sql = f"UPDATE {table_name} SET {set_clause} WHERE {where_condition}"
+        
+        try:
+            result = self.execute_custom_sql(sql, tuple(values), 'execute')
+            return result > 0
+        except Exception as e:
+            logger.error(f"更新记录失败: {e}")
+            return False
+    
+    def delete_record(self, table_name: str, where_condition: str, where_params: tuple = None) -> bool:
+        """
+        通用删除记录方法
+        
+        Args:
+            table_name: 表名
+            where_condition: WHERE条件
+            where_params: WHERE条件参数
+            
+        Returns:
+            bool: 删除是否成功
+        """
+        sql = f"DELETE FROM {table_name} WHERE {where_condition}"
+        
+        try:
+            result = self.execute_custom_sql(sql, where_params, 'execute')
+            return result > 0
+        except Exception as e:
+            logger.error(f"删除记录失败: {e}")
+            return False
+    
+    def select_records(self, table_name: str, columns: str = "*", where_condition: str = None, where_params: tuple = None, order_by: str = None, limit: int = None) -> List[Dict]:
+        """
+        通用查询记录方法
+        
+        Args:
+            table_name: 表名
+            columns: 要查询的列，默认为*
+            where_condition: WHERE条件
+            where_params: WHERE条件参数
+            order_by: 排序条件
+            limit: 限制返回数量
+            
+        Returns:
+            List[Dict]: 查询结果列表
+        """
+        sql = f"SELECT {columns} FROM {table_name}"
+        
+        if where_condition:
+            sql += f" WHERE {where_condition}"
+        if order_by:
+            sql += f" ORDER BY {order_by}"
+        if limit:
+            sql += f" LIMIT {limit}"
+            
+        try:
+            return self.execute_custom_sql(sql, where_params, 'all')
+        except Exception as e:
+            logger.error(f"查询记录失败: {e}")
+            return []
 
     def close_pool(self):
         """关闭连接池（程序退出时调用）"""
         if hasattr(self, 'pool'):
             self.pool.close()
             logger.info("数据库连接池已关闭")
+    
+    def check_and_reset_daily_status(self) -> int:
+        """
+        检查店铺的更新时间，如果不是今天则清空status列
+        
+        Returns:
+            int: 重置的店铺数量
+        """
+        conn = self.pool.connection()
+        try:
+            with conn.cursor() as cursor:
+                # 检查表是否有status和update_time字段
+                cursor.execute(f"SHOW COLUMNS FROM {self.shops_table}")
+                columns = [row[0] for row in cursor.fetchall()]
+                
+                if 'status' not in columns or 'update_time' not in columns:
+                    logger.warning(f"表 {self.shops_table} 缺少 status 或 update_time 字段")
+                    return 0
+                
+                # 重置不是今天更新的店铺的status
+                sql = f"""
+                UPDATE {self.shops_table} 
+                SET status = NULL 
+                WHERE DATE(update_time) != CURDATE() AND status IS NOT NULL
+                """
+                cursor.execute(sql)
+                reset_count = cursor.rowcount
+                conn.commit()
+                
+                if reset_count > 0:
+                    logger.info(f"重置了 {reset_count} 个店铺的status状态")
+                
+                return reset_count
+                
+        except Exception as e:
+            logger.error(f"检查和重置每日状态失败: {e}")
+            return 0
+        finally:
+            conn.close()
+    
+    def update_shop_status(self, shop_name: str, status: str) -> bool:
+        """
+        更新店铺的status状态
+        
+        Args:
+            shop_name: 店铺名称
+            status: 状态值
+            
+        Returns:
+            bool: 更新是否成功
+        """
+        conn = self.pool.connection()
+        try:
+            with conn.cursor() as cursor:
+                # 检查表是否有status字段
+                cursor.execute(f"SHOW COLUMNS FROM {self.shops_table}")
+                columns = [row[0] for row in cursor.fetchall()]
+                
+                if 'status' not in columns:
+                    logger.warning(f"表 {self.shops_table} 缺少 status 字段")
+                    return False
+                
+                sql = f"UPDATE {self.shops_table} SET status = %s WHERE shop_name = %s"
+                cursor.execute(sql, (status, shop_name))
+                success = cursor.rowcount > 0
+                conn.commit()
+                
+                if success:
+                    logger.info(f"更新店铺 {shop_name} 状态为: {status}")
+                else:
+                    logger.warning(f"未找到店铺: {shop_name}")
+                
+                return success
+                
+        except Exception as e:
+            logger.error(f"更新店铺状态失败: {e}")
+            return False
+        finally:
+            conn.close()
+    
+    def get_shops_need_retry(self) -> List[Dict]:
+        """
+        获取需要重试的店铺（status为空的店铺）
+        
+        Returns:
+            List[Dict]: 需要重试的店铺列表
+        """
+        conn = self.pool.connection()
+        try:
+            with conn.cursor() as cursor:
+                # 检查表是否有status字段
+                cursor.execute(f"SHOW COLUMNS FROM {self.shops_table}")
+                columns = [row[0] for row in cursor.fetchall()]
+                
+                if 'status' not in columns:
+                    logger.warning(f"表 {self.shops_table} 缺少 status 字段")
+                    return self.get_all_shops()  # 如果没有status字段，返回所有店铺
+                
+                cursor.execute(f"SELECT * FROM {self.shops_table} WHERE status IS NULL OR status = ''")
+                columns = [desc[0] for desc in cursor.description]
+                results = cursor.fetchall()
+                shops = [dict(zip(columns, row)) for row in results]
+                
+                logger.info(f"找到 {len(shops)} 个需要重试的店铺")
+                return shops
+                
+        except Exception as e:
+            logger.error(f"获取需要重试的店铺失败: {e}")
+            return []
+        finally:
+            conn.close()
 
 # 示例用法
 if __name__ == "__main__":
@@ -605,7 +801,7 @@ if __name__ == "__main__":
     
     # 自定义任务列
     custom_tasks = ['chat_status', 'quality_status', 'badreview_status', 'kpi_status', 'new_task_status']
-    created_count = db.generate_daily_tasks(today, custom_tasks)
+    created_count = db.generate_tasks(today, custom_tasks)
     print(f"创建了 {created_count} 个新任务")
     
     # 获取待处理任务

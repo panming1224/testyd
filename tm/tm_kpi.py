@@ -433,13 +433,13 @@ class TmallKpiCollector:
             if file_type == "自制报表":
                 source_dir = self.base_report_dir / self.target_date_str
                 target_dir = self.merged_report_dir
-                minio_path = "warehouse/ods/tm/tm_self_kpi"
-                dremio_table = 'minio.warehouse.ods.tm."tm_self_kpi"'
+                minio_path = f"ods/tm/tm_self_kpi/dt={self.target_date_str}/{self.target_date_str}.parquet"
+                dremio_table = 'minio.warehouse.ods.tm.tm_self_kpi'
             else:  # 售后解决分析
                 source_dir = self.base_analysis_dir / self.target_date_str
                 target_dir = self.merged_analysis_dir
-                minio_path = "warehouse/ods/tm/tm_offical_kpi"
-                dremio_table = 'minio.warehouse.ods.tm."tm_offical_kpi"'
+                minio_path = f"ods/tm/tm_offical_kpi/dt={self.target_date_str}/{self.target_date_str}.parquet"
+                dremio_table = 'minio.warehouse.ods.tm.tm_offical_kpi'
             
             if not source_dir.exists() or not any(source_dir.glob("*.xlsx")):
                 print(f"⚠️ 源目录不存在或没有Excel文件: {source_dir}")
@@ -630,6 +630,11 @@ class TmallKpiCollector:
             # 合并自制报表文件
             if downloaded_files:
                 self.merge_and_upload_files("自制报表")
+        else:
+            print("没有找到 kpi_self_status 类型的待处理任务")
+            # 即使没有新任务，也要合并和上传现有文件
+            print("🔄 检查并合并现有自制报表文件...")
+            self.merge_and_upload_files("自制报表")
         
         # 3. 处理售后解决分析任务
         print("\n=== 处理售后解决分析任务 ===")
@@ -661,11 +666,17 @@ class TmallKpiCollector:
             # 合并售后解决分析文件
             if downloaded_files:
                 self.merge_and_upload_files("售后解决分析")
+        else:
+            print("没有找到 kpi_offical_status 类型的待处理任务")
+            # 即使没有新任务，也要合并和上传现有文件
+            print("🔄 检查并合并现有售后解决分析文件...")
+            self.merge_and_upload_files("售后解决分析")
         
         print(f"\n=== 执行完成 ===")
         print(f"成功执行: {success_count}/{total_tasks} 个任务")
         
-        return success_count > 0
+        # 修改返回逻辑：只要程序正常执行完成就返回True
+        return True
 
 def main():
     """主函数"""
