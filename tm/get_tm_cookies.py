@@ -144,19 +144,6 @@ class TmallCookieGetter:
             # 获取生意参谋Cookie
             sycmcookie = await self._get_sycm_cookie(account, password)
             
-            # 优化Cookie - 确保保存的Cookie是可用的
-            if qncookie:
-                qncookie = self.cookie_optimizer.optimize_cookie(qncookie)
-                logger.info(f"店铺 {shop_name} 千牛Cookie已优化，长度: {len(qncookie)}")
-            
-            if sycmcookie:
-                sycmcookie = self.cookie_optimizer.optimize_cookie(sycmcookie)
-                logger.info(f"店铺 {shop_name} 生意参谋Cookie已优化，长度: {len(sycmcookie)}")
-            
-            # 检查是否获取到有效Cookie
-            if not qncookie and not sycmcookie:
-                logger.warning(f"店铺 {shop_name} 未获取到有效的Cookie")
-                return False
             
             # 更新数据库
             success = self.db.update_shop_cookies(shop_name, qncookie, sycmcookie)
@@ -188,30 +175,47 @@ class TmallCookieGetter:
             
             # 输入账号密码
             await page.fill('#fm-login-id', account)
-            time.sleep(0.8)
+            time.sleep(0.5)
             await page.fill('#fm-login-password', password)
-            time.sleep(0.6)
+            time.sleep(0.4)
             
             # 点击登录
             await page.click('#login-form button[type="submit"]')
-            await page.wait_for_timeout(2000)
+            await page.wait_for_timeout(500)
             
             # 检查是否有确认对话框，如果有则点击确认
             try:
                 confirm_button = page.locator('button.dialog-btn-ok')
-                if await confirm_button.is_visible(timeout=3000):
+                if await confirm_button.is_visible(timeout=500):
                     await confirm_button.click()
-                    await page.wait_for_timeout(2000)
+                    await page.wait_for_timeout(500)
             except:
                 # 如果没有确认按钮，继续执行
                 pass
             
             # 等待登录完成，检查页面是否跳转
-            await page.wait_for_timeout(3000)
+            await page.wait_for_timeout(500)
            
             # 获取Cookie
-            cookies = await page.context.cookies()
-            cookie_str = '; '.join([f"{cookie['name']}={cookie['value']}" for cookie in cookies])
+            cookies = await page.context.cookies('https://myseller.taobao.com/home.htm/comment-manage/list')
+            
+            # 定义必要的cookie字段
+            essential_fields = ['_m_h5_tk', '_m_h5_tk_enc', 't', 'xlly_s', 'mtop_partitioned_detect', '_tb_token_', '_samesite_flag_', '3PcFlag', 'cookie2', 'sgcookie', 'unb', 'sn', 'uc1', 'csg', '_cc_', 'cancelledSubSites', 'skt', 'cna', 'tfstk']
+            
+            # 过滤出必要的cookie字段
+            essential_cookies = []
+            for cookie in cookies:
+                if cookie['name'] in essential_fields:
+                    essential_cookies.append(f"{cookie['name']}={cookie['value']}")
+            
+            # 构建cookie字符串
+            cookie_str = '; '.join(essential_cookies)
+            
+            # 记录获取到的cookie信息
+            logger.info(f"获取到 {len(essential_cookies)} 个必要cookie字段")
+            logger.info(f"Cookie字段: {[cookie['name'] for cookie in cookies if cookie['name'] in essential_fields]}")
+            
+            await page.wait_for_timeout(500)
             
             await page.close()
             return cookie_str
@@ -226,7 +230,7 @@ class TmallCookieGetter:
             page = await self.context.new_page()
             
             # 访问生意参谋登录页面
-            await page.goto('https://sycm.taobao.com/portal/home.htm')
+            await page.goto('https://sycm.taobao.com/qos/service/self_made_report#/self_made_report')
             await page.wait_for_timeout(3000)
             
             # 获取Cookie

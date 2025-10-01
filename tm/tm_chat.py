@@ -13,6 +13,10 @@ import urllib.parse
 from datetime import datetime
 from typing import Dict, List, Any
 import ast
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import threading
+from queue import Queue
+import logging
 
 # 配置UTF-8编码
 sys.stdout.reconfigure(encoding='utf-8')
@@ -45,8 +49,8 @@ class TmallChatManager:
         # 合并文件目录
         self.merged_dir = Path(r"D:\yingdao\tm\合并文件\天猫客服聊天记录")
         
-        # 目标日期（13天前，t-13）
-        self.target_date = datetime.now() - timedelta(days=13)
+        # 目标日期（1天前，t-1）
+        self.target_date = datetime.now() - timedelta(days=1)
         self.target_date_str = self.target_date.strftime('%Y-%m-%d')
         
         # 设置每日目录
@@ -68,7 +72,24 @@ class TmallChatManager:
             'password': 'admin123'
         }
         
+        # 并发配置
+        self.max_workers = 6  # 最大并发线程数，考虑到12个店铺，设置为6个线程
+        self.progress_queue = Queue()  # 进度队列
+        self.lock = threading.Lock()  # 线程锁
+        
+        # 配置日志
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(threadName)s - %(levelname)s - %(message)s',
+            handlers=[
+                logging.StreamHandler(),
+                logging.FileHandler(f'tm_chat_concurrent_{self.target_date_str}.log', encoding='utf-8')
+            ]
+        )
+        self.logger = logging.getLogger(__name__)
+        
         print(f"目标日期: {self.target_date} ({self.target_date_str})")
+        print(f"并发配置: 最大{self.max_workers}个线程同时处理店铺")
         
     def _extract_customer_id(self, customer):
         """提取客户ID的辅助方法"""
@@ -103,23 +124,7 @@ class TmallChatManager:
                     # token格式为: token_expireTime，我们只需要token部分
                     if '_' in token_value:
                         token = token_value.split('_')[0]
-                        expire_time = token_value.split('_')[1] if len(token_value.split('_')) > 1 else 'unknown'
                         print(f"提取的token: {token}")
-                        print(f"过期时间戳: {expire_time}")
-                        
-                        # 检查token是否过期
-                        try:
-                            current_time = int(time.time() * 1000)
-                            expire_timestamp = int(expire_time)
-                            print(f"当前时间戳: {current_time}")
-                            print(f"token过期时间戳: {expire_timestamp}")
-                            if current_time > expire_timestamp:
-                                print("⚠️ Token已过期！")
-                            else:
-                                print("✓ Token仍然有效")
-                        except:
-                            print("无法解析过期时间")
-                        
                         print(f"========================\n")
                         return token
                     else:
@@ -203,8 +208,14 @@ class TmallChatManager:
             print(f"获取店铺任务信息失败: {e}")
             return {}
     
-    def get_customer_list(self, cookies_str, begin_date="20250925", end_date="20250925", page_size=5, page_index=1):
+    def get_customer_list(self, cookies_str, begin_date=None, end_date=None, page_size=100, page_index=1):
         """获取客户列表"""
+        # 如果没有指定日期，使用target_date转换为YYYYMMDD格式
+        if begin_date is None:
+            begin_date = self.target_date.strftime('%Y%m%d')
+        if end_date is None:
+            end_date = self.target_date.strftime('%Y%m%d')
+        
         try:
             # 提取token
             token = self.get_h5_token(cookies_str)
@@ -312,7 +323,7 @@ class TmallChatManager:
                                     print(f"result字段长度: {len(result_content) if isinstance(result_content, (list, dict)) else 'N/A'}")
                                     if isinstance(result_content, list) and len(result_content) > 0:
                                         print(f"\n=== 客户列表详情 ===")
-                                        for i, customer in enumerate(result_content[:5]):  # 只显示前5个客户
+                                        for i, customer in enumerate(result_content[:]):  # 只显示前5个客户
                                             print(f"客户 {i+1}: {json.dumps(customer, indent=2, ensure_ascii=False)}")
                                         print(f"==================\n")
                         print(f"========================\n")
@@ -409,7 +420,7 @@ class TmallChatManager:
                 "userId": actual_user_id,  # 使用实际提取的userId（appUid）
                 "cursor": timestamp1,  # 恢复之前成功的时间戳
                 "forward": "true",  # 向前查询
-                "count": "20",  # 恢复之前成功的数量
+                "count": "100",  # 恢复之前成功的数量
                 "needRecalledContent": "true"  # 固定值
             }
             
@@ -662,11 +673,7 @@ class TmallChatManager:
                 print(f"店铺 {shop_name} 客户列表为空")
                 return True  # 返回True表示正常处理完成，只是没有数据
             
-            print(f"获取到 {len(customer_list)} 个客户")
-            
-            # 限制只处理前2个客户
-            customer_list = customer_list[:2]
-            print(f"限制处理前 {len(customer_list)} 个客户")
+            print(f"获取到 {len(customer_list)} 个客户，将处理所有客户的聊天记录")
             
             # 2. 获取所有客户的聊天记录并收集原始JSONP响应
             all_raw_responses = []
@@ -679,6 +686,11 @@ class TmallChatManager:
                     )
                     if raw_response:
                         all_raw_responses.append(raw_response)
+                    
+                    # 添加延时避免频率限制，最后一个客户不需要延时
+                    if i < len(customer_list):
+                        time.sleep(0.4)
+                        
                 except Exception as e:
                     print(f"获取客户 {customer.get('userNick', 'unknown')} 聊天记录失败: {e}")
                     continue
@@ -693,18 +705,18 @@ class TmallChatManager:
                     combined_response = self.combine_raw_responses(all_raw_responses)
                 
                 # 保存数据到Excel，使用新的解析逻辑
-                success = self.save_chat_data_to_excel(combined_response, shop_name)
-                if success:
-                    print(f"店铺 {shop_name} 聊天数据保存成功")
+                record_count = self.save_chat_data_to_excel(combined_response, shop_name)
+                if record_count > 0:
+                    print(f"店铺 {shop_name} 聊天数据保存成功，写入 {record_count} 条记录")
                     return True
                 else:
-                    print(f"店铺 {shop_name} 聊天数据保存失败")
+                    print(f"店铺 {shop_name} 聊天数据保存失败或无有效数据")
                     return False
             else:
                 print(f"店铺 {shop_name} 没有获取到聊天数据")
                 # 创建空文件
-                success = self.save_chat_data_to_excel([], shop_name)
-                return success
+                record_count = self.save_chat_data_to_excel([], shop_name)
+                return record_count > 0
                 
         except Exception as e:
             print(f"获取店铺 {shop_name} 聊天数据时发生异常: {e}")
@@ -783,8 +795,12 @@ class TmallChatManager:
             
             # 生成时间戳
             timestamp = str(int(time.time() * 1000))
-            timestamp1 = str(int(self.target_date.timestamp() * 1000))
-            print(f"时间戳: {timestamp}")
+            # 使用更早的时间戳作为cursor，确保能获取到目标日期的消息
+            # 设置为目标日期前一个月，确保覆盖足够的时间范围
+            cursor_date = self.target_date - timedelta(days=30)
+            timestamp1 = str(int(cursor_date.timestamp() * 1000))
+            print(f"当前时间戳: {timestamp}")
+            print(f"Cursor时间戳: {timestamp1} (对应日期: {cursor_date.strftime('%Y-%m-%d %H:%M:%S')})")
             
             # 构建请求数据 - 使用备份文件的成功参数
             request_data = {
@@ -1028,7 +1044,7 @@ class TmallChatManager:
                     
                     # 创建DataFrame
                     df = pd.DataFrame(excel_data)
-                
+                    
             else:
                 print(f"❌ 不支持的数据类型: {type(chat_data)}")
                 return self._create_empty_excel_file(shop_name)
@@ -1037,21 +1053,50 @@ class TmallChatManager:
             daily_dir = Path(self.daily_dir)
             daily_dir.mkdir(parents=True, exist_ok=True)
             
-            # 生成文件名
-            timestamp = datetime.now().strftime('%H%M%S')
-            filename = f"{shop_name}_{self.target_date_str}_{timestamp}.xlsx"
+            # 生成文件名 - 只使用店铺名称
+            filename = f"{shop_name}.xlsx"
             file_path = daily_dir / filename
+            
+            # 清理DataFrame中的特殊字符，避免Excel保存错误
+            print("🔧 清理Excel不支持的特殊字符...")
+            df = self._clean_dataframe_for_excel(df)
             
             # 保存到Excel
             df.to_excel(file_path, index=False, engine='openpyxl')
+            record_count = len(df)
             print(f"✓ 聊天数据已保存到: {file_path}")
-            print(f"📊 数据统计: {len(df)} 个客户记录")
-            return True
+            print(f"📊 数据统计: {record_count} 个客户记录")
+            return record_count
             
         except Exception as e:
             print(f"保存聊天数据到Excel时出错: {e}")
             print(f"🔍 异常处理: 调用_create_empty_excel_file")
-            return self._create_empty_excel_file(shop_name)
+            self._create_empty_excel_file(shop_name)
+            return 0
+
+    def _clean_dataframe_for_excel(self, df):
+        """清理DataFrame中Excel不支持的特殊字符"""
+        import re
+        
+        # Excel不支持的控制字符范围
+        # 0x00-0x08, 0x0B, 0x0C, 0x0E-0x1F, 0x7F-0x84, 0x86-0x9F
+        invalid_chars_pattern = re.compile(r'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F]')
+        
+        def clean_text(text):
+            if isinstance(text, str):
+                # 移除Excel不支持的控制字符
+                cleaned = invalid_chars_pattern.sub('', text)
+                # 替换其他可能有问题的字符
+                cleaned = cleaned.replace('\x0D', '\n')  # 替换回车符为换行符
+                return cleaned
+            return text
+        
+        # 清理所有字符串列
+        for column in df.columns:
+            if df[column].dtype == 'object':  # 字符串列
+                df[column] = df[column].apply(clean_text)
+        
+        return df
 
     def _fix_customer_names(self, user_messages):
         """修复客户名称，重新分析消息中的真实客户"""
@@ -1124,8 +1169,7 @@ class TmallChatManager:
         try:
             daily_dir = Path(self.daily_dir)
             daily_dir.mkdir(parents=True, exist_ok=True)
-            timestamp = datetime.now().strftime('%H%M%S')
-            filename = f"{shop_name}_{self.target_date_str}_{timestamp}.xlsx"
+            filename = f"{shop_name}.xlsx"
             file_path = daily_dir / filename
             
             # 使用openpyxl直接创建，确保列名被正确保存
@@ -1137,9 +1181,203 @@ class TmallChatManager:
             wb.save(file_path)
             
             print(f"✓ 创建空的聊天数据文件: {file_path}")
-            return True
+            return 0  # 返回0表示没有数据记录
         except Exception as e2:
             print(f"创建空文件也失败: {e2}")
+            return 0
+
+    def fetch_shop_data_concurrent(self, shop_info):
+        """
+        并发处理单个店铺的数据拉取
+        
+        Args:
+            shop_info: 包含shop_name, qncookie, userNick的字典
+            
+        Returns:
+            dict: 包含处理结果的字典
+        """
+        shop_name = shop_info['shop_name']
+        qncookie = shop_info['qncookie']
+        userNick = shop_info['userNick']
+        
+        thread_name = threading.current_thread().name
+        start_time = time.time()
+        
+        try:
+            self.logger.info(f"[{thread_name}] 开始处理店铺: {shop_name}")
+            
+            # 调用原有的数据拉取方法
+            success = self.fetch_and_save_chat_data(shop_name, qncookie, userNick)
+            
+            end_time = time.time()
+            duration = end_time - start_time
+            
+            result = {
+                'shop_name': shop_name,
+                'success': success,
+                'duration': duration,
+                'thread_name': thread_name,
+                'start_time': start_time,
+                'end_time': end_time
+            }
+            
+            # 更新进度统计
+            with self.lock:
+                if success:
+                    self.logger.info(f"[{thread_name}] ✓ 店铺 {shop_name} 处理成功，耗时: {duration:.2f}秒")
+                    print(f"✓ [{thread_name}] 店铺 {shop_name} 处理成功，耗时: {duration:.2f}秒")
+                else:
+                    self.logger.warning(f"[{thread_name}] ✗ 店铺 {shop_name} 处理失败，耗时: {duration:.2f}秒")
+                    print(f"✗ [{thread_name}] 店铺 {shop_name} 处理失败，耗时: {duration:.2f}秒")
+            
+            return result
+            
+        except Exception as e:
+            end_time = time.time()
+            duration = end_time - start_time
+            
+            self.logger.error(f"[{thread_name}] 店铺 {shop_name} 处理异常: {e}")
+            print(f"✗ [{thread_name}] 店铺 {shop_name} 处理异常: {e}")
+            
+            result = {
+                'shop_name': shop_name,
+                'success': False,
+                'duration': duration,
+                'thread_name': thread_name,
+                'error': str(e),
+                'start_time': start_time,
+                'end_time': end_time
+            }
+            
+            return result
+
+    def run_concurrent(self):
+        """
+        并发执行所有店铺的消息拉取
+        """
+        try:
+            print(f"\n{'='*60}")
+            print(f"开始并发拉取天猫客服聊天记录")
+            print(f"目标日期: {self.target_date_str}")
+            print(f"最大并发数: {self.max_workers}")
+            print(f"{'='*60}\n")
+            
+            # 1. 生成每日任务
+            print("1. 生成每日任务...")
+            created_count = self.generate_daily_tasks()
+            print(f"生成任务数量: {created_count}")
+            
+            # 2. 获取待处理的店铺任务
+            print("2. 获取待处理店铺...")
+            shops_with_tasks = self.get_shops_with_tasks()
+            
+            if not shops_with_tasks:
+                print("没有找到待处理的店铺任务")
+                # 即使没有任务也要执行合并上传，确保数据一致性
+                self.merge_and_upload_files()
+                return False
+            
+            print(f"找到 {len(shops_with_tasks)} 个待处理店铺:")
+            for shop_name in shops_with_tasks.keys():
+                print(f"  - {shop_name}")
+            print()
+            
+            # 3. 使用线程池并发处理
+            print("3. 开始并发处理...")
+            start_time = time.time()
+            
+            with ThreadPoolExecutor(max_workers=self.max_workers, thread_name_prefix="Shop") as executor:
+                # 提交所有任务
+                future_to_shop = {}
+                for shop_name, shop_info in shops_with_tasks.items():
+                    future = executor.submit(self.fetch_shop_data_concurrent, shop_info)
+                    future_to_shop[future] = shop_name
+                
+                # 等待所有任务完成并收集结果
+                results = []
+                completed_count = 0
+                total_count = len(future_to_shop)
+                
+                for future in as_completed(future_to_shop):
+                    shop_name = future_to_shop[future]
+                    completed_count += 1
+                    
+                    try:
+                        result = future.result()
+                        results.append(result)
+                        
+                        # 实时显示进度
+                        elapsed = time.time() - start_time
+                        avg_time = elapsed / completed_count
+                        remaining = total_count - completed_count
+                        eta = remaining * avg_time if remaining > 0 else 0
+                        
+                        print(f"\n=== 进度更新 ===")
+                        print(f"已完成: {completed_count}/{total_count} 店铺")
+                        print(f"已用时: {elapsed:.1f}秒, 预计剩余: {eta:.1f}秒")
+                        print("================\n")
+                        
+                    except Exception as e:
+                        self.logger.error(f"店铺 {shop_name} 任务执行异常: {e}")
+                        results.append({
+                            'shop_name': shop_name,
+                            'success': False,
+                            'error': str(e)
+                        })
+            
+            # 4. 统计结果
+            total_time = time.time() - start_time
+            successful_shops = [r for r in results if r['success']]
+            failed_shops = [r for r in results if not r['success']]
+            
+            print(f"\n{'='*60}")
+            print(f"并发处理完成!")
+            print(f"{'='*60}")
+            print(f"总耗时: {total_time:.2f}秒")
+            print(f"总店铺数: {len(results)}")
+            print(f"成功: {len(successful_shops)}")
+            print(f"失败: {len(failed_shops)}")
+            print(f"成功率: {(len(successful_shops)/len(results)*100):.1f}%")
+            
+            if successful_shops:
+                avg_time = sum(r['duration'] for r in successful_shops) / len(successful_shops)
+                print(f"平均处理时间: {avg_time:.2f}秒/店铺")
+            
+            # 显示详细结果
+            print(f"\n详细结果:")
+            for result in results:
+                status = "✓" if result['success'] else "✗"
+                duration = result.get('duration', 0)
+                thread_name = result.get('thread_name', 'Unknown')
+                print(f"  {status} {result['shop_name']} - {duration:.2f}秒 ({thread_name})")
+                if not result['success'] and 'error' in result:
+                    print(f"    错误: {result['error']}")
+            
+            # 5. 如果有成功的店铺，进行文件合并和上传
+            if successful_shops:
+                print(f"\n5. 开始合并和上传文件...")
+                merge_success = self.merge_and_upload_files()
+                if merge_success:
+                    print("✓ 文件合并和上传成功")
+                else:
+                    print("✗ 文件合并和上传失败")
+            
+            # 6. 更新任务状态
+            print(f"\n6. 更新任务状态...")
+            for result in results:
+                shop_name = result['shop_name']
+                if result['success']:
+                    self.db_interface.update_task_status(self.target_date_str, shop_name, 'chat_status', '已完成')
+                    print(f"✓ 店铺 {shop_name} 任务状态更新为完成")
+                # else:
+                #     self.db_interface.update_task_status(self.target_date_str, shop_name, 'chat_status', 'failed')
+                #     print(f"✗ 店铺 {shop_name} 任务状态更新为失败")
+            
+            return len(successful_shops) > 0
+            
+        except Exception as e:
+            self.logger.error(f"并发执行过程中发生异常: {e}")
+            print(f"✗ 并发执行失败: {e}")
             return False
 
     def run(self):
@@ -1574,8 +1812,11 @@ class TmallChatManager:
         # 格式化为Excel数据
         excel_data = []
         for customer, customer_messages in grouped.items():
-            # 按时间排序
-            customer_messages.sort(key=lambda x: x['发送时间'])
+            # 按时间排序 - 兼容不同的时间字段名
+            def get_time_key(msg):
+                return msg.get('发送时间', msg.get('时间', ''))
+            
+            customer_messages.sort(key=get_time_key)
             
             # 合并聊天记录
             chat_records = [msg['聊天记录'] for msg in customer_messages]
@@ -1590,8 +1831,17 @@ class TmallChatManager:
 
 def main():
     """主函数"""
-    collector = TmallChatManager()
-    collector.run()
+    import sys
+    
+    # 检查命令行参数
+    if len(sys.argv) > 1 and sys.argv[1] == '--serial':
+        print("使用串行模式运行...")
+        collector = TmallChatManager()
+        collector.run()
+    else:
+        print("使用并发模式运行...")
+        collector = TmallChatManager()
+        collector.run_concurrent()
 
 
 if __name__ == "__main__":
