@@ -1,0 +1,48 @@
+{
+  "timestamp": "2025-10-02 12:52:49",
+  "test_results": [
+    {
+      "method": "模式方法",
+      "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+      "valid": true,
+      "message": "格式正确",
+      "length": 98,
+      "unique_chars": 6
+    },
+    {
+      "method": "增强模式",
+      "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0c0e0a",
+      "valid": true,
+      "message": "格式正确",
+      "length": 98,
+      "unique_chars": 6
+    },
+    {
+      "method": "时间戳混合",
+      "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+      "valid": true,
+      "message": "格式正确",
+      "length": 98,
+      "unique_chars": 6
+    },
+    {
+      "method": "校验和增强",
+      "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+      "valid": true,
+      "message": "格式正确",
+      "length": 98,
+      "unique_chars": 6
+    }
+  ],
+  "demo_result": {
+    "success": true,
+    "status_code": 200,
+    "response": "<Response [200]>",
+    "anti_content_used": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c"
+  },
+  "summary": {
+    "total_methods": 4,
+    "valid_methods": 4,
+    "recommended_method": "模式方法（最稳定）"
+  }
+}

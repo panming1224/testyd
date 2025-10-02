@@ -1,0 +1,2639 @@
+{
+  "timestamp": "2025-10-02 12:56:46",
+  "comprehensive_test": {
+    "模式方法": {
+      "test_results": [
+        {
+          "test_id": 5,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 1.1886968612670898,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 3,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 1.189375877380371,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 2,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 1.189833641052246,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 1,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 1.1906938552856445,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 4,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 1.2049345970153809,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 9,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.04581475257873535,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 8,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.04642510414123535,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 6,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.04723978042602539,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 7,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.04924893379211426,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 10,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.03844285011291504,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 12,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.04416918754577637,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 13,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.047177791595458984,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 15,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.04058241844177246,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 14,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.0463409423828125,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 11,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.0498354434967041,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 16,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.036768198013305664,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 20,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.04300045967102051,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 17,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.04533076286315918,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 19,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.04538726806640625,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 18,
+          "method": "模式方法",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.04683232307434082,
+          "response_length": 6650,
+          "error": ""
+        }
+      ],
+      "analysis": {
+        "total_tests": 20,
+        "successful_tests": 20,
+        "failed_tests": 0,
+        "success_rate": 100.0,
+        "avg_duration": 0.33180655241012574,
+        "min_duration": 0.036768198013305664,
+        "max_duration": 1.2049345970153809,
+        "status_codes": {
+          "200": 20
+        },
+        "errors": {}
+      }
+    },
+    "增强模式": {
+      "test_results": [
+        {
+          "test_id": 2,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.03638410568237305,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 3,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.04518747329711914,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 1,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.05101418495178223,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 4,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.05081605911254883,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 5,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.05045461654663086,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 7,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.04263901710510254,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 6,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.05203580856323242,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 9,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.06873703002929688,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 8,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.0703127384185791,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 10,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.06883835792541504,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 11,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.05710959434509277,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 12,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.060085296630859375,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 13,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.042760372161865234,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 14,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.04844832420349121,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 15,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.048291921615600586,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 16,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.04113006591796875,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 17,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.045914649963378906,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 18,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.03489065170288086,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 19,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.039966583251953125,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 20,
+          "method": "增强模式",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+          "duration": 0.042394161224365234,
+          "response_length": 6650,
+          "error": ""
+        }
+      ],
+      "analysis": {
+        "total_tests": 20,
+        "successful_tests": 20,
+        "failed_tests": 0,
+        "success_rate": 100.0,
+        "avg_duration": 0.04987055063247681,
+        "min_duration": 0.03489065170288086,
+        "max_duration": 0.0703127384185791,
+        "status_codes": {
+          "200": 20
+        },
+        "errors": {}
+      }
+    },
+    "时间戳混合": {
+      "test_results": [
+        {
+          "test_id": 3,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.04346728324890137,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 4,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.04452967643737793,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 2,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.04855942726135254,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 5,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.046562910079956055,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 1,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.05025839805603027,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 6,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.04450702667236328,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 8,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.04632163047790527,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 7,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.05082511901855469,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 9,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.04838752746582031,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 10,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.04806089401245117,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 11,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.039809226989746094,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 15,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.040618181228637695,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 13,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.041432857513427734,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 14,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.043344736099243164,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 12,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.04622697830200195,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 16,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.03792071342468262,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 20,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.040787458419799805,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 17,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.0440678596496582,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 18,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.0444636344909668,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 19,
+          "method": "时间戳混合",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+          "duration": 0.043241262435913086,
+          "response_length": 6650,
+          "error": ""
+        }
+      ],
+      "analysis": {
+        "total_tests": 20,
+        "successful_tests": 20,
+        "failed_tests": 0,
+        "success_rate": 100.0,
+        "avg_duration": 0.0446696400642395,
+        "min_duration": 0.03792071342468262,
+        "max_duration": 0.05082511901855469,
+        "status_codes": {
+          "200": 20
+        },
+        "errors": {}
+      }
+    },
+    "校验和增强": {
+      "test_results": [
+        {
+          "test_id": 3,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.044920921325683594,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 1,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.04709315299987793,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 2,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.04718160629272461,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 4,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.04599428176879883,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 5,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.04512381553649902,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 10,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.04532742500305176,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 8,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.04752659797668457,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 7,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.04921722412109375,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 6,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.05256295204162598,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 9,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.051740169525146484,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 12,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.04782700538635254,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 11,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.050467491149902344,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 13,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.04918646812438965,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 15,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.04680991172790527,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 14,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.05110478401184082,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 16,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.04201483726501465,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 17,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.045645713806152344,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 18,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.04604911804199219,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 20,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.04458165168762207,
+          "response_length": 6650,
+          "error": ""
+        },
+        {
+          "test_id": 19,
+          "method": "校验和增强",
+          "success": true,
+          "status_code": 200,
+          "anti_content": "0a2c0e0a0a0b0e0a0a0b0c0e0b0c0c0e0c0e0a0b0e0a0e0a0c0e0a0b0a0b0e0a0a0b0a0b0c0e0a0b0a0b0b0c0c0e0c0e0a",
+          "duration": 0.04858684539794922,
+          "response_length": 6650,
+          "error": ""
+        }
+      ],
+      "analysis": {
+        "total_tests": 20,
+        "successful_tests": 20,
+        "failed_tests": 0,
+        "success_rate": 100.0,
+        "avg_duration": 0.04744809865951538,
+        "min_duration": 0.04201483726501465,
+        "max_duration": 0.05256295204162598,
+        "status_codes": {
+          "200": 20
+        },
+        "errors": {}
+      }
+    }
+  },
+  "stability_test": {
+    "duration_minutes": 3,
+    "results": [
+      {
+        "test_id": 1,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.037184715270996094,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 2,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.035677433013916016,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 3,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.036930084228515625,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 4,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.034163475036621094,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 5,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03501391410827637,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 6,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03428196907043457,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 7,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03743386268615723,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 8,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.0401616096496582,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 9,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03516793251037598,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 10,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03920745849609375,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 11,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.04031825065612793,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 12,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.034340620040893555,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 13,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03710651397705078,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 14,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03776884078979492,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 15,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03728175163269043,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 16,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03538060188293457,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 17,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.035921573638916016,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 18,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.0357513427734375,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 19,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03652644157409668,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 20,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03817009925842285,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 21,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03836321830749512,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 22,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03523540496826172,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 23,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.036589860916137695,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 24,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03962898254394531,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 25,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.0352020263671875,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 26,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03948616981506348,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 27,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.04206061363220215,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 28,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.044461727142333984,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 29,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03457283973693848,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 30,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03605055809020996,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 31,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03623604774475098,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 32,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03717923164367676,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 33,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.033212900161743164,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 34,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03444957733154297,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 35,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03632926940917969,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 36,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03359341621398926,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 37,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03648710250854492,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 38,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03621363639831543,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 39,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.036887407302856445,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 40,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03651905059814453,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 41,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03456473350524902,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 42,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03586554527282715,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 43,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03561234474182129,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 44,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03841805458068848,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 45,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.0377039909362793,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 46,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03616809844970703,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 47,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.036028385162353516,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 48,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03622627258300781,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 49,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.037993431091308594,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 50,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03485417366027832,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 51,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03656482696533203,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 52,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03686070442199707,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 53,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03767681121826172,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 54,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03500223159790039,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 55,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.034956932067871094,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 56,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03782534599304199,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 57,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03578591346740723,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 58,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.0371403694152832,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 59,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03720712661743164,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 60,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.034332990646362305,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 61,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.04489445686340332,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 62,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03522610664367676,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 63,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.037294864654541016,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 64,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.035367727279663086,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 65,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03923320770263672,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 66,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03760957717895508,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 67,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03845357894897461,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 68,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.04528450965881348,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 69,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03935122489929199,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 70,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03728342056274414,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 71,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03794384002685547,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 72,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03503537178039551,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 73,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03603529930114746,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 74,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.04946708679199219,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 75,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03541684150695801,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 76,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.037445068359375,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 77,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.033905029296875,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 78,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03700447082519531,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 79,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03711581230163574,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 80,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03632974624633789,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 81,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03570985794067383,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 82,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03594183921813965,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 83,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03513503074645996,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 84,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03907299041748047,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 85,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03627753257751465,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 86,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.04519200325012207,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 87,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.034725189208984375,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 88,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03933119773864746,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 89,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03772854804992676,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 90,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03564620018005371,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 91,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03755497932434082,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 92,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.035599708557128906,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 93,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03641176223754883,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 94,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03736257553100586,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 95,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.0341188907623291,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 96,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03535151481628418,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 97,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.036315202713012695,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 98,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03673553466796875,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 99,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03624153137207031,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 100,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.07550477981567383,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 101,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03473329544067383,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 102,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.0360565185546875,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 103,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.039090633392333984,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 104,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.038350820541381836,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 105,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03531241416931152,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 106,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.033495187759399414,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 107,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.04719853401184082,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 108,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03924846649169922,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 109,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.04005241394042969,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 110,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03782296180725098,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 111,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.04106712341308594,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 112,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03909182548522949,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 113,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03859758377075195,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 114,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.04145193099975586,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 115,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03893613815307617,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 116,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.037821054458618164,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 117,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.033865928649902344,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 118,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.046590328216552734,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 119,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03630828857421875,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 120,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03447747230529785,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 121,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.034845590591430664,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 122,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03735542297363281,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 123,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.034804582595825195,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 124,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.0343170166015625,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 125,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03815722465515137,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 126,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03800511360168457,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 127,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03739762306213379,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 128,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03440523147583008,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 129,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.034491539001464844,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 130,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.0345761775970459,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 131,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03549838066101074,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 132,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.05611777305603027,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 133,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03475666046142578,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 134,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03710818290710449,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 135,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03962230682373047,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 136,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03866004943847656,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 137,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03633880615234375,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 138,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03544974327087402,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 139,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03740119934082031,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 140,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.0366673469543457,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 141,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.037859439849853516,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 142,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.037261962890625,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 143,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03567314147949219,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 144,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.038617610931396484,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 145,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03676795959472656,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 146,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03702402114868164,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 147,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03378582000732422,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 148,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03726816177368164,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 149,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03795480728149414,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 150,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.037065744400024414,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 151,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03730607032775879,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 152,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03582167625427246,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 153,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.0392003059387207,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 154,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03804206848144531,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 155,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03863525390625,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 156,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.035138845443725586,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 157,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03582334518432617,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 158,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.08442258834838867,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 159,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.0350947380065918,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 160,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03640270233154297,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 161,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.04444408416748047,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 162,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03470611572265625,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 163,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.036916494369506836,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 164,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03603935241699219,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 165,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.033043861389160156,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 166,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.04078483581542969,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 167,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.0367584228515625,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 168,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03782224655151367,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 169,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.035578250885009766,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 170,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03590798377990723,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 171,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.04390716552734375,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 172,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03522205352783203,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 173,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03401494026184082,
+        "response_length": 6650,
+        "error": ""
+      },
+      {
+        "test_id": 174,
+        "method": "模式方法",
+        "success": true,
+        "status_code": 200,
+        "anti_content": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+        "duration": 0.03727126121520996,
+        "response_length": 6650,
+        "error": ""
+      }
+    ],
+    "analysis": {
+      "total_tests": 174,
+      "successful_tests": 174,
+      "failed_tests": 0,
+      "success_rate": 100.0,
+      "avg_duration": 0.03772481693618599,
+      "min_duration": 0.033043861389160156,
+      "max_duration": 0.08442258834838867,
+      "status_codes": {
+        "200": 174
+      },
+      "errors": {}
+    }
+  },
+  "summary": {
+    "best_method": "模式方法",
+    "best_success_rate": 100.0,
+    "recommendations": [
+      "所有方法表现优秀，推荐使用模式方法",
+      "稳定性测试通过，适合生产环境使用"
+    ]
+  }
+}

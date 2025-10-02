@@ -1,0 +1,62 @@
+mtopjsonp18({
+    "api": "mtop.taobao.wireless.amp2.im.paas.message.list",
+    "data": {
+        "hasMore": "false",
+        "nextCursor": "1758876387943",
+        "userMessages": [
+            {
+                "bizUnique": "4rzutXa0cQWqE27922",
+                "cid": {
+                    "appCid": "2206961402741.1-2217612980995.1#11001",
+                    "domain": "cntaobao"
+                },
+                "content": "{\"extensions\":{\"receiver_nick\":\"cntaobaotb196474448\",\"sender_nick\":\"cntaobao回力倪菲专卖店:劲竹\"},\"text\":\"\\n💕回力男士长筒袜💕\\n┏━━━━━━━●○━┓\\n🌈纯色设计，简约百搭\\n🍄新疆棉材质，舒适透气\\n🎮吸汗防臭，适合运动商务\\n┗━━●○━━━━━━┛\\n \\u0004\"}",
+                "contentType": "1",
+                "messageId": "3736811754371.PNM",
+                "sendTime": "1758876370709",
+                "senderId": {
+                    "appUid": "2220347959624",
+                    "domain": "cntaobao"
+                },
+                "senderName": "回力倪菲专卖店:劲竹"
+            },
+            {
+                "bizUnique": "4rzutXa0cQWqE27921",
+                "cid": {
+                    "appCid": "2206961402741.1-2217612980995.1#11001",
+                    "domain": "cntaobao"
+                },
+                "content": "{\"extensions\":{\"receiver_nick\":\"cntaobaotb196474448\",\"sender_nick\":\"cntaobao回力倪菲专卖店:劲竹\"},\"text\":\"恭喜成为今日第九九九位下单者~\\n现在付款为您安排今日插队发货~ \\u0004\"}",
+                "contentType": "1",
+                "messageId": "3736271340011.PNM",
+                "sendTime": "1758876370939",
+                "senderId": {
+                    "appUid": "2220347959624",
+                    "domain": "cntaobao"
+                },
+                "senderName": "回力倪菲专卖店:劲竹"
+            },
+            {
+                "bizUnique": "4rzutXa0cQWqE27920",
+                "cid": {
+                    "appCid": "2206961402741.1-2217612980995.1#11001",
+                    "domain": "cntaobao"
+                },
+                "content": "{\"data\":\"\",\"degradeText\":\"请升级新版客户端\",\"summary\":\"请确认收货地址\",\"title\":\"请确认收货地址\",\"type\":2}",
+                "contentType": "101",
+                "messageId": "3736277183931.PNM",
+                "sendTime": "1758876387943",
+                "senderId": {
+                    "appUid": "2220347959624",
+                    "domain": "cntaobao"
+                },
+                "senderName": "回力倪菲专卖店:劲竹"
+            }
+        ]
+    },
+    "ret": [
+        "SUCCESS::调用成功"
+    ],
+    "traceId": "215048b317592481655033976e0fe0",
+    "v": "1.0"
+})

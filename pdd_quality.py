@@ -20,6 +20,7 @@ from merge_excel_files import ExcelMerger
 
 # 配置
 EXCEL_PATH = r'D:\pdd\拼多多店铺汇总表\拼多多店铺汇总表.xlsx'
+EXCEL_BACKUP_PATH = r'D:\pdd\拼多多店铺汇总表\拼多多店铺汇总表.xlsx'
 BASE_ARCHIVE_DIR = Path('D:/pdd/产品质量体验存档')  # 基础存档目录
 MERGED_FILES_DIR = Path('D:/pdd/合并文件/产品质量体验存档')  # 合并文件存储目录
 SHEET = 0
@@ -245,9 +246,32 @@ def upload_merged_file_to_minio(merged_file_path: str, date_str: str = None) -> 
         return False
 
 
+def safe_read_excel():
+    """安全读取Excel文件，如果主文件损坏则使用备份文件"""
+    try:
+        print(f"尝试读取主Excel文件: {EXCEL_PATH}")
+        df = pd.read_excel(EXCEL_PATH, sheet_name=SHEET)
+        print("✅ 主Excel文件读取成功")
+        return df, EXCEL_PATH
+    except Exception as e:
+        print(f"❌ 主Excel文件读取失败: {e}")
+        print(f"尝试读取备份Excel文件: {EXCEL_BACKUP_PATH}")
+        try:
+            df = pd.read_excel(EXCEL_BACKUP_PATH, sheet_name=SHEET)
+            print("✅ 备份Excel文件读取成功")
+            # 将备份文件复制为主文件
+            import shutil
+            shutil.copy2(EXCEL_BACKUP_PATH, EXCEL_PATH)
+            print("✅ 已将备份文件复制为主文件")
+            return df, EXCEL_PATH
+        except Exception as backup_e:
+            print(f"❌ 备份Excel文件也读取失败: {backup_e}")
+            raise Exception(f"主文件和备份文件都无法读取: 主文件错误={e}, 备份文件错误={backup_e}")
+
+
 if __name__ == '__main__':
-    # 1. 读表 & 更新表头
-    df = pd.read_excel(EXCEL_PATH, sheet_name=SHEET)  
+    # 1. 安全读表 & 更新表头
+    df, used_file = safe_read_excel()
     header_updated = update_header_once(df)
 
     # 2. 定位关键列

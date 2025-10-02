@@ -1,0 +1,48 @@
+2025-10-02 12:57:55,642 - __main__ - INFO - ProductionAntiContentGenerator 初始化完成
+2025-10-02 12:57:55,643 - __main__ - INFO - ProductionPddClient 初始化完成
+2025-10-02 12:57:55,644 - __main__ - INFO - 开始监控，间隔: 30秒
+2025-10-02 12:57:56,543 - __main__ - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.900s)
+2025-10-02 12:57:56,544 - __main__ - INFO - 健康检查通过 - 响应时间: 0.900s
+2025-10-02 12:57:56,545 - __main__ - INFO - 统计: 总请求=1, 成功率=100.0%, 平均响应时间=0.900s
+2025-10-02 12:57:56,545 - __main__ - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.901s)
+2025-10-02 12:57:57,586 - __main__ - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.039s)
+2025-10-02 12:57:58,628 - __main__ - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.040s)
+2025-10-02 12:57:59,663 - __main__ - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.034s)
+2025-10-02 12:58:00,702 - __main__ - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.037s)
+2025-10-02 12:58:01,747 - __main__ - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.043s)
+2025-10-02 12:58:26,546 - __main__ - INFO - 监控已停止
+2025-10-02 13:10:54,287 - production_ready_anti_content - INFO - ProductionAntiContentGenerator 初始化完成
+2025-10-02 13:10:54,287 - production_ready_anti_content - INFO - ProductionPddClient 初始化完成
+2025-10-02 13:10:55,081 - production_ready_anti_content - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.793s)
+2025-10-02 13:10:55,117 - production_ready_anti_content - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.036s)
+2025-10-02 13:10:55,154 - production_ready_anti_content - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.036s)
+2025-10-02 13:11:27,127 - production_ready_anti_content - INFO - ProductionAntiContentGenerator 初始化完成
+2025-10-02 13:11:27,128 - production_ready_anti_content - INFO - ProductionPddClient 初始化完成
+2025-10-02 13:11:27,764 - production_ready_anti_content - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.636s)
+2025-10-02 13:11:27,801 - production_ready_anti_content - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.036s)
+2025-10-02 13:11:27,838 - production_ready_anti_content - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.036s)
+2025-10-02 13:11:27,841 - production_ready_anti_content - INFO - ProductionAntiContentGenerator 初始化完成
+2025-10-02 13:11:27,841 - production_ready_anti_content - INFO - ProductionPddClient 初始化完成
+2025-10-02 13:11:27,843 - production_ready_anti_content - INFO - 开始监控，间隔: 60秒
+2025-10-02 13:11:28,574 - production_ready_anti_content - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.732s)
+2025-10-02 13:11:28,575 - production_ready_anti_content - INFO - 健康检查通过 - 响应时间: 0.732s
+2025-10-02 13:11:28,575 - production_ready_anti_content - INFO - 统计: 总请求=1, 成功率=100.0%, 平均响应时间=0.732s
+2025-10-02 13:11:28,594 - production_ready_anti_content - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.751s)
+2025-10-02 13:11:28,636 - production_ready_anti_content - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.041s)
+2025-10-02 13:11:28,676 - production_ready_anti_content - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.040s)
+2025-10-02 13:11:28,711 - production_ready_anti_content - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.034s)
+2025-10-02 13:11:28,745 - production_ready_anti_content - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.034s)
+2025-10-02 13:12:28,576 - production_ready_anti_content - INFO - 监控已停止
+2025-10-02 13:13:15,178 - __main__ - INFO - ProductionAntiContentGenerator 初始化完成
+2025-10-02 13:13:15,179 - __main__ - INFO - ProductionPddClient 初始化完成
+2025-10-02 13:13:15,179 - __main__ - INFO - 开始监控，间隔: 30秒
+2025-10-02 13:13:15,968 - __main__ - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.788s)
+2025-10-02 13:13:15,971 - __main__ - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.791s)
+2025-10-02 13:13:15,971 - __main__ - INFO - 健康检查通过 - 响应时间: 0.791s
+2025-10-02 13:13:15,971 - __main__ - INFO - 统计: 总请求=2, 成功率=100.0%, 平均响应时间=0.790s
+2025-10-02 13:13:17,003 - __main__ - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.035s)
+2025-10-02 13:13:18,038 - __main__ - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.034s)
+2025-10-02 13:13:19,071 - __main__ - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.032s)
+2025-10-02 13:13:20,105 - __main__ - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.033s)
+2025-10-02 13:13:21,140 - __main__ - INFO - 请求成功: GET https://mms.pinduoduo.com/mms-chat/search -> 200 (0.033s)
+2025-10-02 13:13:45,972 - __main__ - INFO - 监控已停止

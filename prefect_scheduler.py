@@ -39,7 +39,8 @@ def create_deployments():
         name="拼多多质量数据-定时执行",
         schedule=CronSchedule(cron="0 8 * * *", timezone="Asia/Shanghai"),
         description="每天08:00执行拼多多质量数据拉取",
-        tags=["数据拉取", "拼多多", "质量", "定时"]
+        tags=["数据拉取", "拼多多", "质量", "定时"],
+        work_pool_name="default-pool"
     )
     deployments.append(pdd_quality_deployment)
     
@@ -48,7 +49,8 @@ def create_deployments():
         name="ERP门店数据-定时执行",
         schedule=CronSchedule(cron="30 8 * * *", timezone="Asia/Shanghai"),
         description="每天08:30执行ERP门店数据拉取",
-        tags=["数据拉取", "ERP", "门店", "定时"]
+        tags=["数据拉取", "ERP", "门店", "定时"],
+        work_pool_name="default-pool"
     )
     deployments.append(erp_deployment)
     
@@ -57,7 +59,8 @@ def create_deployments():
         name="拼多多差评数据-定时执行",
         schedule=CronSchedule(cron="0 9 * * *", timezone="Asia/Shanghai"),
         description="每天09:00执行拼多多差评数据拉取",
-        tags=["数据拉取", "拼多多", "差评", "定时"]
+        tags=["数据拉取", "拼多多", "差评", "定时"],
+        work_pool_name="default-pool"
     )
     deployments.append(pdd_badscore_deployment)
     
@@ -66,7 +69,8 @@ def create_deployments():
         name="京东门店数据-定时执行",
         schedule=CronSchedule(cron="45 8 * * *", timezone="Asia/Shanghai"),
         description="每天08:45执行京东门店数据拉取",
-        tags=["数据拉取", "京东", "门店", "定时"]
+        tags=["数据拉取", "京东", "门店", "定时"],
+        work_pool_name="default-pool"
     )
     deployments.append(jd_deployment)
     
@@ -75,7 +79,8 @@ def create_deployments():
         name="拼多多KPI数据-定时执行",
         schedule=CronSchedule(cron="0 12 * * *", timezone="Asia/Shanghai"),
         description="每天12:00执行拼多多KPI数据拉取",
-        tags=["数据拉取", "拼多多", "KPI", "定时"]
+        tags=["数据拉取", "拼多多", "KPI", "定时"],
+        work_pool_name="default-pool"
     )
     deployments.append(pdd_kpi_deployment)
     
@@ -84,7 +89,8 @@ def create_deployments():
         name="拼多多KPI周报-定时执行",
         schedule=CronSchedule(cron="0 11 * * 6", timezone="Asia/Shanghai"),
         description="每周六11:00执行拼多多KPI周报数据拉取",
-        tags=["数据拉取", "拼多多", "KPI", "周报", "定时"]
+        tags=["数据拉取", "拼多多", "KPI", "周报", "定时"],
+        work_pool_name="default-pool"
     )
     deployments.append(pdd_kpi_weekly_deployment)
     

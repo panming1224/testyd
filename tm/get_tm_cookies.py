@@ -64,18 +64,20 @@ class TmallCookieGetter:
             # 确保目录存在
             os.makedirs(USER_DATA_DIR, exist_ok=True)
             
-            # 使用launch_persistent_context启动浏览器
+            # 使用launch_persistent_context启动浏览器（静默模式）
             self.context = await self.playwright.chromium.launch_persistent_context(
                 user_data_dir=USER_DATA_DIR,
-                headless=False,
+                headless=True,  # 改为静默启动
                 args=[
-                    "--start-maximized",
                     "--no-sandbox",
                     "--disable-dev-shm-usage",
                     "--disable-blink-features=AutomationControlled",
+                    "--disable-gpu",
+                    "--disable-web-security",
+                    "--disable-features=VizDisplayCompositor",
                     f"--profile-directory={profile_name}",
                 ],
-                no_viewport=True,
+                viewport={'width': 1920, 'height': 1080},  # 设置视口大小
                 ignore_https_errors=True,
                 user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
             )
@@ -105,7 +107,7 @@ class TmallCookieGetter:
                 });
             """)
             
-            logger.info("浏览器初始化完成")
+            logger.info("浏览器初始化完成（静默模式）")
     
     async def close_browser(self):
         """关闭浏览器"""
@@ -171,51 +173,111 @@ class TmallCookieGetter:
             
             # 访问千牛登录页面
             await page.goto('https://login.taobao.com/member/login.jhtml')
-            await page.wait_for_timeout(1000)
+            await page.wait_for_timeout(2000)
             
             # 输入账号密码
             await page.fill('#fm-login-id', account)
-            time.sleep(0.5)
+            await page.wait_for_timeout(500)
             await page.fill('#fm-login-password', password)
-            time.sleep(0.4)
+            await page.wait_for_timeout(500)
             
             # 点击登录
             await page.click('#login-form button[type="submit"]')
-            await page.wait_for_timeout(500)
+            await page.wait_for_timeout(2000)
             
             # 检查是否有确认对话框，如果有则点击确认
             try:
                 confirm_button = page.locator('button.dialog-btn-ok')
-                if await confirm_button.is_visible(timeout=500):
+                if await confirm_button.is_visible(timeout=1000):
                     await confirm_button.click()
-                    await page.wait_for_timeout(500)
+                    await page.wait_for_timeout(1000)
             except:
                 # 如果没有确认按钮，继续执行
                 pass
             
-            # 等待登录完成，检查页面是否跳转
-            await page.wait_for_timeout(500)
+            # 等待登录完成，然后访问千牛工作台来触发_m_h5_tk生成
+            try:
+                # 访问千牛工作台
+                await page.goto('https://qianniu.taobao.com/index.htm')
+                await page.wait_for_timeout(3000)
+                
+                # 访问卖家中心来确保获取完整Cookie
+                await page.goto('https://myseller.taobao.com/home.htm')
+                await page.wait_for_timeout(3000)
+                
+                # 访问评价管理页面来触发更多Cookie
+                await page.goto('https://myseller.taobao.com/home.htm/comment-manage/list')
+                await page.wait_for_timeout(3000)
+                
+            except Exception as e:
+                logger.warning(f"访问千牛页面时出错，继续获取Cookie: {e}")
            
-            # 获取Cookie
-            cookies = await page.context.cookies('https://myseller.taobao.com/home.htm/comment-manage/list')
+            # 获取所有域名的Cookie
+            all_cookies = []
+            
+            # 获取淘宝相关域名的Cookie
+            domains = [
+                'https://taobao.com',
+                'https://www.taobao.com', 
+                'https://myseller.taobao.com',
+                'https://qianniu.taobao.com',
+                'https://login.taobao.com'
+            ]
+            
+            for domain in domains:
+                try:
+                    domain_cookies = await page.context.cookies(domain)
+                    all_cookies.extend(domain_cookies)
+                except:
+                    continue
             
             # 定义必要的cookie字段
             essential_fields = ['_m_h5_tk', '_m_h5_tk_enc', 't', 'xlly_s', 'mtop_partitioned_detect', '_tb_token_', '_samesite_flag_', '3PcFlag', 'cookie2', 'sgcookie', 'unb', 'sn', 'uc1', 'csg', '_cc_', 'cancelledSubSites', 'skt', 'cna', 'tfstk']
             
-            # 过滤出必要的cookie字段
-            essential_cookies = []
-            for cookie in cookies:
+            # 去重并过滤出必要的cookie字段
+            cookie_dict = {}
+            for cookie in all_cookies:
                 if cookie['name'] in essential_fields:
-                    essential_cookies.append(f"{cookie['name']}={cookie['value']}")
+                    cookie_dict[cookie['name']] = cookie['value']
             
             # 构建cookie字符串
+            essential_cookies = [f"{name}={value}" for name, value in cookie_dict.items()]
             cookie_str = '; '.join(essential_cookies)
+            
+            # 检查是否获取到_m_h5_tk
+            has_m_h5_tk = '_m_h5_tk' in cookie_dict
             
             # 记录获取到的cookie信息
             logger.info(f"获取到 {len(essential_cookies)} 个必要cookie字段")
-            logger.info(f"Cookie字段: {[cookie['name'] for cookie in cookies if cookie['name'] in essential_fields]}")
+            logger.info(f"Cookie字段: {list(cookie_dict.keys())}")
+            logger.info(f"是否包含_m_h5_tk: {has_m_h5_tk}")
             
-            await page.wait_for_timeout(500)
+            if not has_m_h5_tk:
+                logger.warning("未获取到_m_h5_tk，尝试刷新页面重新获取")
+                # 刷新页面并等待
+                await page.reload()
+                await page.wait_for_timeout(5000)
+                
+                # 重新获取Cookie
+                all_cookies = []
+                for domain in domains:
+                    try:
+                        domain_cookies = await page.context.cookies(domain)
+                        all_cookies.extend(domain_cookies)
+                    except:
+                        continue
+                
+                # 重新构建Cookie
+                cookie_dict = {}
+                for cookie in all_cookies:
+                    if cookie['name'] in essential_fields:
+                        cookie_dict[cookie['name']] = cookie['value']
+                
+                essential_cookies = [f"{name}={value}" for name, value in cookie_dict.items()]
+                cookie_str = '; '.join(essential_cookies)
+                
+                has_m_h5_tk = '_m_h5_tk' in cookie_dict
+                logger.info(f"刷新后是否包含_m_h5_tk: {has_m_h5_tk}")
             
             await page.close()
             return cookie_str
@@ -235,7 +297,30 @@ class TmallCookieGetter:
             
             # 获取Cookie
             cookies = await page.context.cookies()
-            cookie_str = '; '.join([f"{cookie['name']}={cookie['value']}" for cookie in cookies])
+            
+            # 定义生意参谋必要的cookie字段
+            essential_sycm_fields = [
+                'DI_T_', 't', 'xlly_s', '3pc_partitioned', 'lid', 'cookie2', 
+                '_tb_token_', '_samesite_flag_', '3PcFlag', 'sgcookie', 'unb', 
+                'sn', 'uc1', 'csg', '_cc_', 'cancelledSubSites', 'skt', 'cna',
+                '_euacm_ac_l_uid_', '_euacm_ac_c_uid_', '_euacm_ac_rs_uid_',
+                '_portal_version_', 'cc_gray', 'XSRF-TOKEN', '_euacm_ac_rs_sid_',
+                'mtop_partitioned_detect', '_m_h5_tk', '_m_h5_tk_enc', 'JSESSIONID', 'tfstk'
+            ]
+            
+            # 过滤出必要的cookie字段
+            essential_cookies = []
+            for cookie in cookies:
+                if cookie['name'] in essential_sycm_fields:
+                    essential_cookies.append(f"{cookie['name']}={cookie['value']}")
+            
+            # 构建cookie字符串
+            cookie_str = '; '.join(essential_cookies)
+            
+            # 记录获取到的cookie信息
+            logger.info(f"获取到 {len(essential_cookies)} 个必要生意参谋cookie字段")
+            logger.info(f"生意参谋Cookie字段: {[cookie['name'] for cookie in cookies if cookie['name'] in essential_sycm_fields]}")
+            logger.info(f"生意参谋Cookie长度: {len(cookie_str)} 字符")
             
             await page.close()
             return cookie_str

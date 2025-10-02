@@ -44,8 +44,8 @@ class TmallBadScoreCollector:
         # 合并文件目录
         self.merged_dir = Path(r"D:\yingdao\tm\合并文件\天猫差评数据")
         
-        # 目标日期（13天前，t-13）
-        self.target_date = datetime.now() - timedelta(days=13)
+        # 目标日期（13天前，t-1）
+        self.target_date = datetime.now() - timedelta(days=1)
         self.target_date_str = self.target_date.strftime('%Y-%m-%d')
         
         # API配置
@@ -153,8 +153,12 @@ class TmallBadScoreCollector:
             print(f"获取店铺任务信息失败: {e}")
             return {}
 
-    def fetch_comments(self, cookies_str, start_date="20250924", end_date="20250926", page_num=1, page_size=20):
+    def fetch_comments(self, cookies_str, start_date=None, end_date=None, page_num=1, page_size=100):
         """获取评价数据"""
+        if start_date is None:
+            start_date = self.target_date.strftime('%Y%m%d')
+        if end_date is None:
+            end_date = self.target_date.strftime('%Y%m%d')
         try:
             # 提取token
             token = self.get_h5_token(cookies_str)

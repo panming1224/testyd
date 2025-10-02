@@ -1,0 +1,206 @@
+{
+  "timestamp": "2025-10-02 12:51:38",
+  "generated_samples": [
+    {
+      "method": "时间戳方法",
+      "sample": "2c2c0a0b0c2c0a0b0c0a0b0c0e2c0a0b0c2c0a0b0c0a0b0c0e2c0a0b0c2c0a0b0c0a0b0c0e0a0b0c0e2c0a0b0c2c0a0b0c",
+      "length": 98,
+      "unique_chars": 6,
+      "char_distribution": {
+        "e": 4,
+        "b": 12,
+        "c": 21,
+        "0": 40,
+        "a": 12,
+        "2": 9
+      }
+    },
+    {
+      "method": "URL方法",
+      "sample": "c0e20ab0ab0c0bce0bb0a0c0e0ae0a0a0c0ba0aa0e0c0ee0ae0a",
+      "length": 52,
+      "unique_chars": 6,
+      "char_distribution": {
+        "e": 8,
+        "c": 6,
+        "0": 20,
+        "b": 6,
+        "a": 11,
+        "2": 1
+      }
+    },
+    {
+      "method": "模式方法",
+      "sample": "0a2c2c0a0b0c0e0a0b0c0c0e0a0b0e0a0b0c0a0b0c0e2c0a0b0c0a0b0c0e2c0a0b0c0c0e0a0b0c0e0a0b0a0b0c0e0a0b0c",
+      "length": 98,
+      "unique_chars": 6,
+      "char_distribution": {
+        "e": 8,
+        "b": 12,
+        "c": 16,
+        "0": 45,
+        "a": 13,
+        "2": 4
+      }
+    },
+    {
+      "method": "高级模式",
+      "sample": "0a2c0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c",
+      "length": 98,
+      "unique_chars": 6,
+      "char_distribution": {
+        "e": 11,
+        "b": 12,
+        "c": 13,
+        "0": 48,
+        "a": 13,
+        "2": 1
+      }
+    },
+    {
+      "method": "校验和方法",
+      "sample": "0b2c0c2c0c0b0a0c0a0e0e0b0b0e0a0c2c0c0a0e0a0c0c0a0e0b0b0e0a2c0e0a0a0c0e0e0c0e0c0e0a0c2c0c0c0e0c0e0a",
+      "length": 98,
+      "unique_chars": 6,
+      "char_distribution": {
+        "e": 13,
+        "c": 19,
+        "b": 6,
+        "0": 44,
+        "a": 11,
+        "2": 5
+      }
+    }
+  ],
+  "test_results": [
+    {
+      "anti_content": "2c2c0a0b0c2c0a0b0c0a0b0c0e2c0a0b0c2c0a0b0c0a0b0c0e2c0a0b0c2c0a0b0c0a0b0c0e0a0b0c0e2c0a0b0c2c0a0b0c",
+      "status_code": 200,
+      "response_length": 6650,
+      "success": true,
+      "contains_data": true,
+      "contains_error": true,
+      "response_headers": {
+        "Server": "nginx",
+        "Date": "Thu, 02 Oct 2025 04:51:34 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Last-Modified": "Tue, 23 Sep 2025 11:53:11 GMT",
+        "Vary": "Accept-Encoding, Origin",
+        "ETag": "W/\"68d28a27-1d1c\"",
+        "Content-Encoding": "gzip",
+        "x-yak-request-id": "1759380694109-fdc6c36a837cacafa42e02797b513a07",
+        "Access-Control-Allow-Origin": "https://mms.pinduoduo.com",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, X_Requested_With, Accept, X-HTTP-Method-Override, Cookie, AccessToken, PASSID, VerifyAuthToken, Anti-Content, ETag",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE, PUT, HEAD",
+        "Access-Control-Expose-Headers": "*",
+        "Access-Control-Allow-Credentials": "true",
+        "cache-control": "no-cache, no-store",
+        "yak-timeinfo": "1759380694109|2",
+        "Content-Security-Policy-Report-Only": "script-src 'self' *.yangkeduo.com *.pinduoduo.com *.pddpic.com *.pddugc.com blob: 'unsafe-eval' 'unsafe-inline'; connect-src 'self' *.pinduoduo.com *.pinduoduo.net *.yangkeduo.com *.gtimg.com *.pddpic.com *.pddugc.com *.v.smtcdns.net *.ourdvsss.com wss://*.pinduoduo.com wss://*.yangkeduo.com mapstyle.qpic.cn http://localhost:16582; manifest-src *.pinduoduo.com *.pddpic.com *.pddugc.com; object-src 'self' *.yangkeduo.com *.pddpic.com *.pddugc.com; frame-ancestors 'self' *.yangkeduo.com *.pinduoduo.com; report-uri /csp-report",
+        "Content-Security-Policy": "script-src 'self' *.yangkeduo.com *.pinduoduo.com *.pddpic.com *.pddugc.com blob: 'unsafe-eval' 'unsafe-inline'; connect-src 'self' *.pinduoduo.com *.pinduoduo.net *.yangkeduo.com *.gtimg.com *.pddpic.com *.pddugc.com *.v.smtcdns.net *.ourdvsss.com wss://*.pinduoduo.com wss://*.yangkeduo.com mapstyle.qpic.cn http://localhost:16582; manifest-src *.pinduoduo.com *.pddpic.com *.pddugc.com; object-src 'self' *.yangkeduo.com *.pddpic.com *.pddugc.com; frame-ancestors 'self' *.yangkeduo.com *.pinduoduo.com; report-uri /csp-report",
+        "cip": "183.155.15.101"
+      },
+      "is_json": false
+    },
+    {
+      "anti_content": "c0e20ab0ab0c0bce0bb0a0c0e0ae0a0a0c0ba0aa0e0c0ee0ae0a",
+      "status_code": 200,
+      "response_length": 6650,
+      "success": true,
+      "contains_data": true,
+      "contains_error": true,
+      "response_headers": {
+        "Server": "nginx",
+        "Date": "Thu, 02 Oct 2025 04:51:35 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Last-Modified": "Tue, 23 Sep 2025 11:53:11 GMT",
+        "Vary": "Accept-Encoding, Origin",
+        "ETag": "W/\"68d28a27-1d1c\"",
+        "Content-Encoding": "gzip",
+        "x-yak-request-id": "1759380695158-6f169f2c159a4f5c97ffe79e5a2e62aa",
+        "Access-Control-Allow-Origin": "https://mms.pinduoduo.com",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, X_Requested_With, Accept, X-HTTP-Method-Override, Cookie, AccessToken, PASSID, VerifyAuthToken, Anti-Content, ETag",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE, PUT, HEAD",
+        "Access-Control-Expose-Headers": "*",
+        "Access-Control-Allow-Credentials": "true",
+        "cache-control": "no-cache, no-store",
+        "yak-timeinfo": "1759380695158|3",
+        "Content-Security-Policy-Report-Only": "script-src 'self' *.yangkeduo.com *.pinduoduo.com *.pddpic.com *.pddugc.com blob: 'unsafe-eval' 'unsafe-inline'; connect-src 'self' *.pinduoduo.com *.pinduoduo.net *.yangkeduo.com *.gtimg.com *.pddpic.com *.pddugc.com *.v.smtcdns.net *.ourdvsss.com wss://*.pinduoduo.com wss://*.yangkeduo.com mapstyle.qpic.cn http://localhost:16582; manifest-src *.pinduoduo.com *.pddpic.com *.pddugc.com; object-src 'self' *.yangkeduo.com *.pddpic.com *.pddugc.com; frame-ancestors 'self' *.yangkeduo.com *.pinduoduo.com; report-uri /csp-report",
+        "Content-Security-Policy": "script-src 'self' *.yangkeduo.com *.pinduoduo.com *.pddpic.com *.pddugc.com blob: 'unsafe-eval' 'unsafe-inline'; connect-src 'self' *.pinduoduo.com *.pinduoduo.net *.yangkeduo.com *.gtimg.com *.pddpic.com *.pddugc.com *.v.smtcdns.net *.ourdvsss.com wss://*.pinduoduo.com wss://*.yangkeduo.com mapstyle.qpic.cn http://localhost:16582; manifest-src *.pinduoduo.com *.pddpic.com *.pddugc.com; object-src 'self' *.yangkeduo.com *.pddpic.com *.pddugc.com; frame-ancestors 'self' *.yangkeduo.com *.pinduoduo.com; report-uri /csp-report",
+        "cip": "183.155.15.101"
+      },
+      "is_json": false
+    },
+    {
+      "anti_content": "0a2c2c0a0b0c0e0a0b0c0c0e0a0b0e0a0b0c0a0b0c0e2c0a0b0c0a0b0c0e2c0a0b0c0c0e0a0b0c0e0a0b0a0b0c0e0a0b0c",
+      "status_code": 200,
+      "response_length": 6650,
+      "success": true,
+      "contains_data": true,
+      "contains_error": true,
+      "response_headers": {
+        "Server": "nginx",
+        "Date": "Thu, 02 Oct 2025 04:51:36 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Last-Modified": "Tue, 23 Sep 2025 11:53:11 GMT",
+        "Vary": "Accept-Encoding, Origin",
+        "ETag": "W/\"68d28a27-1d1c\"",
+        "Content-Encoding": "gzip",
+        "x-yak-request-id": "1759380696193-c433ad65b9f9efc5db0235250f75e433",
+        "Access-Control-Allow-Origin": "https://mms.pinduoduo.com",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, X_Requested_With, Accept, X-HTTP-Method-Override, Cookie, AccessToken, PASSID, VerifyAuthToken, Anti-Content, ETag",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE, PUT, HEAD",
+        "Access-Control-Expose-Headers": "*",
+        "Access-Control-Allow-Credentials": "true",
+        "cache-control": "no-cache, no-store",
+        "yak-timeinfo": "1759380696193|2",
+        "Content-Security-Policy-Report-Only": "script-src 'self' *.yangkeduo.com *.pinduoduo.com *.pddpic.com *.pddugc.com blob: 'unsafe-eval' 'unsafe-inline'; connect-src 'self' *.pinduoduo.com *.pinduoduo.net *.yangkeduo.com *.gtimg.com *.pddpic.com *.pddugc.com *.v.smtcdns.net *.ourdvsss.com wss://*.pinduoduo.com wss://*.yangkeduo.com mapstyle.qpic.cn http://localhost:16582; manifest-src *.pinduoduo.com *.pddpic.com *.pddugc.com; object-src 'self' *.yangkeduo.com *.pddpic.com *.pddugc.com; frame-ancestors 'self' *.yangkeduo.com *.pinduoduo.com; report-uri /csp-report",
+        "Content-Security-Policy": "script-src 'self' *.yangkeduo.com *.pinduoduo.com *.pddpic.com *.pddugc.com blob: 'unsafe-eval' 'unsafe-inline'; connect-src 'self' *.pinduoduo.com *.pinduoduo.net *.yangkeduo.com *.gtimg.com *.pddpic.com *.pddugc.com *.v.smtcdns.net *.ourdvsss.com wss://*.pinduoduo.com wss://*.yangkeduo.com mapstyle.qpic.cn http://localhost:16582; manifest-src *.pinduoduo.com *.pddpic.com *.pddugc.com; object-src 'self' *.yangkeduo.com *.pddpic.com *.pddugc.com; frame-ancestors 'self' *.yangkeduo.com *.pinduoduo.com; report-uri /csp-report",
+        "cip": "183.155.15.101"
+      },
+      "is_json": false
+    },
+    {
+      "anti_content": "0a2c0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e0a0b0c0e",
+      "status_code": 200,
+      "response_length": 6650,
+      "success": true,
+      "contains_data": true,
+      "contains_error": true,
+      "response_headers": {
+        "Server": "nginx",
+        "Date": "Thu, 02 Oct 2025 04:51:37 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Last-Modified": "Tue, 23 Sep 2025 11:53:11 GMT",
+        "Vary": "Accept-Encoding, Origin",
+        "ETag": "W/\"68d28a27-1d1c\"",
+        "Content-Encoding": "gzip",
+        "x-yak-request-id": "1759380697228-0e1c7be87c167aeb70499d1a2806d56e",
+        "Access-Control-Allow-Origin": "https://mms.pinduoduo.com",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, X_Requested_With, Accept, X-HTTP-Method-Override, Cookie, AccessToken, PASSID, VerifyAuthToken, Anti-Content, ETag",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE, PUT, HEAD",
+        "Access-Control-Expose-Headers": "*",
+        "Access-Control-Allow-Credentials": "true",
+        "cache-control": "no-cache, no-store",
+        "yak-timeinfo": "1759380697228|4",
+        "Content-Security-Policy-Report-Only": "script-src 'self' *.yangkeduo.com *.pinduoduo.com *.pddpic.com *.pddugc.com blob: 'unsafe-eval' 'unsafe-inline'; connect-src 'self' *.pinduoduo.com *.pinduoduo.net *.yangkeduo.com *.gtimg.com *.pddpic.com *.pddugc.com *.v.smtcdns.net *.ourdvsss.com wss://*.pinduoduo.com wss://*.yangkeduo.com mapstyle.qpic.cn http://localhost:16582; manifest-src *.pinduoduo.com *.pddpic.com *.pddugc.com; object-src 'self' *.yangkeduo.com *.pddpic.com *.pddugc.com; frame-ancestors 'self' *.yangkeduo.com *.pinduoduo.com; report-uri /csp-report",
+        "Content-Security-Policy": "script-src 'self' *.yangkeduo.com *.pinduoduo.com *.pddpic.com *.pddugc.com blob: 'unsafe-eval' 'unsafe-inline'; connect-src 'self' *.pinduoduo.com *.pinduoduo.net *.yangkeduo.com *.gtimg.com *.pddpic.com *.pddugc.com *.v.smtcdns.net *.ourdvsss.com wss://*.pinduoduo.com wss://*.yangkeduo.com mapstyle.qpic.cn http://localhost:16582; manifest-src *.pinduoduo.com *.pddpic.com *.pddugc.com; object-src 'self' *.yangkeduo.com *.pddpic.com *.pddugc.com; frame-ancestors 'self' *.yangkeduo.com *.pinduoduo.com; report-uri /csp-report",
+        "cip": "183.155.15.101"
+      },
+      "is_json": false
+    }
+  ],
+  "summary": {
+    "total_methods": 5,
+    "total_tests": 4,
+    "successful_tests": 4
+  }
+}

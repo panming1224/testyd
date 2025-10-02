@@ -29,6 +29,11 @@ SHEET = 0
 MINIO_API_URL = "http://127.0.0.1:8009/api/upload"
 MINIO_BUCKET = "warehouse"
 
+# 轮询与文件IO重试配置
+MAX_ATTEMPTS = 60
+FILE_IO_MAX_RETRY = 5
+FILE_IO_RETRY_SLEEP_SEC = 0.5
+
 # 创建基础存档目录和合并文件目录
 os.makedirs(BASE_ARCHIVE_DIR, exist_ok=True)
 os.makedirs(MERGED_FILES_DIR, exist_ok=True)
@@ -158,7 +163,7 @@ def fetch_download_link_and_download(shop_name: str, profile: str):
             "x-requested-with": "XMLHttpRequest"
         }
         
-        max_attempts = 60  # 最大尝试次数，避免无限循环
+        max_attempts = MAX_ATTEMPTS  # 最大尝试次数，避免无限循环
         attempt = 0
         download_url = None
         download_success = False
@@ -196,19 +201,41 @@ def fetch_download_link_and_download(shop_name: str, profile: str):
                                 filename = f"{shop_name}.xlsx"
                                 file_path = date_dir / filename
                                 
-                                # 如果目标文件已存在，先删除
+                                # 如果目标文件已存在，先删除（带重试，避免占用）
                                 if file_path.exists():
                                     print(f'[{shop_name}] 删除 发现同名文件，正在删除: {file_path}')
-                                    file_path.unlink()  # 删除文件
-                                    print(f'[{shop_name}] 成功 同名文件已删除')
+                                    delete_attempt = 0
+                                    while delete_attempt < FILE_IO_MAX_RETRY:
+                                        try:
+                                            file_path.unlink()
+                                            print(f'[{shop_name}] 成功 同名文件已删除')
+                                            break
+                                        except PermissionError as del_err:
+                                            delete_attempt += 1
+                                            print(f'[{shop_name}] 警告 删除文件被占用，重试{delete_attempt}/{FILE_IO_MAX_RETRY}: {del_err}')
+                                            time.sleep(FILE_IO_RETRY_SLEEP_SEC)
+                                    else:
+                                        print(f'[{shop_name}] 失败 无法删除同名文件，放弃下载: {file_path}')
+                                        break
                                 
                                 # 下载文件
                                 download_response = requests.get(download_url, stream=True)
                                 download_response.raise_for_status()
                                 
-                                with open(file_path, 'wb') as f:
-                                    for chunk in download_response.iter_content(chunk_size=8192):
-                                        f.write(chunk)
+                                write_attempt = 0
+                                while write_attempt < FILE_IO_MAX_RETRY:
+                                    try:
+                                        with open(file_path, 'wb') as f:
+                                            for chunk in download_response.iter_content(chunk_size=8192):
+                                                f.write(chunk)
+                                        break
+                                    except PermissionError as write_err:
+                                        write_attempt += 1
+                                        print(f'[{shop_name}] 警告 写入文件被占用，重试{write_attempt}/{FILE_IO_MAX_RETRY}: {write_err}')
+                                        time.sleep(FILE_IO_RETRY_SLEEP_SEC)
+                                else:
+                                    print(f'[{shop_name}] 失败 文件写入失败，放弃: {file_path}')
+                                    break
                                 
                                 print(f"[{shop_name}] 成功 文件下载完成: {file_path}")
                                 download_success = True
@@ -402,16 +429,25 @@ if __name__ == '__main__':
             df.iloc[row_idx, status_idx] = ''
             print(f'失败 {shop} - 异常：{e}，已置空待重试')
 
-    # 5. 保存Excel状态更新
-    try:
-        # 确保文件没有被其他程序占用
-        import time
-        time.sleep(1)  # 等待1秒确保文件释放
-        df.to_excel(EXCEL_PATH, index=False, engine='openpyxl')
-        print('Excel状态已更新！')
-    except PermissionError as e:
-        print(f'警告 Excel文件被占用，无法更新状态: {e}')
-        print('请关闭Excel文件后重新运行脚本')
+    # 5. 保存Excel状态更新（带重试机制）
+    save_attempt = 0
+    save_success = False
+    while save_attempt < FILE_IO_MAX_RETRY and not save_success:
+        try:
+            time.sleep(FILE_IO_RETRY_SLEEP_SEC)
+            df.to_excel(EXCEL_PATH, index=False, engine='openpyxl')
+            print('Excel状态已更新！')
+            save_success = True
+        except PermissionError as e:
+            save_attempt += 1
+            print(f'警告 Excel文件被占用，重试{save_attempt}/{FILE_IO_MAX_RETRY}: {e}')
+            time.sleep(FILE_IO_RETRY_SLEEP_SEC)
+        except Exception as e:
+            save_attempt += 1
+            print(f'警告 Excel写回异常，重试{save_attempt}/{FILE_IO_MAX_RETRY}: {e}')
+            time.sleep(FILE_IO_RETRY_SLEEP_SEC)
+    if not save_success:
+        print('失败 多次重试后仍无法写回Excel，请关闭Excel后重试')
     
     # 6. 如果有下载的文件，进行合并和上传
     if downloaded_files:
