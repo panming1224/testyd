@@ -64,22 +64,7 @@ class TmallKpiCollector:
         
         print(f"目标日期: {self.target_date} ({self.target_date_str})")
         
-    def generate_daily_tasks(self):
-        """生成当日任务"""
-        print("\n=== 生成当日任务 ===")
-        
-        try:
-            # 定义任务列
-            task_columns = ['kpi_self_status', 'kpi_offical_status']
-            
-            # 生成任务
-            created_count = self.db_interface.generate_tasks(self.target_date_str, task_columns)
-            print(f"✓ 成功生成 {created_count} 个任务")
-            
-            return True
-        except Exception as e:
-            print(f"✗ 生成任务失败: {e}")
-            return False
+
     
     def get_shops_with_tasks(self, task_type):
         """获取有指定任务类型的店铺信息"""
@@ -151,13 +136,13 @@ class TmallKpiCollector:
         try:
             response = requests.get(url, headers=headers)
             print(f"请求状态码: {response.status_code}")
-            
+
             if response.status_code == 200:
                 try:
                     data = response.json()
                     task_id = data.get('data')
                     print(f"✓ 获取到任务ID: {task_id}")
-                    
+
                     if task_id:
                         # 步骤2：循环检查下载状态
                         return self._check_download_status_for_shop(task_id, cookies, shop_name, 'report')
@@ -166,6 +151,7 @@ class TmallKpiCollector:
                         return False
                 except json.JSONDecodeError as e:
                     print(f"✗ JSON解析失败: {e}")
+                    print(f"⚠️ 可能原因：Cookie已过期，返回了登录页面")
                     return False
             else:
                 print(f"✗ 请求失败: {response.text}")
@@ -202,11 +188,18 @@ class TmallKpiCollector:
             print("发送售后解决分析数据请求...")
             response = requests.get(url, headers=headers)
             print(f"请求状态码: {response.status_code}")
-            
+
             if response.status_code == 200:
                 data = response.json()
+
+                # 检查是否需要登录
+                if data.get('code') == 5810:
+                    print(f"✗ 需要登录: {data.get('msg', '未知错误')}")
+                    print(f"⚠️ 可能原因：Cookie已过期")
+                    return False
+
                 print(f"✓ 获取到响应数据")
-                
+
                 # 解析数据
                 return self._parse_and_save_analysis_data_for_shop(data, shop_name)
             else:
@@ -355,13 +348,14 @@ class TmallKpiCollector:
         try:
             if data.get('code') == 0 and data.get('data'):
                 analysis_data = data['data']
-                
+
                 # 提取数据
                 records = []
-                
+
                 # 添加汇总数据
                 if 'sumResult' in analysis_data:
                     sum_result = analysis_data['sumResult']
+
                     records.append({
                         '店铺名称': shop_name,
                         '客服姓名': '汇总',
@@ -370,10 +364,11 @@ class TmallKpiCollector:
                         '72小时解决率': '',
                         '统计日期': self.target_date_str
                     })
-                
+
                 # 添加平均数据
                 if 'avgResult' in analysis_data:
                     avg_result = analysis_data['avgResult']
+
                     records.append({
                         '店铺名称': shop_name,
                         '客服姓名': '平均值',
@@ -382,39 +377,42 @@ class TmallKpiCollector:
                         '72小时解决率': avg_result.get('fcr72Rate', {}).get('value', 0),
                         '统计日期': self.target_date_str
                     })
-                
+
                 # 添加详细数据
                 if 'data' in analysis_data:
-                    for item in analysis_data['data']:
-                        records.append({
-                            '店铺名称': shop_name,
-                            '客服姓名': item.get('psnNickName', {}).get('value', ''),
-                            '售后回复UV': item.get('aftSaleRplyUv', {}).get('value', 0),
-                            '首次未解决UV': item.get('fstUnsolvUv', {}).get('value', 0),
-                            '72小时解决率': item.get('fcr72Rate', {}).get('value', 0),
-                            '统计日期': self.target_date_str
-                        })
-                
+                    detail_data = analysis_data['data']
+
+                    if isinstance(detail_data, list):
+                        for item in detail_data:
+                            records.append({
+                                '店铺名称': shop_name,
+                                '客服姓名': item.get('psnNickName', {}).get('value', ''),
+                                '售后回复UV': item.get('aftSaleRplyUv', {}).get('value', 0),
+                                '首次未解决UV': item.get('fstUnsolvUv', {}).get('value', 0),
+                                '72小时解决率': item.get('fcr72Rate', {}).get('value', 0),
+                                '统计日期': self.target_date_str
+                            })
+
                 # 创建DataFrame
                 df = pd.DataFrame(records)
-                
+
                 # 创建日期目录
                 date_dir = self.base_analysis_dir / self.target_date_str
                 date_dir.mkdir(parents=True, exist_ok=True)
-                
+
                 # 保存为Excel文件，以店铺名称命名
                 filename = f"{shop_name}.xlsx"
                 file_path = date_dir / filename
-                
+
                 # 如果文件已存在，先删除
                 if file_path.exists():
                     file_path.unlink()
                     print(f"删除已存在的文件: {file_path}")
-                
+
                 df.to_excel(file_path, index=False, engine='openpyxl')
                 print(f"✓ 售后解决分析数据已保存: {file_path}")
                 print(f"✓ 共保存 {len(records)} 条记录")
-                
+
                 return str(file_path)
             else:
                 print("✗ 响应数据格式异常")
@@ -422,6 +420,8 @@ class TmallKpiCollector:
                 
         except Exception as e:
             print(f"✗ 解析和保存数据时出错: {e}")
+            import traceback
+            traceback.print_exc()
             return False
     
     def merge_and_upload_files(self, file_type):
@@ -590,16 +590,11 @@ class TmallKpiCollector:
         """运行主程序"""
         print("=== 天猫KPI数据获取工具 - 升级版 ===")
         print(f"目标日期: {self.target_date_str}")
-        
-        # 1. 生成当日任务
-        if not self.generate_daily_tasks():
-            print("✗ 任务生成失败，程序退出")
-            return False
-        
+
         success_count = 0
         total_tasks = 0
-        
-        # 2. 处理自制报表任务
+
+        # 1. 处理自制报表任务
         print("\n=== 处理自制报表任务 ===")
         self_report_shops = self.get_shops_with_tasks('kpi_self_status')
         
@@ -617,28 +612,26 @@ class TmallKpiCollector:
                 
                 # 获取自制报表数据
                 file_path = self.get_custom_report_data_for_shop(shop_name, cookies, report_template_id)
-                
+
                 if file_path:
                     downloaded_files.append(file_path)
                     success_count += 1
-                    
+
                     # 更新任务状态
                     self.update_task_status(shop_name, 'kpi_self_status')
                 else:
                     print(f"✗ 店铺 {shop_name} 自制报表数据获取失败")
+                    print(f"⚠️ 建议：请运行 get_tm_cookies.py 重新获取该店铺的cookie")
             
             # 合并自制报表文件
             if downloaded_files:
                 self.merge_and_upload_files("自制报表")
         else:
-            print("没有找到 kpi_self_status 类型的待处理任务")
-            # 即使没有新任务，也要合并和上传现有文件
-            print("🔄 检查并合并现有自制报表文件...")
-            self.merge_and_upload_files("自制报表")
-        
-        # 3. 处理售后解决分析任务
+            print("✓ 没有找到 kpi_self_status 类型的待处理任务")
+
+        # 2. 处理售后解决分析任务
         print("\n=== 处理售后解决分析任务 ===")
-        analysis_shops = self.get_shops_with_tasks('kpi_offical_status')
+        analysis_shops = self.get_shops_with_tasks('kpi_official_status')
         
         if analysis_shops:
             total_tasks += len(analysis_shops)
@@ -653,25 +646,29 @@ class TmallKpiCollector:
                 
                 # 获取售后解决分析数据
                 file_path = self.get_aftersale_analysis_data_for_shop(shop_name, cookies)
-                
+
                 if file_path:
                     downloaded_files.append(file_path)
                     success_count += 1
-                    
+
                     # 更新任务状态
-                    self.update_task_status(shop_name, 'kpi_offical_status')
+                    self.update_task_status(shop_name, 'kpi_official_status')
                 else:
                     print(f"✗ 店铺 {shop_name} 售后解决分析数据获取失败")
+                    print(f"⚠️ 建议：请运行 get_tm_cookies.py 重新获取该店铺的cookie")
             
             # 合并售后解决分析文件
             if downloaded_files:
                 self.merge_and_upload_files("售后解决分析")
         else:
-            print("没有找到 kpi_offical_status 类型的待处理任务")
-            # 即使没有新任务，也要合并和上传现有文件
-            print("🔄 检查并合并现有售后解决分析文件...")
-            self.merge_and_upload_files("售后解决分析")
-        
+            print("✓ 没有找到 kpi_official_status 类型的待处理任务")
+
+        # 如果两个任务都没有，提示用户
+        if not self_report_shops and not analysis_shops:
+            print(f"\n提示：如需重新执行，请先运行统一任务生成器:")
+            print(f"  cd D:\\testyd\\task_generator")
+            print(f"  python generate_all_tasks.py --schedule daily")
+
         print(f"\n=== 执行完成 ===")
         print(f"成功执行: {success_count}/{total_tasks} 个任务")
         

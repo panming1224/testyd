@@ -96,26 +96,7 @@ class TmallBadScoreCollector:
             print(f"生成签名失败: {e}")
             return None
     
-    def generate_daily_tasks(self):
-        """生成当日任务"""
-        print("\n=== 生成当日任务 ===")
-        
-        try:
-            # 定义任务列
-            task_columns = ['badscore_status']
-            
-            # 生成任务
-            created_count = self.db_interface.generate_tasks(self.target_date_str, task_columns)
-            print(f"✓ 成功生成 {created_count} 个任务")
-            
-            # 检查是否有任务生成
-            if created_count == 0:
-                print("⚠️ 没有生成任何任务，可能是因为任务已存在或没有符合条件的店铺")
-            
-            return True
-        except Exception as e:
-            print(f"✗ 生成任务失败: {e}")
-            return False
+
     
     def get_shops_with_tasks(self):
         """获取有待处理badscore_status任务的店铺信息"""
@@ -619,32 +600,21 @@ class TmallBadScoreCollector:
         """主运行函数 - 多店铺差评数据采集"""
         print("=== 天猫差评数据采集程序启动 ===")
         print(f"目标日期: {self.target_date_str}")
-        
-        # 1. 生成每日任务
-        print("\n=== 生成每日任务 ===")
-        created_count = self.generate_daily_tasks()
-        print(f"生成任务数量: {created_count}")
-        
-        # 检查是否有任务生成
-        if created_count == 0:
-            print("⚠️ 警告: 没有生成任何任务，可能是因为:")
-            print("   - 该日期的任务已存在")
-            print("   - 没有符合条件的店铺")
-            print("   - 数据库连接问题")
-        
-        # 2. 获取待处理的店铺任务
+
+        # 1. 获取待处理的店铺任务
         print("\n=== 获取待处理任务 ===")
         shops_info = self.get_shops_with_tasks()
-        
+
         if not shops_info:
-            print("没有找到 badscore_status 类型的待处理任务")
-            # 即使没有任务也要执行合并上传，确保数据一致性
-            self.merge_and_upload_files()
+            print("✓ 没有找到 badscore_status 类型的待处理任务")
+            print(f"\n提示：如需重新执行，请先运行统一任务生成器:")
+            print(f"  cd D:\\testyd\\task_generator")
+            print(f"  python generate_all_tasks.py --schedule daily")
             return
-        
+
         print(f"找到 {len(shops_info)} 个店铺的待处理任务")
-        
-        # 3. 处理每个店铺的差评数据
+
+        # 2. 处理每个店铺的差评数据
         success_count = 0
         total_count = len(shops_info)
         
@@ -675,10 +645,9 @@ class TmallBadScoreCollector:
                         
             except Exception as e:
                 print(f"✗ 处理店铺 {shop_name} 时发生异常: {e}")
-                if 'task_id' in locals() and task_id:
-                    self.update_task_status(shop_name, task_id, 'failed')
-        
-        # 4. 合并文件并上传到MinIO
+                pass
+
+        # 3. 合并文件并上传到MinIO
         print(f"\n=== 数据处理完成 ===")
         print(f"成功处理: {success_count}/{total_count} 个店铺")
         

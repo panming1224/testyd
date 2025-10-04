@@ -204,33 +204,34 @@ class CrawlerDBInterface:
                     if not available_columns:
                         logger.warning(f"表 {self.tasks_table} 中没有找到任何指定的任务列: {task_columns}")
                         return 0
-                    
-                    # 构建插入语句
-                    insert_columns = ['time_period', 'shop_name'] + available_columns
-                    placeholders = ', '.join(['%s'] * len(insert_columns))
-                    update_clause = ', '.join([f"{col} = VALUES({col})" for col in available_columns])
-                    
-                    batch_data = []
-                    for shop in shops:
-                        # time_period, shop_name, 然后是各个状态字段（设为NULL，表示待处理）
-                        row_data = [time_period, shop[0]] + [None] * len(available_columns)
-                        batch_data.append(tuple(row_data))
-                    
-                    # 修复：使用INSERT IGNORE，只插入新记录，不更新已存在的记录
-                    # 这样可以避免重置已完成的任务状态
-                    sql = f"""
-                        INSERT IGNORE INTO {self.tasks_table} ({', '.join(insert_columns)}) 
-                        VALUES ({placeholders})
-                    """
-                    
-                    cursor.executemany(sql, batch_data)
-                
-                # 计算新创建的任务数
-                total_affected = cursor.rowcount
-                created_count = len(shops) if total_affected > 0 else 0
-                
+
+                    # 新策略：使用 INSERT IGNORE + UPDATE WHERE 精确控制
+                    # 1. 先用 INSERT IGNORE 确保记录存在（所有任务字段默认为NULL）
+                    # 2. 再用 UPDATE WHERE 只更新指定的任务字段为"待执行"
+
+                    # 步骤1: INSERT IGNORE 确保记录存在
+                    insert_data = [(time_period, shop[0]) for shop in shops]
+                    cursor.executemany(f"""
+                        INSERT IGNORE INTO {self.tasks_table} (time_period, shop_name)
+                        VALUES (%s, %s)
+                    """, insert_data)
+
+                    # 步骤2: UPDATE WHERE 只更新指定的任务字段
+                    # 只更新 NULL 或空值的字段为"待执行"，已完成的保持不变
+                    for col in available_columns:
+                        update_sql = f"""
+                            UPDATE {self.tasks_table}
+                            SET {col} = '待执行'
+                            WHERE time_period = %s
+                              AND ({col} IS NULL OR {col} = '')
+                        """
+                        cursor.execute(update_sql, (time_period,))
+                        logger.info(f"更新了 {cursor.rowcount} 个店铺的 {col} 字段为待执行")
+
+                    created_count = len(shops)
+
             conn.commit()
-            logger.info(f"为时间周期 {time_period} 创建了 {created_count} 个新任务")
+            logger.info(f"为时间周期 {time_period} 创建了 {created_count} 个任务记录")
             return created_count
             
         except Exception as e:
@@ -267,21 +268,21 @@ class CrawlerDBInterface:
                         SELECT dt.time_period, dt.shop_name, s.*
                         FROM {self.tasks_table} dt
                         JOIN {self.shops_table} s ON dt.shop_name = s.shop_name
-                        WHERE dt.time_period = %s 
-                          AND JSON_EXTRACT(dt.task_data, '$.{task_column}') IS NULL
+                        WHERE dt.time_period = %s
+                          AND JSON_EXTRACT(dt.task_data, '$.{task_column}') = '待执行'
                     """
                 else:
                     # 使用传统的枚举字段格式
                     if task_column not in task_columns:
                         logger.warning(f"任务列 {task_column} 不存在于表 {self.tasks_table} 中")
                         return []
-                    
+
                     sql = f"""
                         SELECT dt.time_period, dt.shop_name, s.*
                         FROM {self.tasks_table} dt
                         JOIN {self.shops_table} s ON dt.shop_name = s.shop_name
-                        WHERE dt.time_period = %s 
-                          AND dt.{task_column} IS NULL
+                        WHERE dt.time_period = %s
+                          AND dt.{task_column} = '待执行'
                     """
                 
                 if limit:

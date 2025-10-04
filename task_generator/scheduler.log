@@ -1,0 +1,582 @@
+2025-10-04 13:58:15,367 - INFO - ================================================================================
+2025-10-04 13:58:15,367 - INFO - 🚀 任务调度系统正在启动...
+2025-10-04 13:58:15,367 - INFO - ================================================================================
+2025-10-04 13:58:15,368 - INFO - ================================================================================
+2025-10-04 13:58:15,368 - INFO - 任务调度系统启动
+2025-10-04 13:58:15,368 - INFO - ================================================================================
+2025-10-04 13:58:15,368 - INFO - 
+2025-10-04 13:58:15,368 - INFO - 已启用的定时任务:
+2025-10-04 13:58:15,368 - INFO - 
+2025-10-04 13:58:15,368 - INFO -   1. 统一任务生成-每日
+2025-10-04 13:58:15,369 - INFO -      调度时间: 5 0 * * *
+2025-10-04 13:58:15,369 - INFO -      说明: 每天00:05为所有平台生成每日待执行任务
+2025-10-04 13:58:15,369 - INFO - 
+2025-10-04 13:58:15,369 - INFO -   2. 统一任务生成-每周
+2025-10-04 13:58:15,369 - INFO -      调度时间: 10 0 * * 6
+2025-10-04 13:58:15,369 - INFO -      说明: 每周六00:10为所有平台生成周度待执行任务
+2025-10-04 13:58:15,369 - INFO - 
+2025-10-04 13:58:15,369 - INFO -   3. 统一任务生成-每月
+2025-10-04 13:58:15,370 - INFO -      调度时间: 15 0 1 * *
+2025-10-04 13:58:15,370 - INFO -      说明: 每月1号00:15为所有平台生成月度待执行任务
+2025-10-04 13:58:15,370 - INFO - 
+2025-10-04 13:58:15,371 - INFO -   4. 天猫Cookie获取-定时执行
+2025-10-04 13:58:15,371 - INFO -      调度时间: 0 7 * * *
+2025-10-04 13:58:15,371 - INFO -      说明: 每天07:00执行天猫Cookie获取
+2025-10-04 13:58:15,371 - INFO - 
+2025-10-04 13:58:15,371 - INFO -   5. ERP门店数据-定时执行
+2025-10-04 13:58:15,372 - INFO -      调度时间: 0 7 * * *
+2025-10-04 13:58:15,372 - INFO -      说明: 每天07:00执行ERP门店数据拉取
+2025-10-04 13:58:15,372 - INFO - 
+2025-10-04 13:58:15,372 - INFO -   6. 天猫差评数据-定时执行
+2025-10-04 13:58:15,372 - INFO -      调度时间: 20 7 * * *
+2025-10-04 13:58:15,373 - INFO -      说明: 每天07:20执行天猫差评数据拉取
+2025-10-04 13:58:15,373 - INFO - 
+2025-10-04 13:58:15,373 - INFO -   7. 天猫聊天数据-定时执行
+2025-10-04 13:58:15,373 - INFO -      调度时间: 20 7 * * *
+2025-10-04 13:58:15,374 - INFO -      说明: 每天07:20执行天猫聊天数据拉取
+2025-10-04 13:58:15,374 - INFO - 
+2025-10-04 13:58:15,374 - INFO -   8. 京东门店数据-定时执行
+2025-10-04 13:58:15,374 - INFO -      调度时间: 30 7 * * *
+2025-10-04 13:58:15,375 - INFO -      说明: 每天07:30执行京东门店数据拉取
+2025-10-04 13:58:15,375 - INFO - 
+2025-10-04 13:58:15,375 - INFO -   9. PDD质量数据-定时执行
+2025-10-04 13:58:15,375 - INFO -      调度时间: 0 8 * * *
+2025-10-04 13:58:15,375 - INFO -      说明: 每天08:00执行PDD质量数据拉取
+2025-10-04 13:58:15,375 - INFO - 
+2025-10-04 13:58:15,376 - INFO -   10. PDD差评数据-定时执行
+2025-10-04 13:58:15,376 - INFO -      调度时间: 30 8 * * *
+2025-10-04 13:58:15,376 - INFO -      说明: 每天08:30执行PDD差评数据拉取
+2025-10-04 13:58:15,376 - INFO - 
+2025-10-04 13:58:15,376 - INFO -   11. PDDKPI数据-定时执行
+2025-10-04 13:58:15,376 - INFO -      调度时间: 0 11 * * *
+2025-10-04 13:58:15,376 - INFO -      说明: 每天11:00执行PDDKPI数据拉取
+2025-10-04 13:58:15,377 - INFO - 
+2025-10-04 13:58:15,377 - INFO -   12. 天猫KPI数据-定时执行
+2025-10-04 13:58:15,377 - INFO -      调度时间: 30 11 * * *
+2025-10-04 13:58:15,377 - INFO -      说明: 每天11:30执行天猫KPI数据拉取
+2025-10-04 13:58:15,377 - INFO - 
+2025-10-04 13:58:15,377 - INFO -   13. PDDKPI周报-定时执行
+2025-10-04 13:58:15,378 - INFO -      调度时间: 0 12 * * 6
+2025-10-04 13:58:15,378 - INFO -      说明: 每周六12:00执行PDDKPI周报数据拉取
+2025-10-04 13:58:15,378 - INFO - 
+2025-10-04 13:58:15,378 - INFO -   14. PDDKPI月报-定时执行
+2025-10-04 13:58:15,378 - INFO -      调度时间: 30 12 3 * *
+2025-10-04 13:58:15,378 - INFO -      说明: 每月3号12:30执行PDDKPI月报数据拉取
+2025-10-04 13:58:15,379 - INFO - 
+2025-10-04 13:58:15,379 - INFO - 总计: 14 个启用任务
+2025-10-04 13:58:15,379 - INFO - 
+2025-10-04 13:58:15,379 - INFO - 禁用的任务:
+2025-10-04 13:58:15,379 - INFO -   - PDD聊天数据-定时执行 (待实现)
+2025-10-04 13:58:15,379 - INFO - 
+2025-10-04 13:58:15,379 - INFO - 可视化界面: http://127.0.0.1:4200
+2025-10-04 13:58:15,380 - INFO - 日志文件: d:/testyd/task_generator/scheduler.log
+2025-10-04 13:58:15,380 - INFO - ================================================================================
+2025-10-04 13:58:15,380 - INFO - 📋 正在创建任务部署...
+2025-10-04 13:58:15,445 - INFO - ✓ 添加任务: 统一任务生成-每日 - 5 0 * * *
+2025-10-04 13:58:15,447 - INFO - ✓ 添加任务: 统一任务生成-每周 - 10 0 * * 6
+2025-10-04 13:58:15,448 - INFO - ✓ 添加任务: 统一任务生成-每月 - 15 0 1 * *
+2025-10-04 13:58:15,450 - INFO - ✓ 添加任务: 天猫Cookie获取-定时执行 - 0 7 * * *
+2025-10-04 13:58:15,451 - INFO - ✓ 添加任务: ERP门店数据-定时执行 - 0 7 * * *
+2025-10-04 13:58:15,452 - INFO - ✓ 添加任务: 天猫差评数据-定时执行 - 20 7 * * *
+2025-10-04 13:58:15,453 - INFO - ✓ 添加任务: 天猫聊天数据-定时执行 - 20 7 * * *
+2025-10-04 13:58:15,455 - INFO - ✓ 添加任务: 京东门店数据-定时执行 - 30 7 * * *
+2025-10-04 13:58:15,456 - INFO - ✓ 添加任务: PDD质量数据-定时执行 - 0 8 * * *
+2025-10-04 13:58:15,457 - INFO - ✓ 添加任务: PDD差评数据-定时执行 - 30 8 * * *
+2025-10-04 13:58:15,457 - INFO - 跳过禁用的任务: PDD聊天数据-定时执行
+2025-10-04 13:58:15,459 - INFO - ✓ 添加任务: PDDKPI数据-定时执行 - 0 11 * * *
+2025-10-04 13:58:15,461 - INFO - ✓ 添加任务: 天猫KPI数据-定时执行 - 30 11 * * *
+2025-10-04 13:58:15,462 - INFO - ✓ 添加任务: PDDKPI周报-定时执行 - 0 12 * * 6
+2025-10-04 13:58:15,464 - INFO - ✓ 添加任务: PDDKPI月报-定时执行 - 30 12 3 * *
+2025-10-04 13:58:15,465 - INFO - ✓ 成功创建 14 个任务部署
+2025-10-04 13:58:15,465 - INFO - 
+2025-10-04 13:58:15,465 - INFO - 🔄 正在启动调度服务...
+2025-10-04 13:58:15,465 - INFO -    服务将在后台持续运行，按 Ctrl+C 可停止
+2025-10-04 13:58:15,465 - INFO - ================================================================================
+2025-10-04 13:58:15,466 - INFO - 
+2025-10-04 13:58:22,165 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90%E6%B5%81-%E6%AF%8F%E6%97%A5/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90-%E6%AF%8F%E6%97%A5 "HTTP/1.1 502 Bad Gateway"
+2025-10-04 13:58:29,095 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90%E6%B5%81-%E6%AF%8F%E6%97%A5/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90-%E6%AF%8F%E6%97%A5 "HTTP/1.1 502 Bad Gateway"
+2025-10-04 13:58:37,498 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90%E6%B5%81-%E6%AF%8F%E6%97%A5/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90-%E6%AF%8F%E6%97%A5 "HTTP/1.1 502 Bad Gateway"
+2025-10-04 13:58:51,038 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90%E6%B5%81-%E6%AF%8F%E6%97%A5/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90-%E6%AF%8F%E6%97%A5 "HTTP/1.1 502 Bad Gateway"
+2025-10-04 13:59:12,321 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90%E6%B5%81-%E6%AF%8F%E6%97%A5/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90-%E6%AF%8F%E6%97%A5 "HTTP/1.1 502 Bad Gateway"
+2025-10-04 14:08:48,854 - INFO - ================================================================================
+2025-10-04 14:08:48,854 - INFO - 🚀 任务调度系统正在启动...
+2025-10-04 14:08:48,854 - INFO - ================================================================================
+2025-10-04 14:08:48,854 - INFO - ================================================================================
+2025-10-04 14:08:48,854 - INFO - 任务调度系统启动
+2025-10-04 14:08:48,854 - INFO - ================================================================================
+2025-10-04 14:08:48,854 - INFO - 
+2025-10-04 14:08:48,854 - INFO - 已启用的定时任务:
+2025-10-04 14:08:48,854 - INFO - 
+2025-10-04 14:08:48,854 - INFO -   1. 统一任务生成-每日
+2025-10-04 14:08:48,854 - INFO -      调度时间: 5 0 * * *
+2025-10-04 14:08:48,854 - INFO -      说明: 每天00:05为所有平台生成每日待执行任务
+2025-10-04 14:08:48,854 - INFO - 
+2025-10-04 14:08:48,854 - INFO -   2. 统一任务生成-每周
+2025-10-04 14:08:48,854 - INFO -      调度时间: 10 0 * * 6
+2025-10-04 14:08:48,854 - INFO -      说明: 每周六00:10为所有平台生成周度待执行任务
+2025-10-04 14:08:48,855 - INFO - 
+2025-10-04 14:08:48,855 - INFO -   3. 统一任务生成-每月
+2025-10-04 14:08:48,855 - INFO -      调度时间: 15 0 1 * *
+2025-10-04 14:08:48,855 - INFO -      说明: 每月1号00:15为所有平台生成月度待执行任务
+2025-10-04 14:08:48,855 - INFO - 
+2025-10-04 14:08:48,855 - INFO -   4. 天猫Cookie获取-定时执行
+2025-10-04 14:08:48,855 - INFO -      调度时间: 0 7 * * *
+2025-10-04 14:08:48,855 - INFO -      说明: 每天07:00执行天猫Cookie获取
+2025-10-04 14:08:48,855 - INFO - 
+2025-10-04 14:08:48,855 - INFO -   5. ERP门店数据-定时执行
+2025-10-04 14:08:48,855 - INFO -      调度时间: 0 7 * * *
+2025-10-04 14:08:48,855 - INFO -      说明: 每天07:00执行ERP门店数据拉取
+2025-10-04 14:08:48,855 - INFO - 
+2025-10-04 14:08:48,855 - INFO -   6. 天猫差评数据-定时执行
+2025-10-04 14:08:48,855 - INFO -      调度时间: 20 7 * * *
+2025-10-04 14:08:48,855 - INFO -      说明: 每天07:20执行天猫差评数据拉取
+2025-10-04 14:08:48,855 - INFO - 
+2025-10-04 14:08:48,855 - INFO -   7. 天猫聊天数据-定时执行
+2025-10-04 14:08:48,855 - INFO -      调度时间: 20 7 * * *
+2025-10-04 14:08:48,855 - INFO -      说明: 每天07:20执行天猫聊天数据拉取
+2025-10-04 14:08:48,855 - INFO - 
+2025-10-04 14:08:48,855 - INFO -   8. 京东门店数据-定时执行
+2025-10-04 14:08:48,855 - INFO -      调度时间: 30 7 * * *
+2025-10-04 14:08:48,855 - INFO -      说明: 每天07:30执行京东门店数据拉取
+2025-10-04 14:08:48,855 - INFO - 
+2025-10-04 14:08:48,856 - INFO -   9. PDD质量数据-定时执行
+2025-10-04 14:08:48,856 - INFO -      调度时间: 0 8 * * *
+2025-10-04 14:08:48,856 - INFO -      说明: 每天08:00执行PDD质量数据拉取
+2025-10-04 14:08:48,856 - INFO - 
+2025-10-04 14:08:48,856 - INFO -   10. PDD差评数据-定时执行
+2025-10-04 14:08:48,856 - INFO -      调度时间: 30 8 * * *
+2025-10-04 14:08:48,856 - INFO -      说明: 每天08:30执行PDD差评数据拉取
+2025-10-04 14:08:48,856 - INFO - 
+2025-10-04 14:08:48,856 - INFO -   11. PDDKPI数据-定时执行
+2025-10-04 14:08:48,856 - INFO -      调度时间: 0 11 * * *
+2025-10-04 14:08:48,856 - INFO -      说明: 每天11:00执行PDDKPI数据拉取
+2025-10-04 14:08:48,856 - INFO - 
+2025-10-04 14:08:48,856 - INFO -   12. 天猫KPI数据-定时执行
+2025-10-04 14:08:48,856 - INFO -      调度时间: 30 11 * * *
+2025-10-04 14:08:48,856 - INFO -      说明: 每天11:30执行天猫KPI数据拉取
+2025-10-04 14:08:48,856 - INFO - 
+2025-10-04 14:08:48,856 - INFO -   13. PDDKPI周报-定时执行
+2025-10-04 14:08:48,856 - INFO -      调度时间: 0 12 * * 6
+2025-10-04 14:08:48,856 - INFO -      说明: 每周六12:00执行PDDKPI周报数据拉取
+2025-10-04 14:08:48,856 - INFO - 
+2025-10-04 14:08:48,856 - INFO -   14. PDDKPI月报-定时执行
+2025-10-04 14:08:48,856 - INFO -      调度时间: 30 12 3 * *
+2025-10-04 14:08:48,856 - INFO -      说明: 每月3号12:30执行PDDKPI月报数据拉取
+2025-10-04 14:08:48,856 - INFO - 
+2025-10-04 14:08:48,857 - INFO - 总计: 14 个启用任务
+2025-10-04 14:08:48,857 - INFO - 
+2025-10-04 14:08:48,857 - INFO - 禁用的任务:
+2025-10-04 14:08:48,857 - INFO -   - PDD聊天数据-定时执行 (待实现)
+2025-10-04 14:08:48,857 - INFO - 
+2025-10-04 14:08:48,857 - INFO - 可视化界面: http://127.0.0.1:4200
+2025-10-04 14:08:48,857 - INFO - 日志文件: d:/testyd/task_generator/scheduler.log
+2025-10-04 14:08:48,857 - INFO - ================================================================================
+2025-10-04 14:08:48,857 - INFO - 📋 正在创建任务部署...
+2025-10-04 14:08:48,911 - INFO - ✓ 添加任务: 统一任务生成-每日 - 5 0 * * *
+2025-10-04 14:08:48,912 - INFO - ✓ 添加任务: 统一任务生成-每周 - 10 0 * * 6
+2025-10-04 14:08:48,913 - INFO - ✓ 添加任务: 统一任务生成-每月 - 15 0 1 * *
+2025-10-04 14:08:48,914 - INFO - ✓ 添加任务: 天猫Cookie获取-定时执行 - 0 7 * * *
+2025-10-04 14:08:48,916 - INFO - ✓ 添加任务: ERP门店数据-定时执行 - 0 7 * * *
+2025-10-04 14:08:48,917 - INFO - ✓ 添加任务: 天猫差评数据-定时执行 - 20 7 * * *
+2025-10-04 14:08:48,918 - INFO - ✓ 添加任务: 天猫聊天数据-定时执行 - 20 7 * * *
+2025-10-04 14:08:48,919 - INFO - ✓ 添加任务: 京东门店数据-定时执行 - 30 7 * * *
+2025-10-04 14:08:48,920 - INFO - ✓ 添加任务: PDD质量数据-定时执行 - 0 8 * * *
+2025-10-04 14:08:48,921 - INFO - ✓ 添加任务: PDD差评数据-定时执行 - 30 8 * * *
+2025-10-04 14:08:48,921 - INFO - 跳过禁用的任务: PDD聊天数据-定时执行
+2025-10-04 14:08:48,923 - INFO - ✓ 添加任务: PDDKPI数据-定时执行 - 0 11 * * *
+2025-10-04 14:08:48,924 - INFO - ✓ 添加任务: 天猫KPI数据-定时执行 - 30 11 * * *
+2025-10-04 14:08:48,925 - INFO - ✓ 添加任务: PDDKPI周报-定时执行 - 0 12 * * 6
+2025-10-04 14:08:48,926 - INFO - ✓ 添加任务: PDDKPI月报-定时执行 - 30 12 3 * *
+2025-10-04 14:08:48,926 - INFO - ✓ 成功创建 14 个任务部署
+2025-10-04 14:08:48,926 - INFO - 
+2025-10-04 14:08:48,927 - INFO - 🔄 正在启动调度服务...
+2025-10-04 14:08:48,927 - INFO -    服务将在后台持续运行，按 Ctrl+C 可停止
+2025-10-04 14:08:48,927 - INFO - ================================================================================
+2025-10-04 14:08:48,927 - INFO - 
+2025-10-04 14:08:51,425 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90%E6%B5%81-%E6%AF%8F%E6%97%A5/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90-%E6%AF%8F%E6%97%A5 "HTTP/1.1 200 OK"
+2025-10-04 14:08:51,557 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=9f666c33-ad4f-4a24-8d71-6472a8735f4b "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:08:51,586 - INFO - HTTP Request: PATCH http://127.0.0.1:4200/api/deployments/33224fba-0a78-4802-b8e1-427864f656fc "HTTP/1.1 204 No Content"
+2025-10-04 14:08:51,596 - INFO - HTTP Request: DELETE http://127.0.0.1:4200/api/automations/owned-by/prefect.deployment.33224fba-0a78-4802-b8e1-427864f656fc "HTTP/1.1 202 Accepted"
+2025-10-04 14:08:53,499 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90%E6%B5%81-%E6%AF%8F%E5%91%A8/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90-%E6%AF%8F%E5%91%A8 "HTTP/1.1 200 OK"
+2025-10-04 14:08:53,504 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=366a9470-1bad-413d-8ba2-a2524a49688d "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:08:53,520 - INFO - HTTP Request: PATCH http://127.0.0.1:4200/api/deployments/a092f31c-666e-4475-bc57-530ed8eec9ed "HTTP/1.1 204 No Content"
+2025-10-04 14:08:53,527 - INFO - HTTP Request: DELETE http://127.0.0.1:4200/api/automations/owned-by/prefect.deployment.a092f31c-666e-4475-bc57-530ed8eec9ed "HTTP/1.1 202 Accepted"
+2025-10-04 14:08:55,275 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90%E6%B5%81-%E6%AF%8F%E6%9C%88/%E7%BB%9F%E4%B8%80%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90-%E6%AF%8F%E6%9C%88 "HTTP/1.1 200 OK"
+2025-10-04 14:08:55,281 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=88d2b5ee-c061-4bfb-848a-e86a7fe55cd1 "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:08:55,298 - INFO - HTTP Request: PATCH http://127.0.0.1:4200/api/deployments/cbdab7a3-cbd5-40da-9ddc-3df0e94f1cd3 "HTTP/1.1 204 No Content"
+2025-10-04 14:08:55,304 - INFO - HTTP Request: DELETE http://127.0.0.1:4200/api/automations/owned-by/prefect.deployment.cbdab7a3-cbd5-40da-9ddc-3df0e94f1cd3 "HTTP/1.1 202 Accepted"
+2025-10-04 14:08:57,116 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/%E5%A4%A9%E7%8C%ABCookie%E8%8E%B7%E5%8F%96%E6%B5%81/%E5%A4%A9%E7%8C%ABCookie%E8%8E%B7%E5%8F%96-%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C "HTTP/1.1 200 OK"
+2025-10-04 14:08:57,121 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=b5a65041-0374-44c7-87b2-4779e60817be "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:08:57,137 - INFO - HTTP Request: PATCH http://127.0.0.1:4200/api/deployments/9ea069f8-e8ed-47cc-bbec-0f1f4bb6f6cf "HTTP/1.1 204 No Content"
+2025-10-04 14:08:57,144 - INFO - HTTP Request: DELETE http://127.0.0.1:4200/api/automations/owned-by/prefect.deployment.9ea069f8-e8ed-47cc-bbec-0f1f4bb6f6cf "HTTP/1.1 202 Accepted"
+2025-10-04 14:08:59,045 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/ERP%E9%97%A8%E5%BA%97%E6%95%B0%E6%8D%AE%E6%B5%81/ERP%E9%97%A8%E5%BA%97%E6%95%B0%E6%8D%AE-%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C "HTTP/1.1 200 OK"
+2025-10-04 14:08:59,050 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=e19a31d6-0bbf-436a-8152-1f8d3d09594c "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:08:59,072 - INFO - HTTP Request: PATCH http://127.0.0.1:4200/api/deployments/18c39dda-1974-4b4e-9bd4-a483da36ba9c "HTTP/1.1 204 No Content"
+2025-10-04 14:08:59,078 - INFO - HTTP Request: DELETE http://127.0.0.1:4200/api/automations/owned-by/prefect.deployment.18c39dda-1974-4b4e-9bd4-a483da36ba9c "HTTP/1.1 202 Accepted"
+2025-10-04 14:09:01,173 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/%E5%A4%A9%E7%8C%AB%E5%B7%AE%E8%AF%84%E6%95%B0%E6%8D%AE%E6%B5%81/%E5%A4%A9%E7%8C%AB%E5%B7%AE%E8%AF%84%E6%95%B0%E6%8D%AE-%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C "HTTP/1.1 200 OK"
+2025-10-04 14:09:01,179 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=eb3412c6-cacb-41d1-8e49-5fa5664be32b "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:09:01,195 - INFO - HTTP Request: PATCH http://127.0.0.1:4200/api/deployments/77669862-0719-474e-856a-9a52c6e9d8c9 "HTTP/1.1 204 No Content"
+2025-10-04 14:09:01,204 - INFO - HTTP Request: DELETE http://127.0.0.1:4200/api/automations/owned-by/prefect.deployment.77669862-0719-474e-856a-9a52c6e9d8c9 "HTTP/1.1 202 Accepted"
+2025-10-04 14:09:03,434 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/%E5%A4%A9%E7%8C%AB%E8%81%8A%E5%A4%A9%E6%95%B0%E6%8D%AE%E6%B5%81/%E5%A4%A9%E7%8C%AB%E8%81%8A%E5%A4%A9%E6%95%B0%E6%8D%AE-%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C "HTTP/1.1 200 OK"
+2025-10-04 14:09:03,440 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=0dc72db3-806b-4585-81db-9b22e33450b7 "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:09:03,458 - INFO - HTTP Request: PATCH http://127.0.0.1:4200/api/deployments/e36ddaac-326a-49fe-ac03-f304470f1a81 "HTTP/1.1 204 No Content"
+2025-10-04 14:09:03,465 - INFO - HTTP Request: DELETE http://127.0.0.1:4200/api/automations/owned-by/prefect.deployment.e36ddaac-326a-49fe-ac03-f304470f1a81 "HTTP/1.1 202 Accepted"
+2025-10-04 14:09:05,504 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/%E4%BA%AC%E4%B8%9C%E9%97%A8%E5%BA%97%E6%95%B0%E6%8D%AE%E6%B5%81/%E4%BA%AC%E4%B8%9C%E9%97%A8%E5%BA%97%E6%95%B0%E6%8D%AE-%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C "HTTP/1.1 200 OK"
+2025-10-04 14:09:05,509 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=527e1fd0-3006-4815-a5bb-05d4e4eb74a1 "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:09:05,526 - INFO - HTTP Request: PATCH http://127.0.0.1:4200/api/deployments/6cddac65-3abd-42f6-b9fb-901583902c2b "HTTP/1.1 204 No Content"
+2025-10-04 14:09:05,532 - INFO - HTTP Request: DELETE http://127.0.0.1:4200/api/automations/owned-by/prefect.deployment.6cddac65-3abd-42f6-b9fb-901583902c2b "HTTP/1.1 202 Accepted"
+2025-10-04 14:09:07,451 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/PDD%E8%B4%A8%E9%87%8F%E6%95%B0%E6%8D%AE%E6%B5%81/PDD%E8%B4%A8%E9%87%8F%E6%95%B0%E6%8D%AE-%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C "HTTP/1.1 200 OK"
+2025-10-04 14:09:07,455 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=200a2ad5-59f0-4092-b8dc-d9152fe55f67 "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:09:07,472 - INFO - HTTP Request: PATCH http://127.0.0.1:4200/api/deployments/ee08293b-19cb-479a-b842-0764bc40f213 "HTTP/1.1 204 No Content"
+2025-10-04 14:09:07,479 - INFO - HTTP Request: DELETE http://127.0.0.1:4200/api/automations/owned-by/prefect.deployment.ee08293b-19cb-479a-b842-0764bc40f213 "HTTP/1.1 202 Accepted"
+2025-10-04 14:09:09,361 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/PDD%E5%B7%AE%E8%AF%84%E6%95%B0%E6%8D%AE%E6%B5%81/PDD%E5%B7%AE%E8%AF%84%E6%95%B0%E6%8D%AE-%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C "HTTP/1.1 200 OK"
+2025-10-04 14:09:09,366 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=efec4e0c-4854-4d7c-ac88-74257d8d1cc1 "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:09:09,385 - INFO - HTTP Request: PATCH http://127.0.0.1:4200/api/deployments/9b147fea-8446-4f2e-bad7-065acb844bfb "HTTP/1.1 204 No Content"
+2025-10-04 14:09:09,392 - INFO - HTTP Request: DELETE http://127.0.0.1:4200/api/automations/owned-by/prefect.deployment.9b147fea-8446-4f2e-bad7-065acb844bfb "HTTP/1.1 202 Accepted"
+2025-10-04 14:09:11,169 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/PDDKPI%E6%95%B0%E6%8D%AE%E6%B5%81/PDDKPI%E6%95%B0%E6%8D%AE-%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C "HTTP/1.1 200 OK"
+2025-10-04 14:09:11,174 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=2d78913e-6224-4fd5-9612-0e50e83fa1e0 "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:09:11,193 - INFO - HTTP Request: PATCH http://127.0.0.1:4200/api/deployments/5388fb36-9320-4ec6-81f1-1919e4fe74f7 "HTTP/1.1 204 No Content"
+2025-10-04 14:09:11,200 - INFO - HTTP Request: DELETE http://127.0.0.1:4200/api/automations/owned-by/prefect.deployment.5388fb36-9320-4ec6-81f1-1919e4fe74f7 "HTTP/1.1 202 Accepted"
+2025-10-04 14:09:12,877 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/%E5%A4%A9%E7%8C%ABKPI%E6%95%B0%E6%8D%AE%E6%B5%81/%E5%A4%A9%E7%8C%ABKPI%E6%95%B0%E6%8D%AE-%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C "HTTP/1.1 200 OK"
+2025-10-04 14:09:12,883 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=6bd52c2e-de9f-4d8e-9e35-2da72a9c0852 "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:09:12,898 - INFO - HTTP Request: PATCH http://127.0.0.1:4200/api/deployments/1944ce7d-b5d0-4892-a416-31a9443bbc62 "HTTP/1.1 204 No Content"
+2025-10-04 14:09:12,906 - INFO - HTTP Request: DELETE http://127.0.0.1:4200/api/automations/owned-by/prefect.deployment.1944ce7d-b5d0-4892-a416-31a9443bbc62 "HTTP/1.1 202 Accepted"
+2025-10-04 14:09:14,574 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/PDDKPI%E5%91%A8%E6%8A%A5%E6%95%B0%E6%8D%AE%E6%B5%81/PDDKPI%E5%91%A8%E6%8A%A5-%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C "HTTP/1.1 200 OK"
+2025-10-04 14:09:14,580 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=86f50074-2ae7-4fde-b356-68c7141477c5 "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:09:14,596 - INFO - HTTP Request: PATCH http://127.0.0.1:4200/api/deployments/637d452a-9dbc-4b1e-9394-8f89367cbf79 "HTTP/1.1 204 No Content"
+2025-10-04 14:09:14,603 - INFO - HTTP Request: DELETE http://127.0.0.1:4200/api/automations/owned-by/prefect.deployment.637d452a-9dbc-4b1e-9394-8f89367cbf79 "HTTP/1.1 202 Accepted"
+2025-10-04 14:09:16,512 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/deployments/name/PDDKPI%E6%9C%88%E6%8A%A5%E6%95%B0%E6%8D%AE%E6%B5%81/PDDKPI%E6%9C%88%E6%8A%A5-%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C "HTTP/1.1 200 OK"
+2025-10-04 14:09:16,518 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=eb21e11a-751e-4177-8e30-8481be513296 "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:09:16,541 - INFO - HTTP Request: PATCH http://127.0.0.1:4200/api/deployments/b5473a9c-4423-42da-865a-b9304155541b "HTTP/1.1 204 No Content"
+2025-10-04 14:09:16,555 - INFO - HTTP Request: DELETE http://127.0.0.1:4200/api/automations/owned-by/prefect.deployment.b5473a9c-4423-42da-865a-b9304155541b "HTTP/1.1 202 Accepted"
+2025-10-04 14:09:17,900 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=4b90be44-00a9-43a8-a072-3c4c015b1006 "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:09:17,909 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:09:29,782 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:09:41,466 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:09:50,415 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:10:03,394 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:10:12,784 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:10:25,786 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:10:37,050 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:10:48,194 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:10:59,917 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:11:12,598 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:11:20,279 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:11:31,054 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:11:38,941 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:11:48,978 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:12:00,567 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:12:10,594 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:12:20,009 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:12:31,068 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:12:42,005 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:12:52,414 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:13:03,831 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:13:13,302 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:13:25,969 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:13:38,522 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:13:46,220 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:13:55,032 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:14:05,700 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:14:13,380 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:14:23,078 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:14:32,191 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:14:41,919 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:14:50,135 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:15:00,934 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:15:12,751 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:15:22,321 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:15:32,392 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:15:43,636 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:15:55,299 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:16:07,131 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:16:15,665 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:16:24,468 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:16:36,927 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:16:46,151 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:16:57,958 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:17:09,416 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:17:21,935 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:17:32,605 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:17:40,716 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:17:53,160 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:18:06,093 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:18:16,466 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:18:26,569 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:18:34,220 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:18:43,265 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:18:55,360 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:19:08,318 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:19:16,293 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:19:24,007 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:19:31,826 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:19:41,203 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:19:53,166 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:20:03,855 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:20:14,588 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:20:23,162 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:20:31,333 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:20:42,899 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:20:51,479 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:21:04,479 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:21:16,668 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:21:28,210 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:21:38,737 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:21:49,097 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:21:59,234 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:22:09,557 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:22:21,144 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:22:31,677 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:22:41,393 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:22:49,053 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:23:01,486 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:23:13,477 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:23:21,969 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:23:32,053 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:23:43,554 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:23:53,819 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:24:02,321 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:24:12,616 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:24:12,621 - INFO - Runner 'runner-4c7b1148-6238-4cf4-b9a2-38b005ffc9fe' submitting flow run 'e9f033f0-1ca4-418d-b3be-cd2c323af61f'
+2025-10-04 14:24:12,646 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/flow_runs/e9f033f0-1ca4-418d-b3be-cd2c323af61f/set_state "HTTP/1.1 201 Created"
+2025-10-04 14:24:12,648 - INFO - Opening process...
+2025-10-04 14:24:12,677 - INFO - Completed submission of flow run 'e9f033f0-1ca4-418d-b3be-cd2c323af61f'
+2025-10-04 14:24:15,253 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/csrf-token?client=70b52414-34be-439e-a255-4bd8af9892bc "HTTP/1.1 422 Unprocessable Content"
+2025-10-04 14:24:15,263 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/logs/ "HTTP/1.1 201 Created"
+2025-10-04 14:24:22,418 - INFO - Process for flow run 'affable-lion' exited cleanly.
+2025-10-04 14:24:22,426 - INFO - HTTP Request: GET http://127.0.0.1:4200/api/flow_runs/e9f033f0-1ca4-418d-b3be-cd2c323af61f "HTTP/1.1 200 OK"
+2025-10-04 14:24:23,302 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/logs/ "HTTP/1.1 201 Created"
+2025-10-04 14:24:23,381 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:24:35,021 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:24:45,768 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:24:55,792 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:25:07,654 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:25:17,101 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:25:29,838 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:25:39,769 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:25:47,475 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:25:57,014 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:26:08,256 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:26:16,569 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:26:25,792 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:26:36,935 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:26:46,151 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:26:54,007 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:27:05,476 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:27:15,093 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:27:26,104 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:27:37,952 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:27:50,334 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:27:59,622 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:28:11,655 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:28:20,581 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:28:28,590 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:28:41,821 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:28:51,883 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:29:03,536 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:29:11,666 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:29:21,346 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:29:31,363 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:29:43,423 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:29:52,032 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:30:04,339 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:30:14,534 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:30:23,459 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:30:34,447 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:30:45,059 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:30:55,860 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:31:06,280 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:31:16,177 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:31:26,016 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:31:33,853 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:31:44,301 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:31:52,711 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:32:01,243 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:32:10,467 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:32:21,107 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:32:29,508 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:32:41,099 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:32:53,852 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:33:03,874 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:33:14,137 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:33:23,793 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:33:34,590 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:33:42,733 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:33:53,510 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:34:01,151 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:34:09,379 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:34:19,960 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:34:30,647 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:34:43,642 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:34:56,400 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:35:09,153 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:35:20,973 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:35:29,676 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:35:41,726 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:35:51,137 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:36:02,038 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:36:14,737 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:36:23,940 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:36:35,239 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:36:43,988 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:36:54,533 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:37:04,781 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:37:14,914 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:37:25,470 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:37:34,034 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:37:42,307 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:37:54,268 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:38:05,316 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:38:13,114 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:38:22,302 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:38:34,147 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:38:42,169 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:38:50,900 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:38:58,523 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:39:09,440 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:39:17,435 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:39:25,304 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:39:38,214 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:39:50,528 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:39:59,991 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:40:08,818 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:40:19,877 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:40:28,038 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:40:36,612 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:40:45,223 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:40:53,291 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:41:02,510 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:41:13,438 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:41:22,108 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:41:30,128 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:41:42,022 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:41:52,846 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:42:00,937 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:42:12,204 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:42:19,787 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:42:27,500 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:42:37,019 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:42:48,399 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:42:56,047 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:43:05,330 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:43:14,974 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:43:23,078 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:43:33,396 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:43:45,523 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:43:53,578 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:44:06,015 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:44:14,778 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:44:27,393 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:44:37,943 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:44:49,226 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:44:59,594 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:45:07,402 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:45:18,643 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:45:28,699 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:45:37,125 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:45:49,315 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:46:00,537 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:46:08,652 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:46:18,384 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:46:29,906 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:46:37,772 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:46:46,777 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:46:55,868 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:47:05,964 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:47:14,314 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:47:24,709 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:47:35,778 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:47:43,493 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:47:51,332 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:48:02,708 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:48:11,786 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:48:20,103 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:48:32,921 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:48:43,723 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:48:52,713 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:49:01,469 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:49:12,754 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:49:20,536 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:49:31,975 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:49:43,393 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:49:52,684 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:50:03,142 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:50:10,785 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:50:19,120 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:50:28,567 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:50:36,600 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:50:45,130 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:50:55,139 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:51:03,536 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:51:13,365 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:51:23,670 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:51:32,498 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:51:42,687 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:51:50,782 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:51:59,813 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:52:07,781 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:52:20,148 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:52:28,232 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:52:36,878 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:52:49,043 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:52:57,133 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:53:06,655 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:53:16,318 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:53:28,841 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:53:38,265 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:53:47,331 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:53:56,990 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:54:08,320 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:54:16,571 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:54:27,997 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:54:38,440 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:54:47,891 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:54:58,414 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:55:07,282 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:55:15,106 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:55:23,729 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:55:34,678 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:55:44,433 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:55:56,368 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:56:08,713 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:56:19,249 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:56:29,556 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:56:40,240 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:56:50,979 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:56:59,308 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:57:10,183 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:57:18,475 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:57:26,009 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:57:37,356 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:57:45,075 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:57:52,741 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:58:00,782 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:58:11,956 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:58:21,034 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:58:28,583 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:58:36,366 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:58:47,771 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:59:00,451 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:59:09,527 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:59:20,017 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:59:29,117 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:59:38,694 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 14:59:51,022 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:00:01,299 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:00:12,449 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:00:25,440 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:00:35,869 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:00:46,705 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:00:55,820 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:01:05,623 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:01:13,916 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:01:23,916 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:01:34,248 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:01:44,853 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:01:53,927 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:02:06,244 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:02:18,840 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:02:28,666 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:02:37,176 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:02:49,820 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
+2025-10-04 15:03:00,791 - INFO - HTTP Request: POST http://127.0.0.1:4200/api/deployments/get_scheduled_flow_runs "HTTP/1.1 200 OK"
